@@ -13,7 +13,7 @@ endif()
 #                             NiFpga.c                       
 # )
 
-add_executable(fpga_driver  fpga_server.cpp
+add_executable(fpga_driver  fpga_handler.cpp
                             NiFpga_FPGA_RS485_v1_2.c
                             NiFpga.c                       
 )
