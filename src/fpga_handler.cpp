@@ -153,6 +153,127 @@ NiFpga_Bool ModuleIO::read_rx_timeout_()
     return id1_timeout;
 }
 
+void ModuleIO::CAN_setup(int timeout_us)
+{
+    write_CAN_id_(motors_list_->at(0).CAN_ID_, motors_list_->at(1).CAN_ID_);
+    
+    /* select two port to transceive */
+    NiFpga_Bool _bool_arr[2] = {1, 1};
+    write_port_select_(_bool_arr);
+
+    write_timeout_us_(timeout_us);
+}
+
+void ModuleIO::CAN_set_mode(Mode mode)
+{
+    write_CAN_id_fc_((int)mode, (int)mode);
+}
+
+void ModuleIO::CAN_send_command(CAN_txdata txdata_id1, CAN_txdata txdata_id2)
+{
+    uint8_t txmsg_id1[8];
+    uint8_t txmsg_id2[8];
+    CAN_txdata txdata1_biased;
+    CAN_txdata txdata2_biased;
+
+    txdata1_biased.position_ = txdata_id1.position_ + motorR_bias;
+    txdata1_biased.torque_ = txdata_id1.torque_;
+    txdata1_biased.KP_ = txdata_id1.KP_;
+    txdata1_biased.KI_ = txdata_id1.KI_;
+    txdata1_biased.KD_ = txdata_id1.KD_;
+
+    txdata2_biased.position_ = txdata_id2.position_ + motorL_bias;
+    txdata2_biased.torque_ = txdata_id2.torque_;
+    txdata2_biased.KP_ = txdata_id2.KP_;
+    txdata2_biased.KI_ = txdata_id2.KI_;
+    txdata2_biased.KD_ = txdata_id2.KD_;
+
+    CAN_encode(txmsg_id1, txdata1_biased);
+    CAN_encode(txmsg_id2, txdata2_biased);
+
+    uint32_t fc1, fc2;
+    read_CAN_id_fc_(&fc1, &fc2);
+    
+    if (fc1 == 1) txmsg_id1[0] = 255;
+    if (fc2 == 1) txmsg_id2[0] = 255;
+
+    write_tx_data_(txmsg_id1, txmsg_id2);
+    usleep(100);
+    write_CAN_transmit_(1);
+}
+
+void ModuleIO::CAN_recieve_feedback(CAN_rxdata *rxdata_id1, CAN_rxdata *rxdata_id2)
+{
+    uint8_t rxmsg_id1[8];
+    uint8_t rxmsg_id2[8];
+    read_rx_data_(rxmsg_id1, rxmsg_id2);
+    CAN_decode(rxmsg_id1, rxdata_id1);
+    CAN_decode(rxmsg_id2, rxdata_id2);
+
+    rxdata_id1->position_ -= motorR_bias;
+    rxdata_id2->position_ -= motorL_bias;
+}
+
+// pack CAN data
+void ModuleIO::CAN_encode(uint8_t (&txmsg)[8], CAN_txdata txdata)
+{
+    int pos_int, torque_int, KP_int, KI_int, KD_int;
+    pos_int = float_to_uint(-txdata.position_, P_CMD_MIN, P_CMD_MAX, 16);
+    KP_int = float_to_uint(txdata.KP_, KP_MIN, KP_MAX, 12);
+    KI_int = float_to_uint(txdata.KI_, KI_MIN, KI_MAX, 12);
+    KD_int = float_to_uint(txdata.KD_, KD_MIN, KD_MAX, 12);
+    torque_int = float_to_uint(txdata.torque_, T_MIN, T_MAX, 12);
+
+    txmsg[0] = pos_int >> 8;
+    txmsg[1] = pos_int & 0xFF;
+    txmsg[2] = KP_int >> 4;
+    txmsg[3] = ((KP_int & 0x0F) << 4) | (KI_int >> 8);
+    txmsg[4] = KI_int & 0xFF;
+    txmsg[5] = KD_int >> 4;
+    txmsg[6] = ((KD_int & 0x0F) << 4) | (torque_int >> 8);
+    txmsg[7] = torque_int & 0xFF;
+}
+
+void ModuleIO::CAN_decode(uint8_t (&rxmsg)[8], CAN_rxdata *rxdata)
+{
+    int pos_raw, vel_raw, torque_raw, cal_raw, ver_raw, mode_raw;
+
+    pos_raw = ((int)(rxmsg[0]) << 8) | rxmsg[1];
+    vel_raw = ((int)(rxmsg[2]) << 8) | rxmsg[3];
+    torque_raw = ((int)(rxmsg[4]) << 8) | rxmsg[5];
+    cal_raw = ((int)(rxmsg[6] & 0x0F));
+    ver_raw = ((int)(rxmsg[7] >> 4));
+    mode_raw = ((int)(rxmsg[7]& 0x0F));
+
+    rxdata->position_ = -uint_to_float(pos_raw, P_FB_MIN, P_FB_MAX, 16);
+    rxdata->velocity_ = uint_to_float(vel_raw, V_MIN, V_MAX, 16);
+    rxdata->torque_ = uint_to_float(torque_raw, T_MIN, T_MAX, 16);
+    rxdata->version_ = ver_raw;
+    rxdata->calibrate_finish_ = cal_raw;
+    rxdata->mode_state_ = mode_raw;
+
+    if (mode_raw == _SET_ZERO)rxdata->mode_ = Mode::SET_ZERO;
+    else if (mode_raw == _MOTOR_MODE)rxdata->mode_ = Mode::MOTOR;
+    else if (mode_raw == _HALL_CALIBRATE)rxdata->mode_ = Mode::HALL_CALIBRATE;
+    else if (mode_raw == _REST_MODE)rxdata->mode_ = Mode::REST;
+}
+
+int ModuleIO::float_to_uint(float x, float x_min, float x_max, int bits)
+{
+    /// Converts a float to an unsigned int, given range and number of bits ///
+    float span = x_max - x_min;
+    float offset = x_min;
+    return (int)((x - offset) * ((float)((1 << bits) - 1)) / span);
+}
+
+float ModuleIO::uint_to_float(int x_int, float x_min, float x_max, int bits)
+{
+    /// converts unsigned int to float, given range and number of bits ///
+    float span = x_max - x_min;
+    float offset = x_min;
+    return ((float)x_int) * span / ((float)((1 << bits) - 1)) + offset;
+}
+
 int main(int argc, char* argv[])
 {
     //dummy

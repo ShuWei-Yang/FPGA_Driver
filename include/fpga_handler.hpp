@@ -3,7 +3,7 @@
 
 #include "NiFpga.h"
 #include "NiFpga_FPGA_RS485_v1_2.h"
-// #include "can_packet.h"
+#include "can_packet.h"
 // #include "color.hpp"
 #include "msg.hpp"
 
@@ -92,15 +92,5 @@ class ModuleIO{
     int float_to_uint(float x, float x_min, float x_max, int bits);
     float uint_to_float(int x_int, float x_min, float x_max, int bits);
 };
-
-
-
-
-
-
-
-
-
-
 
 #endif
