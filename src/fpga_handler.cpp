@@ -274,6 +274,35 @@ float ModuleIO::uint_to_float(int x_int, float x_min, float x_max, int bits)
     return ((float)x_int) * span / ((float)((1 << bits) - 1)) + offset;
 }
 
+FpgaHandler::FpgaHandler()
+{
+    status_ = NiFpga_Initialize();
+    important_message("[FPGA Handler] Fpga Initialized");
+
+    NiFpga_MergeStatus(&status_, NiFpga_Open(NiFpga_FPGA_RS485_v1_2_Bitfile,
+                                             NiFpga_FPGA_RS485_v1_2_Signature, "RIO0", 0, &session_));
+    important_message("[FPGA Handler] Session opened");
+
+    NiFpga_MergeStatus(&status_, NiFpga_ReserveIrqContext(session_, &irqContext_));
+    important_message("[FPGA Handler] IRQ reserved");
+    
+    w_pb_digital_ = NiFpga_FPGA_RS485_v1_2_ControlBool_Digital;
+    w_pb_signal_ = NiFpga_FPGA_RS485_v1_2_ControlBool_Signal;
+    w_pb_power_ = NiFpga_FPGA_RS485_v1_2_ControlBool_Power;
+
+    r_powerboard_data_ = NiFpga_FPGA_RS485_v1_2_IndicatorArrayU16_Data;
+    size_powerboard_data_ = NiFpga_FPGA_RS485_v1_2_IndicatorArrayU16Size_Data;
+
+    // w_vicon_trigger = NiFpga_FPGA_RS485_v1_2_ControlBool_Conn9_2w;
+
+    for (int i = 0; i < 12; i++)
+    {
+        powerboard_V_list_[i] = 0;
+        powerboard_I_list_[i] = 0;
+    }
+}
+
+
 int main(int argc, char* argv[])
 {
     //dummy

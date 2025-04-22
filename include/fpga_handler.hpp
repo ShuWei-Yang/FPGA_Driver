@@ -4,7 +4,7 @@
 #include "NiFpga.h"
 #include "NiFpga_FPGA_RS485_v1_2.h"
 #include "can_packet.h"
-// #include "color.hpp"
+#include "color.hpp"
 #include "msg.hpp"
 
 #include <unistd.h>
