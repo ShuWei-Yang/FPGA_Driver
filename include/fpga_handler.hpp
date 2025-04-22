@@ -93,4 +93,35 @@ class ModuleIO{
     float uint_to_float(int x_int, float x_min, float x_max, int bits);
 };
 
+class FpgaHandler
+{
+public:
+  FpgaHandler();
+  ~FpgaHandler();
+
+  NiFpga_Session session_;
+  NiFpga_Status status_;
+  // Fpga interrupt request
+  NiFpga_IrqContext irqContext_;
+
+  // powerboard
+  NiFpga_FPGA_RS485_v1_2_ControlBool w_pb_digital_;
+  NiFpga_FPGA_RS485_v1_2_ControlBool w_pb_signal_;
+  NiFpga_FPGA_RS485_v1_2_ControlBool w_pb_power_;
+
+  NiFpga_FPGA_RS485_v1_2_IndicatorArrayU16 r_powerboard_data_;
+  NiFpga_FPGA_RS485_v1_2_IndicatorArrayU16Size size_powerboard_data_;
+
+  void setIrqPeriod(int main_loop_period, int can_loop_period);
+  void write_powerboard_(std::vector<bool> *powerboard_state_);
+
+  void read_powerboard_data_();
+
+  double powerboard_Ifactor[12];
+  double powerboard_Vfactor[12];
+
+  double powerboard_I_list_[12] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+  double powerboard_V_list_[12] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+};
+
 #endif
