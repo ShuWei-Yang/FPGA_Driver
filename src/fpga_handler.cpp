@@ -346,9 +346,3 @@ void FpgaHandler::read_powerboard_data_()
         if (i % 2 == 1)powerboard_V_list_[(i - 1) / 2] = rx_arr[i] * powerboard_Vfactor[(i - 1) / 2];
     }
 }
-
-int main(int argc, char* argv[])
-{
-    //dummy
-    return 0;
-}
