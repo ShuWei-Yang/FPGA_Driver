@@ -114,7 +114,6 @@ public:
 
   void setIrqPeriod(int main_loop_period, int can_loop_period);
   void write_powerboard_(std::vector<bool> *powerboard_state_);
-
   void read_powerboard_data_();
 
   double powerboard_Ifactor[12];

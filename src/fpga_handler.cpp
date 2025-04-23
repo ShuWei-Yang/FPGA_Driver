@@ -302,6 +302,50 @@ FpgaHandler::FpgaHandler()
     }
 }
 
+FpgaHandler::~FpgaHandler()
+{
+    /* unreserve IRQ status to prevent memory leaks */
+    NiFpga_MergeStatus(&status_, NiFpga_UnreserveIrqContext(session_, &irqContext_));
+
+    /* Close the session */
+    NiFpga_MergeStatus(&status_, NiFpga_Close(session_, 0));
+    important_message("[FPGA Handler] Session Closed");
+
+    NiFpga_MergeStatus(&status_, NiFpga_Finalize());
+    important_message("[FPGA Handler] Fpga Finalized");
+}
+
+void FpgaHandler::setIrqPeriod(int main_loop_p, int can_loop_p)
+{
+    /* Set up interrupt period (microsecond) */
+    /* IRQ 0 */
+    NiFpga_MergeStatus(
+        &status_, NiFpga_WriteU32(session_, NiFpga_FPGA_RS485_v1_2_ControlU32_IRQ0_period_us, main_loop_p));
+
+    /* IRQ 1 */
+    NiFpga_MergeStatus(
+        &status_, NiFpga_WriteU32(session_, NiFpga_FPGA_RS485_v1_2_ControlU32_IRQ1_period_us, can_loop_p));
+}
+
+void FpgaHandler::write_powerboard_(std::vector<bool> *powerboard_state_)
+{
+    NiFpga_MergeStatus(&status_, NiFpga_WriteBool(session_, w_pb_digital_, powerboard_state_->at(0)));
+    NiFpga_MergeStatus(&status_, NiFpga_WriteBool(session_, w_pb_signal_, powerboard_state_->at(1)));
+    NiFpga_MergeStatus(&status_, NiFpga_WriteBool(session_, w_pb_power_, powerboard_state_->at(2)));
+}
+
+void FpgaHandler::read_powerboard_data_()
+{
+    uint16_t rx_arr[24];
+    // uint16_t *rx_arr = new uint16_t[24];
+    NiFpga_MergeStatus(&status_, NiFpga_ReadArrayU16(session_, NiFpga_FPGA_RS485_v1_2_IndicatorArrayU16_Data, rx_arr, NiFpga_FPGA_RS485_v1_2_IndicatorArrayU16Size_Data));
+
+    for (int i = 0; i < 24; i++)
+    {
+        if (i % 2 == 0)powerboard_I_list_[i / 2] = rx_arr[i] * powerboard_Ifactor[i / 2];
+        if (i % 2 == 1)powerboard_V_list_[(i - 1) / 2] = rx_arr[i] * powerboard_Vfactor[(i - 1) / 2];
+    }
+}
 
 int main(int argc, char* argv[])
 {
