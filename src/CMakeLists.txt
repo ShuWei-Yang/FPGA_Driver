@@ -17,6 +17,8 @@ add_executable(fpga_driver  main.cpp
                             color.cpp
                             fpga_handler.cpp
                             fpga_server.cpp
+                            fsm.cpp
+                            leg_module.cpp
                             NiFpga_FPGA_RS485_v1_2.c
                             NiFpga.c                       
 )
