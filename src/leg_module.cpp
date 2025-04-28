@@ -76,16 +76,20 @@ void LegModule::load_config()
     motor_f.kd_ = config_[label_]["Motor_F"]["KD"].as<double>();
     motor_f.kt_ = config_[label_]["Motor_F"]["KT"].as<double>();
     motor_f.torque_ff_ = config_[label_]["Motor_F"]["Torque_Feedfoward"].as<double>();
+
+    Motor_F_bias = config_[label_]["Motor_F"]["Calibration_Bias"].as<double>();
     motor_f.calibration_bias = 0;
 
     // Motor H setup
-    motor_h.fw_version_ = config_[label_]["Motor_L"]["FW_Version"].as<int>();
-    motor_h.CAN_ID_ = config_[label_]["Motor_L"]["CAN_ID"].as<int>();
-    motor_h.kp_ = config_[label_]["Motor_L"]["KP"].as<double>();
-    motor_h.ki_ = config_[label_]["Motor_L"]["KI"].as<double>();
-    motor_h.kd_ = config_[label_]["Motor_L"]["KD"].as<double>();
-    motor_h.kt_ = config_[label_]["Motor_L"]["KT"].as<double>();
-    motor_h.torque_ff_ = config_[label_]["Motor_L"]["Torque_Feedfoward"].as<double>();
+    motor_h.fw_version_ = config_[label_]["Motor_H"]["FW_Version"].as<int>();
+    motor_h.CAN_ID_ = config_[label_]["Motor_H"]["CAN_ID"].as<int>();
+    motor_h.kp_ = config_[label_]["Motor_H"]["KP"].as<double>();
+    motor_h.ki_ = config_[label_]["Motor_H"]["KI"].as<double>();
+    motor_h.kd_ = config_[label_]["Motor_H"]["KD"].as<double>();
+    motor_h.kt_ = config_[label_]["Motor_H"]["KT"].as<double>();
+    motor_h.torque_ff_ = config_[label_]["Motor_H"]["Torque_Feedfoward"].as<double>();
+
+    Motor_H_bias = config_[label_]["Motor_H"]["Calibration_Bias"].as<double>();
     motor_h.calibration_bias = 0;
 
     motors_list_.push_back(motor_f);
@@ -101,6 +105,7 @@ void LegModule::load_config()
     std::cout << std::setw(14) << "  KD: " << std::setw(13) << motor_f.kd_ << std::endl;
     std::cout << std::setw(14) << "  KT: " << std::setw(13) << motor_f.kt_ << std::endl;
     std::cout << std::setw(14) << "  Torque_ff: " << std::setw(13) << motor_f.torque_ff_ << std::endl;
+    std::cout << std::setw(14) << "  Bias: " << std::setw(13) << Motor_F_bias << std::endl;
     std::cout << std::setw(14) << "---------------------------" << std::endl;
 
     std::cout << "Motor_L: " << std::endl;
@@ -111,6 +116,7 @@ void LegModule::load_config()
     std::cout << std::setw(14) << "  KD: " << std::setw(13) << motor_h.kd_ << std::endl;
     std::cout << std::setw(14) << "  KT: " << std::setw(13) << motor_h.kt_ << std::endl;
     std::cout << std::setw(14) << "  Torque_ff: " << std::setw(13) << motor_h.torque_ff_ << std::endl;
+    std::cout << std::setw(14) << "  Bias: " << std::setw(13) << Motor_H_bias << std::endl;
     std::cout << std::setw(14) << "---------------------------" << std::endl;
 }
 

@@ -38,8 +38,8 @@ public:
   CAN_txdata txdata_buffer_[2];
   CAN_rxdata rxdata_buffer_[2];
 
-  double linkR_bias = 0;
-  double linkL_bias = 0;
+  double Motor_F_bias = 0;
+  double Motor_H_bias = 0;
 
   // ModuleIO
   void load_config();
