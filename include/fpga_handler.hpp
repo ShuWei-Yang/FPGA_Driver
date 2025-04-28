@@ -21,6 +21,7 @@
 #undef OK
 
 class ModuleIO{
+public:
     ModuleIO(NiFpga_Status status_, NiFpga_Session fpga_session_, std::string CAN_port_,
         std::vector<Motor> *motors_list);
 
@@ -85,8 +86,8 @@ class ModuleIO{
     void CAN_encode(uint8_t (&txmsg)[8], CAN_txdata txdata);
     void CAN_decode(uint8_t (&rxmsg)[8], CAN_rxdata *rxdata);
 
-    double motorR_bias;
-    double motorL_bias;
+    double motor_F_bias;
+    double motor_H_bias;
 
     // data conversion for CAN-bus
     int float_to_uint(float x, float x_min, float x_max, int bits);
