@@ -54,6 +54,7 @@ H_Module:
   Motor_F:
     FW_Version: 3
     CAN_ID: 1
+    Calibration_Bias: 0.0
     KP: 85
     KI: 0
     KD: 1.75
@@ -62,6 +63,7 @@ H_Module:
   Motor_H:
     FW_Version: 3
     CAN_ID: 2
+    Calibration_Bias: 0.0
     KP: 85
     KI: 0
     KD: 1.75
