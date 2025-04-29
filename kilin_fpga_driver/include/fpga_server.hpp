@@ -15,8 +15,7 @@
 #include <mutex>
 
 #ifndef CONFIG_PATH
-// #define CONFIG_PATH "/home/admin/corgi_ws/fpga_driver/config/config.yaml"
-#define CONFIG_PATH "/home/hiho817/tmp_ws/kilin_fpga_driver/config/config.yaml"
+#define CONFIG_PATH "/home/hiho817/kilin_sbRIO_ws/kilin_fpga_driver/config/config.yaml"
 #endif
 
 void inthand(int signum);
