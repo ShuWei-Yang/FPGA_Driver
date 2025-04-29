@@ -3,11 +3,10 @@ if (NOT GRPC_PROTO_LIB)
     message(FATAL_ERROR "Not found GRPC_PROTO Library.")
 endif()
 
-add_executable(fpga_driver  main.cpp
+add_executable(fpga_driver  fpga_server.cpp
                             console.cpp    
                             color.cpp
                             fpga_handler.cpp
-                            fpga_server.cpp
                             fsm.cpp
                             leg_module.cpp
                             NiFpga_FPGA_RS485_v1_2.c

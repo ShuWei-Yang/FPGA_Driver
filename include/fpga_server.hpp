@@ -22,15 +22,11 @@
 void inthand(int signum);
 bool is_sys_stop();
 
-void motor_data_cb(motor_msg::MotorCmdStamped motor_msg);
-void power_data_cb(power_msg::PowerCmdStamped power_msg);
-
 class Kilin{
     public:
         Kilin();
 
         FpgaHandler fpga_;
-        ModeFsm fsm_;
 
         YAML::Node yaml_node_;
 
