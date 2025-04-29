@@ -135,29 +135,3 @@ double deg2rad(double deg)
 {
     return deg * M_PI / 180.0;
 }
-
-Eigen::Vector2d tb2phi(const Eigen::Vector2d &tb)
-{
-    Eigen::Vector2d phi;
-    Eigen::Matrix2d t;
-    Eigen::Vector2d b;
-    t << -1, 1, 1, 1;
-    b << deg2rad(17), -deg2rad(17);
-    phi = t * tb + b;
-    return phi;
-}
-
-
-Eigen::Vector2d phi2tb(const Eigen::Vector2d &phi)
-{
-    Eigen::Vector2d tb;
-    Eigen::Matrix2d t;
-    Eigen::Vector2d b;
-    t << -1, 1, 1, 1;
-    b << deg2rad(17), -deg2rad(17);
-    
-    // 計算 tb = t.inverse() * (phi - b)
-    tb = t.inverse() * (phi - b);
-
-    return tb;
-}
