@@ -4,6 +4,9 @@
 int main(int argc, char* argv[])
 {
     signal(SIGINT, inthand);
+
+    important_message("[FPGA Server] : Launched");
+    
     while (!is_sys_stop())
     {
         /* code */
@@ -11,3 +14,5 @@ int main(int argc, char* argv[])
     
     return 0;
 }
+
+//TODO: IO test LED
