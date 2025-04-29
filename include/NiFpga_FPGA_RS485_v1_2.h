@@ -18,7 +18,7 @@
  *
  *    static const char* const Bitfile = "C:\\" NiFpga_FPGA_RS485_v1_2_Bitfile;
  */
-#define NiFpga_FPGA_RS485_v1_2_Bitfile "NiFpga_FPGA_RS485_v1_2.lvbitx"
+#define NiFpga_FPGA_RS485_v1_2_Bitfile "/home/hiho817/tmp_ws/kilin_fpga_driver/fpga_bitfile/NiFpga_FPGA_RS485_v1_2.lvbitx"
 
 /**
  * The signature of the FPGA bitfile.
