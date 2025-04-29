@@ -97,7 +97,7 @@ void LegModule::load_config()
 
     std::cout << "CAN PORT: " << config_[label_]["CAN_PORT"].as<std::string>() << std::endl;
 
-    std::cout << "Motor_R: " << std::endl;
+    std::cout << "Motor_F: " << std::endl;
     std::cout << std::setw(14) << "  FW_Version: " << std::setw(13) << motor_f.fw_version_ << std::endl;
     std::cout << std::setw(14) << "  CAN_ID: " << std::setw(13) << motor_f.CAN_ID_ << std::endl;
     std::cout << std::setw(14) << "  KP: " << std::setw(13) << motor_f.kp_ << std::endl;
@@ -108,7 +108,7 @@ void LegModule::load_config()
     std::cout << std::setw(14) << "  Bias: " << std::setw(13) << Motor_F_bias << std::endl;
     std::cout << std::setw(14) << "---------------------------" << std::endl;
 
-    std::cout << "Motor_L: " << std::endl;
+    std::cout << "Motor_H: " << std::endl;
     std::cout << std::setw(14) << "  FW_Version: " << std::setw(13) << motor_h.fw_version_ << std::endl;
     std::cout << std::setw(14) << "  CAN_ID: " << std::setw(13) << motor_h.CAN_ID_ << std::endl;
     std::cout << std::setw(14) << "  KP: " << std::setw(13) << motor_h.kp_ << std::endl;

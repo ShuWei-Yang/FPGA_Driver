@@ -48,7 +48,7 @@ L_Module:
     Torque_Feedfoward: 0 
 
 # MOD B
-H_Module:
+R_Module:
   Enable: 1
   CAN_PORT: "MOD1CAN1"
   Motor_F:
@@ -73,8 +73,8 @@ H_Module:
 # ADD USED MODULE IN LIST
 Number_of_modules: 2
 Modules_list:
-  0: F_Module
-  1: H_Module
+  - L_Module
+  - R_Module
 
 Powerboard_Scaling_Factor:
   - # 1 Power Battery
