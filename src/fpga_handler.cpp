@@ -176,13 +176,13 @@ void ModuleIO::CAN_send_command(CAN_txdata txdata_id1, CAN_txdata txdata_id2)
     CAN_txdata txdata1_biased;
     CAN_txdata txdata2_biased;
 
-    txdata1_biased.position_ = txdata_id1.position_ + motorR_bias;
+    txdata1_biased.position_ = txdata_id1.position_ + motor_F_bias;
     txdata1_biased.torque_ = txdata_id1.torque_;
     txdata1_biased.KP_ = txdata_id1.KP_;
     txdata1_biased.KI_ = txdata_id1.KI_;
     txdata1_biased.KD_ = txdata_id1.KD_;
 
-    txdata2_biased.position_ = txdata_id2.position_ + motorL_bias;
+    txdata2_biased.position_ = txdata_id2.position_ + motor_H_bias;
     txdata2_biased.torque_ = txdata_id2.torque_;
     txdata2_biased.KP_ = txdata_id2.KP_;
     txdata2_biased.KI_ = txdata_id2.KI_;
@@ -210,8 +210,8 @@ void ModuleIO::CAN_recieve_feedback(CAN_rxdata *rxdata_id1, CAN_rxdata *rxdata_i
     CAN_decode(rxmsg_id1, rxdata_id1);
     CAN_decode(rxmsg_id2, rxdata_id2);
 
-    rxdata_id1->position_ -= motorR_bias;
-    rxdata_id2->position_ -= motorL_bias;
+    rxdata_id1->position_ -= motor_F_bias;
+    rxdata_id2->position_ -= motor_H_bias;
 }
 
 // pack CAN data
