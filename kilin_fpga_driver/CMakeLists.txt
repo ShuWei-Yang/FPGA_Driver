@@ -19,5 +19,5 @@ include_directories(${CMAKE_PREFIX_PATH}/include/yaml-cpp)
 include_directories(${CMAKE_PREFIX_PATH}/include/eigen)
 
 set(HOME_DIR $ENV{HOME})
-add_definitions(-DCONFIG_PATH=\"${HOME_DIR}/tmp_ws/kilin_fpga_driver/config/config.yaml\")
+add_definitions(-DCONFIG_PATH=\"${HOME_DIR}/kilin_sbRIO_ws/kilin_fpga_driver/config/config.yaml\")
 add_subdirectory(src)

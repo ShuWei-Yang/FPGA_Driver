@@ -1,6 +1,6 @@
 # Data logging
 log_data: 1
-log_path: "/home/hiho817/kilin_sbRIO_ws/kilin_fpga_driver/log/sample_test.csv"
+log_path: "/home/admin/kilin_sbRIO_ws/kilin_fpga_driver/log/sample_test.csv"
 
 # Interrupt Setup, Triggered By FPGA IRQ
 # IRQ 0
