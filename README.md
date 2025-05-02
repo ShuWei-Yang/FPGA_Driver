@@ -55,7 +55,7 @@ Cause the path can not be find on sbRIO, path of the bitfile and log path are ha
 
 ## compiler
 ```bash
-cd kilin/fpga_driver/
+cd kilin/kilin_fpga_driver/
 mkdir build && cd build
 $ cmake .. -DCMAKE_PREFIX_PATH=$HOME/kilin_sbRIO_ws/install -DCMAKE_INSTALL_PREFIX=$HOME/kilin_sbRIO_ws/install -DOPENSSL_ROOT_DIR=$HOME/kilin_sbRIO_ws/install/ssl
 make -j16
