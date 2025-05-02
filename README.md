@@ -53,7 +53,7 @@ Cause the path can not be find on sbRIO, path of the bitfile and log path are ha
 2. /config.yaml (log_path)
 3. /NiFpga_FPGA_CANBus_4module_v3_steering.h (NiFpga_FPGA_CANBus_4module_v3_steering_Bitfile)
 
-## compiler
+## Compile
 ```bash
 cd kilin/kilin_fpga_driver/
 mkdir build && cd build
