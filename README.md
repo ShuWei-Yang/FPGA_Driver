@@ -148,26 +148,9 @@ Example:
 F M H   # Switch to HALL_CALIBRATE mode
 ```
 
-#### 3. Motor Module Parameter Update
-```
-<L|R> <F|H> <C|A|T|P|I|D> <value>
-  L/R  — Left or Right module
-  F/H  — Front (F) or Hip/Rear (H) motor
-  C    — CAN ID (integer)
-  A    — Position (float)
-  T    — Torque (float)
-  P    — KP gain (float)
-  I    — KI gain (float)
-  D    — KD gain (float)
-```
+### Deprecated Feature Notice
 
-Examples:
-```
-L F A 1.57   # Set left front motor position to 1.57
-R H T 0.20   # Set right rear motor torque to 0.20
-```
-
----
+The motor module parameter update functionality has been deprecated. Instead, use the `grpc_core` interface to transmit commands. For more details, refer to the [grpc_core repository](https://github.com/hiho817/grpc_core.git).
 
 ### Command Responses
 
