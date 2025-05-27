@@ -101,9 +101,16 @@ void Kilin::load_config_()
     for (auto f : Factors_node_)
     {
         fpga_.powerboard_Ifactor[idx_] = f["Current_Factor"].as<double>();
+        fpga_.powerboard_Ioffset[idx_] = f["Current_Offset"].as<double>();
         fpga_.powerboard_Vfactor[idx_] = f["Voltage_Factor"].as<double>();
-        std::cout << "Index " << idx_ << " Current Factor: " << fpga_.powerboard_Ifactor[idx_]
-                  << ", Voltage Factor: " << fpga_.powerboard_Vfactor[idx_] << std::endl;
+        fpga_.powerboard_Voffset[idx_] = f["Voltage_Offset"].as<double>();
+        std::cout   << "Index " << idx_ 
+                    << " Current Factor: " << fpga_.powerboard_Ifactor[idx_]
+                    << ", Current Offset: " << fpga_.powerboard_Ioffset[idx_]
+                    << std::endl
+                    << " Voltage Factor: " << fpga_.powerboard_Vfactor[idx_]
+                    << ", Voltage Offset: " << fpga_.powerboard_Voffset[idx_]
+                    << std::endl;
         idx_++;
     }
 }

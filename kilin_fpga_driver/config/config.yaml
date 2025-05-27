@@ -78,37 +78,61 @@ Modules_list:
 Powerboard_Scaling_Factor:
   - # 1 Power Battery
     Current_Factor: 0.00991631707792460
+    Current_Offset: 0.0
     Voltage_Factor: 0.013216521172
+    Voltage_Offset: 0.0
   - # 2 CPU SBRIO, ORIN
     Current_Factor: 0.00252211539099489
+    Current_Offset: 0.0
     Voltage_Factor: 0.013184717564 
+    Voltage_Offset: 0.0
   - # 3 SPARE 1
-    Current_Factor: 0.00253429871857981
-    Voltage_Factor: 0.013179732144
+    Current_Factor: 0.00252211539099489
+    Current_Offset: 0.0
+    Voltage_Factor: 0.013184717564 
+    Voltage_Offset: 0.0
   - # 4 SPARE 2
-    Current_Factor: 0.00261639240519919
-    Voltage_Factor: 0.013202809119
+    Current_Factor: 0.00252211539099489
+    Current_Offset: 0.0
+    Voltage_Factor: 0.013184717564 
+    Voltage_Offset: 0.0
   - # 5 Module 1
-    Current_Factor: 0.00259123591590584
-    Voltage_Factor: 0.013207462244
+    Current_Factor: 0.00252211539099489
+    Current_Offset: 0.0
+    Voltage_Factor: 0.013184717564 
+    Voltage_Offset: 0.0
   - # 6 Module 2
-    Current_Factor: 0.00258549349955540
-    Voltage_Factor: 0.013218091064
+    Current_Factor: 0.00252211539099489
+    Current_Offset: 0.0
+    Voltage_Factor: 0.013184717564 
+    Voltage_Offset: 0.0
   - # 7 Module 3
-    Current_Factor: 0.00258359558577896
-    Voltage_Factor: 0.013152769912
+    Current_Factor: 0.00252211539099489
+    Current_Offset: 0.0
+    Voltage_Factor: 0.013184717564 
+    Voltage_Offset: 0.0
   - # 8 Module 4
-    Current_Factor: 0.00258064472112894
-    Voltage_Factor: 0.013145054959
+    Current_Factor: 0.00252211539099489
+    Current_Offset: 0.0
+    Voltage_Factor: 0.013184717564 
+    Voltage_Offset: 0.0
   - # 9 Module 5
-    Current_Factor: 0.00258864769050496
-    Voltage_Factor: 0.013187199073
+    Current_Factor: 0.00252211539099489
+    Current_Offset: 0.0
+    Voltage_Factor: 0.013184717564 
+    Voltage_Offset: 0.0
   - # 10 Module 6
-    Current_Factor: 0.00258642289474003
-    Voltage_Factor: 0.013175387725
+    Current_Factor: 0.00252211539099489
+    Current_Offset: 0.0
+    Voltage_Factor: 0.013184717564 
+    Voltage_Offset: 0.0
   - # 11 Module 7
-    Current_Factor: 0.00258369194007044
-    Voltage_Factor: 0.013255058691
+    Current_Factor: 0.00252211539099489
+    Current_Offset: 0.0
+    Voltage_Factor: 0.013184717564 
+    Voltage_Offset: 0.0
   - # 12 Module 8
-    Current_Factor: 0.00258666541022275
-    Voltage_Factor: 0.013219184356
+    Current_Factor: 0.00252211539099489
+    Current_Offset: 0.0
+    Voltage_Factor: 0.013184717564 
+    Voltage_Offset: 0.0

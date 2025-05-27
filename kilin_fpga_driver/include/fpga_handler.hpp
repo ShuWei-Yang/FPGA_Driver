@@ -118,7 +118,9 @@ public:
   void read_powerboard_data_();
 
   double powerboard_Ifactor[12];
+  double powerboard_Ioffset[12];
   double powerboard_Vfactor[12];
+  double powerboard_Voffset[12];
 
   double powerboard_I_list_[12] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
   double powerboard_V_list_[12] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
