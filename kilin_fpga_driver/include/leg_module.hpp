@@ -49,7 +49,5 @@ public:
 };
 
 double deg2rad(double deg);
-Eigen::Vector2d tb2phi(const Eigen::Vector2d &tb);
-Eigen::Vector2d phi2tb(const Eigen::Vector2d &phi);
 
 #endif
