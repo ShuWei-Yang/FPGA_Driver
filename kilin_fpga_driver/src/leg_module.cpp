@@ -130,8 +130,3 @@ void LegModule::CAN_timeoutCheck()
 
     CAN_module_timedout = CAN_mtr_timedout[0] || CAN_mtr_timedout[1];
 }
-
-double deg2rad(double deg)
-{
-    return deg * M_PI / 180.0;
-}

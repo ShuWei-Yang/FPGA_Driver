@@ -46,6 +46,4 @@ public:
   void CAN_timeoutCheck();
 };
 
-double deg2rad(double deg);
-
 #endif
