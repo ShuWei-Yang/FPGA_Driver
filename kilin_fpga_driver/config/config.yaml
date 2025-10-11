@@ -1,138 +1,152 @@
-# Data logging
+# --- Data logging ---
 log_data: 1
 log_path: "/home/admin/kilin_sbRIO_ws/kilin_fpga_driver/log/sample_test.csv"
 
-# Interrupt Setup, Triggered By FPGA IRQ
-# IRQ 0
-# Loop Period (type int) of the main loop, where controllers were implemented
 MainLoop_period_us: 1000
-# IRQ 1
-# Loop Period (type int) of the loop handling CAN transceiving, at least 1000 us
-CANLoop_period_us: 1000
-# CAN Bus timeout
-CAN_Timeout_us: 1000
 
-# Measure hall calibration offset
-# Set to 1 when measuring the offset value of each module
+# --- Calibration helper ---
 Measure_offset: 0
 Hall_calibration_vel: 0.2
 Hall_calibration_tol: 0.005
 
-# Experiment scenario: "Robot" or "SingleModule"
-Scenario: "Robot"
-# Scenario: "SingleModule"
+# --- Scenario ---
+Scenario: "Robot"   
+# "SingleModule"
 
+Enable: 1
 
-# Bias represented in radian
-L_Module:
-  Enable: 1
-  CAN_PORT: "MOD1CAN0"
-  Motor_F:
-    FW_Version: 3
-    CAN_ID: 1
-    Calibration_Bias: 0.0
-    KP: 85
-    KI: 0
-    KD: 1.75
-    KT: 2
-    Torque_Feedfoward: 0
-  Motor_H:
-    FW_Version: 3
-    CAN_ID: 2
-    Calibration_Bias: 0.0
-    KP: 85
-    KI: 0
-    KD: 1.75
-    KT: 2
-    Torque_Feedfoward: 0 
+L1:
+  EN: 1
+  Calibration_Bias: 0.0
+  KP: 85
+  KI: 0.3
+  KD: 1.75
+  KT: 2.0
+  Torque_Feedforward: 0.0
+  input_voltage: 300
 
-# MOD B
-R_Module:
-  Enable: 1
-  CAN_PORT: "MOD1CAN1"
-  Motor_F:
-    FW_Version: 3
-    CAN_ID: 1
-    Calibration_Bias: 0.0
-    KP: 85
-    KI: 0
-    KD: 1.75
-    KT: 2
-    Torque_Feedfoward: 0
-  Motor_H:
-    FW_Version: 3
-    CAN_ID: 2
-    Calibration_Bias: 0.0
-    KP: 85
-    KI: 0
-    KD: 1.75
-    KT: 2
-    Torque_Feedfoward: 0
+L2:
+  EN: 2
+  FW_Version: 3
+  Calibration_Bias: 0.0
+  KP: 85
+  KI: 0.3
+  KD: 1.75
+  KT: 2.0
+  Torque_Feedforward: 0.0
+  input_voltage: 300
 
-# ADD USED MODULE IN LIST
-Number_of_modules: 2
-Modules_list:
-  - L_Module
-  - R_Module
+L3:
+  EN: 3
+  FW_Version: 3
+  Calibration_Bias: 0.0
+  KP: 85
+  KI: 0
+  KD: 1.75
+  KT: 2.0
+  Torque_Feedforward: 0.0
+  input_voltage: 300
+
+R1:
+  EN: 4
+  FW_Version: 3
+  Calibration_Bias: 0.0
+  KP: 85
+  KI: 0
+  KD: 1.75
+  KT: 2.0
+  Torque_Feedforward: 0.0
+  input_voltage: 300
+
+R2:
+  EN: 5
+  FW_Version: 3
+  Calibration_Bias: 0.0
+  KP: 85
+  KI: 0
+  KD: 1.75
+  KT: 2.0
+  Torque_Feedforward: 0.0
+  input_voltage: 300
+
+R3:
+  EN: 6
+  FW_Version: 3
+  Calibration_Bias: 0.0
+  KP: 85
+  KI: 0
+  KD: 1.75
+  KT: 2.0
+  Torque_Feedforward: 0.0
+  input_voltage: 300
+
+Bus 1:
+  L:
+    id: 1
+    Position: 1030
+  R:  
+    id: 2
+    Position: 1000
+Bus 2:
+  L:
+    id: 1
+    Position: 1030
+  R:
+    id: 2
+    Position: 1000
+Bus 3:
+  L:
+    id: 1
+    Position: 1030
+  R:
+    id: 2
+    Position: 1000
+  
+
 
 Powerboard_Scaling_Factor:
-  - # 1 Power Battery
-    Current_Factor: 0.0101
-    Current_Offset: 0.0159
-    Voltage_Factor: 0.0151
-    Voltage_Offset: 0.0835
-  - # 2 CPU SBRIO, ORIN
-    Current_Factor: 0.0025
-    Current_Offset: -0.0045
-    Voltage_Factor: 0.0154
-    Voltage_Offset: -0.0054
-  - # 3 SPARE 1
-    Current_Factor: 0.0101
-    Current_Offset: -4.9506
-    Voltage_Factor: 0.0157
-    Voltage_Offset: 0.014
-  - # 4 SPARE 2
-    Current_Factor: 0.0101
-    Current_Offset: -5.0427
-    Voltage_Factor: 0.0153 
-    Voltage_Offset: 0.049
-  - # 5 Module 1
-    Current_Factor: 0.0102
-    Current_Offset: -5.0754
-    Voltage_Factor: 0.0153
-    Voltage_Offset: 0.0335
-  - # 6 Module 2
-    Current_Factor: 0.0101
-    Current_Offset: -5.0198
-    Voltage_Factor: 0.0151 
-    Voltage_Offset: 0.0457
-  - # 7 Module 3
-    Current_Factor: 0.0101
-    Current_Offset: -5.0613
-    Voltage_Factor: 0.0153 
-    Voltage_Offset: 0.069
-  - # 8 Module 4
-    Current_Factor: 0.0101
-    Current_Offset: -5.0744
-    Voltage_Factor: 0.0155 
-    Voltage_Offset: 0.047
-  - # 9 Module 5
-    Current_Factor: 0.0101
-    Current_Offset: -5.1046
-    Voltage_Factor: 0.0152 
-    Voltage_Offset: 0.0698
-  - # 10 Module 6
-    Current_Factor: 0.0102
-    Current_Offset: -5.1306
-    Voltage_Factor: 0.015 
-    Voltage_Offset: 0.0562
-  - # 11 Module 7
-    Current_Factor: 0.0101
-    Current_Offset: -5.1248
-    Voltage_Factor: 0.015 
-    Voltage_Offset: 0.0665
-  - # 12 Module 8
-    Current_Factor: 0.0105
-    Current_Offset: -5.275
-    Voltage_Factor: 0.0152 
-    Voltage_Offset: 0.0141
+  -  # 1
+    Current_Factor: 1.0
+    Current_Offset: 0.0
+    Voltage_Factor: 1.0
+    Voltage_Offset: 0.0
+  -  # 2
+    Current_Factor: 1.0
+    Current_Offset: 0.0
+    Voltage_Factor: 1.0
+    Voltage_Offset: 0.0
+  -  # L1
+    Current_Factor: 1.0
+    Current_Offset: 0.0
+    Voltage_Factor: 1.0
+    Voltage_Offset: 0.0
+  -  # L2
+    Current_Factor: 1.0
+    Current_Offset: 0.0
+    Voltage_Factor: 1.0
+    Voltage_Offset: 0.0
+  -  # L3
+    Current_Factor: 1.0
+    Current_Offset: 0.0
+    Voltage_Factor: 1.0
+    Voltage_Offset: 0.0
+  -  # R1
+    Current_Factor: 1.0
+    Current_Offset: 0.0
+    Voltage_Factor: 1.0
+    Voltage_Offset: 0.0
+  -  # R2
+    Current_Factor: 1.0
+    Current_Offset: 0.0
+    Voltage_Factor: 1.0
+    Voltage_Offset: 0.0
+  -  # R3
+    Current_Factor: 1.0
+    Current_Offset: 0.0
+    Voltage_Factor: 1.0
+    Voltage_Offset: 0.0
+  -  # Bus 
+    Current_Factor: 1.0
+    Current_Offset: 0.0
+    Voltage_Factor: 1.0
+    Voltage_Offset: 0.0

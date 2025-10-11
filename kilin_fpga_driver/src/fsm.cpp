@@ -1,182 +1,115 @@
 #include <fsm.hpp>
 
-ModeFsm::ModeFsm(std::vector<LegModule>* _modules, std::vector<bool>* _pb_state, double* pb_v)
-{
+ModeFsm::ModeFsm(std::vector<LegModule>* legs_,
+                 std::vector<LegModule>* servos_,
+                 std::vector<bool>* pb_state,
+                 double* pb_v){
     workingMode_ = Mode::REST;
-    prev_workingMode_ = Mode::REST;
-
-    modules_list_ = _modules;
-    pb_state_ = _pb_state;
-    powerboard_voltage = pb_v;
+    prev_workingMode_= Mode::REST;
+    legs_list_ = legs_;
+    servos_list_ = servos_;
+    pb_state_ = pb_state;
+    powerboard_voltage= pb_v;
 
     hall_calibrated = false;
     hall_calibrate_status = 0;
 }
 
-void ModeFsm::runFsm(motor_msg::MotorStateStamped& motor_fb_msg, const motor_msg::MotorCmdStamped& motor_cmd_msg)
-{
-    // position = P_CMD_MAX is to make sure the data received from CONFIG function code is the default one
-    switch (workingMode_)
-    {
-        case Mode::REST: {
-            // TODO: pb_state = { digital_switch_, signal_switch_, power_switch_ }
-            if (pb_state_->at(2) == true)
-            {
+void ModeFsm::runFsm(motor_msg::MotorStateStamped& motor_fb_msg,
+                     const motor_msg::MotorCmdStamped& motor_cmd_msg){
+    switch (workingMode_){
+        case Mode::REST:{
+            if (pb_state_->at(2) == true){
                 publishMsg(motor_fb_msg);
-                for (auto& mod : *modules_list_)
-                {
+                for (auto& mod : *legs_list_){
                     int index = 0;
-                    if (mod.enable_)
-                    {
+                    if (mod.enable_){
                         mod.txdata_buffer_[0].position_ = 0;
                         mod.txdata_buffer_[0].torque_ = 0;
                         mod.txdata_buffer_[0].KP_ = 0;
                         mod.txdata_buffer_[0].KI_ = 0;
                         mod.txdata_buffer_[0].KD_ = 0;
-
-                        mod.txdata_buffer_[1].position_ = 0;
-                        mod.txdata_buffer_[1].torque_ = 0;
-                        mod.txdata_buffer_[1].KP_ = 0;
-                        mod.txdata_buffer_[1].KI_ = 0;
-                        mod.txdata_buffer_[1].KD_ = 0;
                     }
                 }
             }
         }
         break;
 
-        case Mode::SET_ZERO: {
-            if (pb_state_->at(2) == true)
-            {
-                for (int i = 0; i < 2; i++)
-                {
-                    if (modules_list_->at(i).enable_)
-                    {
-                        modules_list_->at(i).io_.motor_F_bias = 0;
-                        modules_list_->at(i).io_.motor_H_bias = 0;
-                    }
+        case Mode::SET_ZERO:{
+            if (pb_state_->at(2) == true){
+                if (legs_list_->at(0).enable_){
+                    legs_list_->at(0).io_.Motor_bias = 0;
                 }
-
-                publishMsg(motor_fb_msg);
-                for (auto& mod : *modules_list_)
-                {
-                    if (mod.enable_)
-                    {
-                        mod.txdata_buffer_[0].position_ = P_CMD_MAX;
-                        mod.txdata_buffer_[0].torque_ = 0;
-                        mod.txdata_buffer_[0].KP_ = 0;
-                        mod.txdata_buffer_[0].KI_ = 0;
-                        mod.txdata_buffer_[0].KD_ = 0;
-                        
-                        mod.txdata_buffer_[1].position_ = P_CMD_MAX;
-                        mod.txdata_buffer_[1].torque_ = 0;
-                        mod.txdata_buffer_[1].KP_ = 0;
-                        mod.txdata_buffer_[1].KI_ = 0;
-                        mod.txdata_buffer_[1].KD_ = 0;
-                    }
+            }
+            publishMsg(motor_fb_msg);
+            for (auto& mod : *legs_list_){
+                if (mod.enable_){
+                    mod.txdata_buffer_[0].position_ = P_CMD_MAX;
+                    mod.txdata_buffer_[0].torque_ = 0;
+                    mod.txdata_buffer_[0].KP_ = 0;
+                    mod.txdata_buffer_[0].KI_ = 0;
+                    mod.txdata_buffer_[0].KD_ = 0;
                 }
             }
         }
         break;
-        
-        case Mode::HALL_CALIBRATE: {
-            int module_enabled = 0;
 
-            for (int i = 0; i < 2; i++)
-            {
-                if (modules_list_->at(i).enable_)
-                {
-                    modules_list_->at(i).txdata_buffer_[0].position_ = 0;
-                    modules_list_->at(i).txdata_buffer_[0].torque_ = 0;
-                    modules_list_->at(i).txdata_buffer_[0].KP_ = 0;
-                    modules_list_->at(i).txdata_buffer_[0].KI_ = 0;
-                    modules_list_->at(i).txdata_buffer_[0].KD_ = 0;
-
-                    modules_list_->at(i).txdata_buffer_[1].position_ = 0;
-                    modules_list_->at(i).txdata_buffer_[1].torque_ = 0;
-                    modules_list_->at(i).txdata_buffer_[1].KP_ = 0;
-                    modules_list_->at(i).txdata_buffer_[1].KI_ = 0;
-                    modules_list_->at(i).txdata_buffer_[1].KD_ = 0;
-                    module_enabled++;
-                }
+        case Mode::HALL_CALIBRATE:{
+            int legs_enabled = 0;
+            if (legs_list_->at(0).enable_){
+                legs_list_->at(0).txdata_buffer_[0].position_ = 0;
+                legs_list_->at(0).txdata_buffer_[0].torque_ = 0;
+                legs_list_->at(0).txdata_buffer_[0].KP_ = 0;
+                legs_list_->at(0).txdata_buffer_[0].KI_ = 0;
+                legs_list_->at(0).txdata_buffer_[0].KD_ = 0;
             }
-            switch (hall_calibrate_status)
-            {
+            switch(hall_calibrate_status){
                 case -1:{
                     switchMode(Mode::REST);
                 }
                 break;
-            
+
                 case 0:{
-                    int cal_cnt = 0;
-                    for (int i = 0; i < 2; i++)
-                    {
-                        if (modules_list_->at(i).enable_ && modules_list_->at(i).rxdata_buffer_[0].calibrate_finish_ == 2 && modules_list_->at(i).rxdata_buffer_[1].calibrate_finish_ == 2) cal_cnt++;
-                    }
-                    if (cal_cnt == module_enabled && measure_offset == 0) hall_calibrate_status++;
-                    else if (cal_cnt == module_enabled && measure_offset == 1) hall_calibrate_status = -1;
+                    int cal_cnt = 0
+                    if (legs_list_->at(0).enable_ 
+                    && legs_list_->at(0).rxdata_buffer_[0].calibrate_finish_ == 2)cal_cnt++;
+                    if (cal_cnt == legs_enabled && measure_offset == 0) hall_calibrate_status++;
+                    else if (cal_cnt == legs_enabled && measure_offset == 1) hall_calibrate_status = -1;
                 }
                 break;
 
                 case 1:{
-                    for (int i = 0; i < 2; i++)
-                    {
-                        if (modules_list_->at(i).enable_)
-                        {
-                            modules_list_->at(i).CAN_rx_timedout_[0] = false;
-                            modules_list_->at(i).CAN_rx_timedout_[1] = false;
-                            modules_list_->at(i).CAN_tx_timedout_[0] = false;
-                            modules_list_->at(i).CAN_tx_timedout_[1] = false;
-
-                            modules_list_->at(i).io_.motor_F_bias = modules_list_->at(i).Motor_F_bias;
-                            modules_list_->at(i).io_.motor_H_bias = modules_list_->at(i).Motor_H_bias;
-
-                            cal_command[i][0] = - modules_list_->at(i).Motor_F_bias;
-                            modules_list_->at(i).txdata_buffer_[0].position_ = - modules_list_->at(i).Motor_F_bias;
-                            cal_dir_[i][0] = 1;
-
-                            cal_command[i][1] = - modules_list_->at(i).Motor_H_bias;
-                            modules_list_->at(i).txdata_buffer_[1].position_ = - modules_list_->at(i).Motor_H_bias;
-                            cal_dir_[i][1] = -1;
-                        }
+                    if (modules_list_->at(0).enable_){
+                        legs_list_->at(0).io_.Motor_bias = legs_list_->at(0).Motor_bias;
+                        cal_command[0][0] = - modules_list_->at(0).Motor_bias;
+                        legs_list_->at(0).txdata_buffer_[0].position_ = - modules_list_->at(0).Motor_bias;
+                        cal_dir_[0][0] = 1;
                     }
                     hall_calibrate_status++;
                 }
                 break;
-
+                
                 case 2:{
                     int finish_cnt = 0;
-                    for (int i = 0; i < 2; i++)
-                    {
-                        if (modules_list_->at(i).enable_){
-                            for (int j = 0; j < 2; j++)
-                            {
-                                double errj = 0;
-                                errj = cal_command[i][j];
-
-                                if (fabs(errj) < cal_tol_)
-                                {
-                                    modules_list_->at(i).txdata_buffer_[j].position_ = 0;
-                                    modules_list_->at(i).txdata_buffer_[j].torque_ = 0;
-                                    modules_list_->at(i).txdata_buffer_[j].KP_ = 0;
-                                    modules_list_->at(i).txdata_buffer_[j].KI_ = 0;
-                                    modules_list_->at(i).txdata_buffer_[j].KD_ = 0;
-                                    finish_cnt++;
-                                }
-                                else
-                                {
-                                    modules_list_->at(i).io_.write_CAN_id_fc_((int)Mode::CONTROL, (int)Mode::CONTROL);
-                                    cal_command[i][j] += cal_dir_[i][j] * cal_vel_ * dt_;
-                                    modules_list_->at(i).txdata_buffer_[j].position_ = cal_command[i][j];
-                                    modules_list_->at(i).txdata_buffer_[j].torque_ = 0;
-                                    modules_list_->at(i).txdata_buffer_[j].KP_ = 50;
-                                    modules_list_->at(i).txdata_buffer_[j].KI_ = 0;
-                                    modules_list_->at(i).txdata_buffer_[j].KD_ = 1.5;
-                                }
-                            }
-                        }
+                    double errj = 0;
+                    errj = cal_command[0][0];
+                    if (fabs(errj) < cal_tol_){
+                        modules_list_->at(0).txdata_buffer_[0].position_ = 0;
+                        modules_list_->at(0).txdata_buffer_[0].torque_ = 0;
+                        modules_list_->at(0).txdata_buffer_[0].KP_ = 0;
+                        modules_list_->at(0).txdata_buffer_[0].KI_ = 0;
+                        modules_list_->at(0).txdata_buffer_[0].KD_ = 0;
+                        finish_cnt++;
+                   }
+                    else{
+                        cal_command[0][0] += cal_dir_[0][0] * cal_vel_ * dt_;
+                        modules_list_->at(0).txdata_buffer_[0].position_ = cal_command[i][0];
+                        modules_list_->at(0).txdata_buffer_[0].torque_ = 0;
+                        modules_list_->at(0).txdata_buffer_[0].KP_ = 50;
+                        modules_list_->at(0).txdata_buffer_[0].KI_ = 0;
+                        modules_list_->at(0).txdata_buffer_[0].KD_ = 1.5;        
                     }
-                    if (finish_cnt == 2 * module_enabled) hall_calibrate_status++;
+                    if (finish_cnt == 2 * legs_enabled) hall_calibrate_status++;
                 }
                 break;
 
@@ -187,223 +120,45 @@ void ModeFsm::runFsm(motor_msg::MotorStateStamped& motor_fb_msg, const motor_msg
                 }
                 break;
             }
+
         }
         break;
 
-        case Mode::MOTOR: {
-            /* Pubish feedback data from Motors */
+        case Mode::MOTOR:{
             publishMsg(motor_fb_msg);
             int index = 0;
-            for (auto& mod : *modules_list_)
-            {
-                if (mod.enable_)
-                {
-                    /* Subscribe command from other nodes */
-                    // initialize message
-                    // update
-                    if (*NO_CAN_TIMEDOUT_ERROR_ && *NO_SWITCH_TIMEDOUT_ERROR_ )
-                    {
-                        switch (index)
-                        {
-                            /*********************************************/
-                            // case 0:                  case 1:
-                            // MOD1CAN0 (module_L)      MOD2CAN1 (module_R)
-                            //  CAN1 LF (module_a)       CAN1 RF (module_b)
-                            //  CAN2 LH (module_d)       CAN2 RH (module_c)
-                            /*********************************************/
-                            //  +-------+--------+       +--------+-------+
-                            //  | CAN0-port0     |       | CAN1-port0     |
-                            //  | module_a (LF)  |       | module_b (RF)  |
-                            //  | Left Front Hip |       | Right Front Hip|
-                            //  +----------------+       +----------------+
-                            //  
-                            //  +----------------+       +----------------+
-                            //  | CAN0-port1     |       | CAN1-port1     |
-                            //  | module_d (LH)  |       | module_c (RH)  |
-                            //  | Left Hind Hip  |       | Right Hind Hip |
-                            //  +----------------+       +----------------+
-                            /*********************************************/
-                            case 0:
-                            {   
-                                mod.txdata_buffer_[0].position_ = motor_cmd_msg.module_a().hip().position();
-                                mod.txdata_buffer_[0].torque_ = motor_cmd_msg.module_a().hip().torque();
-                                mod.txdata_buffer_[0].KP_ = motor_cmd_msg.module_a().hip().kp();
-                                mod.txdata_buffer_[0].KI_ = motor_cmd_msg.module_a().hip().ki();
-                                mod.txdata_buffer_[0].KD_ = motor_cmd_msg.module_a().hip().kd();
-
-                                mod.txdata_buffer_[1].position_ = motor_cmd_msg.module_d().hip().position();
-                                mod.txdata_buffer_[1].torque_ = motor_cmd_msg.module_d().hip().torque();
-                                mod.txdata_buffer_[1].KP_ = motor_cmd_msg.module_d().hip().kp();
-                                mod.txdata_buffer_[1].KI_ = motor_cmd_msg.module_d().hip().ki();
-                                mod.txdata_buffer_[1].KD_ = motor_cmd_msg.module_d().hip().kd();
-                            }
-                            break;
-
-                            case 1:
-                            {
-                                mod.txdata_buffer_[0].position_ = motor_cmd_msg.module_b().hip().position();
-                                mod.txdata_buffer_[0].torque_ = motor_cmd_msg.module_b().hip().torque();
-                                mod.txdata_buffer_[0].KP_ = motor_cmd_msg.module_b().hip().kp();
-                                mod.txdata_buffer_[0].KI_ = motor_cmd_msg.module_b().hip().ki();
-                                mod.txdata_buffer_[0].KD_ = motor_cmd_msg.module_b().hip().kd();
-
-                                mod.txdata_buffer_[1].position_ = motor_cmd_msg.module_c().hip().position();
-                                mod.txdata_buffer_[1].torque_ = motor_cmd_msg.module_c().hip().torque();
-                                mod.txdata_buffer_[1].KP_ = motor_cmd_msg.module_c().hip().kp();
-                                mod.txdata_buffer_[1].KI_ = motor_cmd_msg.module_c().hip().ki();
-                                mod.txdata_buffer_[1].KD_ = motor_cmd_msg.module_c().hip().kd();
-                            }
-                            break;
-                        }
-                    }
-                }
-                index++;
+            for (auto& mod : *legs_list_){
+                mod.txdata_buffer_[0].position_ = motor_cmd_msg.position();
+                mod.txdata_buffer_[0].torque_ = motor_cmd_msg.torque();
+                mod.txdata_buffer_[0].KP_ = motor_cmd_msg.kp();
+                mod.txdata_buffer_[0].KI_ = motor_cmd_msg.ki();
+                mod.txdata_buffer_[0].KD_ = motor_cmd_msg.kd();
+            
             }
-
+            break;
+            index++;
         }
         break;
 
-        case Mode::CONFIG: {
+        case Mode::CONFIG:{
             // for debug
         }
         break;
-    }       
+    }
 }
+bool ModeFsm::switchMode(Mode next_mode){
+    prev_workingMode_ = workingMode_;
+    workingMode_ = next_mode;
+    return true;
+}   
 
-bool ModeFsm::switchMode(Mode next_mode)
-{
-    int mode_switched_cnt = 0;
-    int module_enabled = 0;
-    bool success = false;
-    Mode next_mode_switch = next_mode;
-
-    for (int i = 0; i < 2; i++)
-    {
-        if (modules_list_->at(i).enable_) module_enabled++;
-    }
-    
-
-    double time_elapsed = 0;
-    while (1)
-    {
-        if (mode_switched_cnt == module_enabled)
-        {
-            prev_workingMode_ = workingMode_;
-            workingMode_ = next_mode_switch;
-            success = true;
-            break;
-        }
-        else if (time_elapsed > 3)
-        {
-            /* Timeout */
-            success = false;
-            break;
-        }
-        else  mode_switched_cnt = 0;
-
-        for (int i = 0; i < 2; i++)
-        {
-            if (modules_list_->at(i).enable_)
-            {
-                modules_list_->at(i).io_.write_CAN_id_fc_((int)next_mode_switch, (int)next_mode_switch);
-                modules_list_->at(i).io_.write_CAN_transmit_(1);
-                modules_list_->at(i).io_.CAN_recieve_feedback(&modules_list_->at(i).rxdata_buffer_[0],
-                                                              &modules_list_->at(i).rxdata_buffer_[1]);
-                if ((next_mode_switch == Mode::SET_ZERO
-                    && (int)modules_list_->at(i).rxdata_buffer_[0].position_ <= 0.01
-                    && (int)modules_list_->at(i).rxdata_buffer_[0].position_ >= -0.01)
-                    || 
-                    ((int)modules_list_->at(i).rxdata_buffer_[0].mode_ == (int)next_mode_switch
-                    && (int)modules_list_->at(i).rxdata_buffer_[1].mode_ == (int)next_mode_switch))
-                {
-                    mode_switched_cnt++;
-                }
-            }
-        }
-        
-        time_elapsed += 0.01;
-        usleep(1e4);
-    }
-
-    for (int i = 0; i < 2; i++)
-    {
-        if (modules_list_->at(i).enable_){
-            if (workingMode_ == Mode::MOTOR) modules_list_->at(i).io_.write_CAN_id_fc_((int)Mode::CONTROL, (int)Mode::CONTROL);
-            else modules_list_->at(i).io_.write_CAN_id_fc_((int)Mode::CONFIG, (int)Mode::CONFIG);
-        }
-    }
-
-    return success;
-}
-
-void ModeFsm::publishMsg(motor_msg::MotorStateStamped& motor_fb_msg)
-{
+void ModeFsm::publishMsg (motor_msg::MotorStateStamped& motor_fb_msg){
     int index = 0;
-    for (auto& mod : *modules_list_)
-    {
-        if (mod.enable_)
-        {
-            switch (index)
-            {
-                case 0: // CAN0 (module_L)
-                {
-                    /* Publish feedback data from Motors_F */
-                    motor_fb_msg.mutable_module_a()->mutable_hip()->set_position(mod.rxdata_buffer_[0].position_);
-                    motor_fb_msg.mutable_module_a()->mutable_hip()->set_velocity(mod.rxdata_buffer_[0].velocity_);
-                    motor_fb_msg.mutable_module_a()->mutable_hip()->set_torque(mod.rxdata_buffer_[0].torque_*mod.txdata_buffer_[0].KT_); //torque F 
-                    /* Publish feedback data from Motors_H */
-                    motor_fb_msg.mutable_module_d()->mutable_hip()->set_position(mod.rxdata_buffer_[1].position_);
-                    motor_fb_msg.mutable_module_d()->mutable_hip()->set_velocity(mod.rxdata_buffer_[1].velocity_);
-                    motor_fb_msg.mutable_module_d()->mutable_hip()->set_torque(mod.rxdata_buffer_[1].torque_*mod.txdata_buffer_[1].KT_); //torque H
-                }
-                break;
-
-                case 1: // CAN1 (module_R)
-                {
-                    /* Publish feedback data from Motors_F */
-                    motor_fb_msg.mutable_module_b()->mutable_hip()->set_position(mod.rxdata_buffer_[0].position_);
-                    motor_fb_msg.mutable_module_b()->mutable_hip()->set_velocity(mod.rxdata_buffer_[0].velocity_);
-                    motor_fb_msg.mutable_module_b()->mutable_hip()->set_torque(mod.rxdata_buffer_[0].torque_*mod.txdata_buffer_[0].KT_); //torque F 
-                    /* Publish feedback data from Motors_H */
-                    motor_fb_msg.mutable_module_c()->mutable_hip()->set_position(mod.rxdata_buffer_[1].position_);
-                    motor_fb_msg.mutable_module_c()->mutable_hip()->set_velocity(mod.rxdata_buffer_[1].velocity_);
-                    motor_fb_msg.mutable_module_c()->mutable_hip()->set_torque(mod.rxdata_buffer_[1].torque_*mod.txdata_buffer_[1].KT_); //torque H
-                }
-                break;
-            }
-        }
-        else
-        {
-            switch (index)
-            {
-                case 0: // CAN0 (module_L)
-                {
-                    /* Publish feedback data from Motors_F */
-                    motor_fb_msg.mutable_module_a()->mutable_hip()->set_position(0);
-                    motor_fb_msg.mutable_module_a()->mutable_hip()->set_velocity(0);
-                    motor_fb_msg.mutable_module_a()->mutable_hip()->set_torque(0); //torque F 
-                    /* Publish feedback data from Motors_H */
-                    motor_fb_msg.mutable_module_d()->mutable_hip()->set_position(0);
-                    motor_fb_msg.mutable_module_d()->mutable_hip()->set_velocity(0);
-                    motor_fb_msg.mutable_module_d()->mutable_hip()->set_torque(0); //torque H
-                }
-                break;
-
-                case 1: // CAN0 (module_R)
-                {
-                    /* Publish feedback data from Motors_F */
-                    motor_fb_msg.mutable_module_b()->mutable_hip()->set_velocity(0);
-                    motor_fb_msg.mutable_module_b()->mutable_hip()->set_position(0);
-                    motor_fb_msg.mutable_module_b()->mutable_hip()->set_torque(0); //torque F 
-                    /* Publish feedback data from Motors_H */
-                    motor_fb_msg.mutable_module_c()->mutable_hip()->set_position(0);
-                    motor_fb_msg.mutable_module_c()->mutable_hip()->set_velocity(0);
-                    motor_fb_msg.mutable_module_c()->mutable_hip()->set_torque(0); //torque H
-                }
-                break;
-            }
-        }
-        index++;
-    }
-
+    const auto& rx = legs_list_->at(0).rxdata_buffer_[0];
+    const auto& tx = legs_list_->at(0).txdata_buffer_[0];
+    motor_fb_msg.set_position(rx.position_);
+    motor_fb_msg.set_velocity(rx.velocity_);
+    motor_fb_msg.set_torque(rx.torque_ * tx.KT_);
 }
+
+// ok

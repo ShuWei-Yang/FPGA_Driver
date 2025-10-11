@@ -1,0 +1,12 @@
+prefix=/home/shuweiyang/kilin_sbRIO_ws/install
+exec_prefix=${prefix}
+libdir=/home/shuweiyang/kilin_sbRIO_ws/install/lib
+includedir=/home/shuweiyang/kilin_sbRIO_ws/install/include
+
+Name: absl_log_internal_conditions
+Description: Abseil log_internal_conditions library
+URL: https://abseil.io/
+Version: 20250127
+Requires: absl_base = 20250127, absl_config = 20250127, absl_core_headers = 20250127, absl_log_internal_voidify = 20250127
+Libs: -L${libdir}  -labsl_log_internal_conditions 
+Cflags: -I${includedir} -DNOMINMAX

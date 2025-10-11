@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package motor_msg;
+import "std.proto";
+
+message MotorCmd {
+    double position = 1;
+    double kp = 2;
+    double ki = 3;
+    double kd = 4;
+    double torque = 5;
+}
+
+message MotorState {
+    double position = 1;
+    double velocity = 2;
+    double torque = 3;
+}
+
+message LegCmd {
+    MotorCmd hip = 1;
+    MotorCmd steering = 2;
+    MotorCmd hub = 3;
+}
+// motor need to reset >> motor mode 
+message LegState {
+    MotorState hip = 1;
+    MotorState steering = 2;
+    MotorState hub = 3;
+}
+
+message MotorCmdStamped {
+    std_msg.Header header = 1;
+    LegCmd module_a = 2;
+    LegCmd module_b = 3;
+    LegCmd module_c = 4;
+    LegCmd module_d = 5;
+}
+
+message MotorStateStamped {
+    std_msg.Header header = 1;
+    LegState module_a = 2;
+    LegState module_b = 3;
+    LegState module_c = 4;
+    LegState module_d = 5;
+}

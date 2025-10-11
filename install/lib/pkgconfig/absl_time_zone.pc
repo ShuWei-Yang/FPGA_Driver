@@ -1,0 +1,12 @@
+prefix=/home/shuweiyang/kilin_sbRIO_ws/install
+exec_prefix=${prefix}
+libdir=/home/shuweiyang/kilin_sbRIO_ws/install/lib
+includedir=/home/shuweiyang/kilin_sbRIO_ws/install/include
+
+Name: absl_time_zone
+Description: Abseil time_zone library
+URL: https://abseil.io/
+Version: 20250127
+Requires:
+Libs: -L${libdir}  -labsl_time_zone 
+Cflags: -I${includedir} -DNOMINMAX

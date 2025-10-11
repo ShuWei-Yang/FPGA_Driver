@@ -1,0 +1,12 @@
+prefix=/home/shuweiyang/kilin_sbRIO_ws/install
+exec_prefix=${prefix}
+libdir=/home/shuweiyang/kilin_sbRIO_ws/install/lib
+includedir=/home/shuweiyang/kilin_sbRIO_ws/install/include
+
+Name: absl_tracing_internal
+Description: Abseil tracing_internal library
+URL: https://abseil.io/
+Version: 20250127
+Requires: absl_base = 20250127
+Libs: -L${libdir}  -labsl_tracing_internal 
+Cflags: -I${includedir} -DNOMINMAX

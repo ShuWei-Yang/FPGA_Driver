@@ -1,50 +1,51 @@
-#ifndef __MSG_H
-#define __MSG_H
+#ifndef MSG_H_
+#define MSG_H_
 
-#include "mode.hpp"
 #include <vector>
-#include <math.h>
 #include <string>
+#include <math.h>
+#include "mode.hpp"
 
-typedef struct Motor
-{
-    int CAN_ID_;
-    int fw_version_;
+typedef struct Motor{
+    std::uint8_t enable_;
+    int fw_version;
+    double calibration_bias;
     double kp_;
     double ki_;
     double kd_;
-    double torque_ff_;
-    double calibration_bias;
     double kt_;
-} Motor;
+    double torque_ff;
+    double input_voltage;
+}Motor;
 
-// transmitted to SBRIO
-typedef struct CAN_txdata
-{
+typedef struct RSBL{
+    int id_;
+    int position_;
+}RSBL;
+
+typedef struct TXData{
     float position_;
-    float torque_;
+    float torque_; 
     float KP_;
     float KI_;
     float KD_;
     float KT_;
-} CAN_txdata;
+}TXData;
 
-typedef struct CAN_rxdata
-{
-    int CAN_id_;
-    float position_;
-    float velocity_;
-    float torque_;
-    int version_;
-    int calibrate_finish_;
-    int mode_state_;
-    Mode mode_;
-} CAN_rxdata;
+typedef struct RXData{
+    float position_;   
+    float velocity_;   
+    float torque_;          
+    int calibrate_finish_; 
+    int mode_state_;   
+    Mode mode_;    
+}RXData;
 
-class Module
-{
+class Module{
 public:
-    std::vector<CAN_txdata> txdata_;
+    std::vector<TXData> txdata;
 };
 
-#endif
+#endif 
+
+// ok with RSBL
