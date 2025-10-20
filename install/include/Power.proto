@@ -5,21 +5,20 @@ import "std.proto";
 
 enum ROBOTMODE {
     REST_MODE=0;
-    CONFIG_MODE=1;
-    SET_ZERO=2;
-    HALL_CALIBRATE=3;
-    MOTOR_MODE=4;
+    SET_ZERO=1;
+    HALL_CALIBRATE=2;
+    MOTOR_MODE=3;
+    CONFIG_MODE=4;
 }
 
 message PowerCmdStamped {
     std_msg.Header header = 1;
     bool digital = 2;
-    bool signal = 3;    //5 V or 3.3 V
-    bool power = 4;     //48 V
-    bool clean = 5;     //
-    bool trigger = 6;   //
+    bool signal = 3;
+    bool power = 4;
+    bool clean = 5;
+    bool trigger = 6;
     ROBOTMODE robot_mode = 7;
-    bool steering_cali = 8;
 }
 
 message PowerStateStamped {
@@ -29,7 +28,6 @@ message PowerStateStamped {
     bool power = 4;
     bool clean = 5;
     ROBOTMODE robot_mode = 6;
-    //TODO: change name
     double v_0  = 7;
     double i_0  = 8;
     double v_1  = 9;
@@ -44,14 +42,4 @@ message PowerStateStamped {
     double i_5  = 18;
     double v_6  = 19;
     double i_6  = 20;
-    double v_7  = 21;
-    double i_7  = 22;
-    double v_8  = 23;
-    double i_8  = 24;
-    double v_9  = 25;
-    double i_9  = 26;
-    double v_10 = 27;
-    double i_10 = 28;
-    double v_11 = 29;
-    double i_11 = 30;
 }

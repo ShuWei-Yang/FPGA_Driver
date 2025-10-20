@@ -11,7 +11,7 @@ std::mutex mutex_;
 motor_msg::MotorCmdStamped motor_cmd_data;
 void motor_data_cb(motor_msg::MotorCmdStamped motor_msg){
     mutex_.lock();
-    motor_message_updated = 1;
+    motor_message_updated = true;
     motor_cmd_data = motor_msg;
     mutex_.unlock();
 }
@@ -19,7 +19,7 @@ void motor_data_cb(motor_msg::MotorCmdStamped motor_msg){
 power_msg::PowerCmdStamped power_cmd_data;
 void power_data_cb(power_msg::PowerCmdStamped power_msg){
     mutex_.lock();
-    fpga_message_updated = 1;
+    fpga_message_updated = true;
     power_cmd_data = power_msg;
     mutex_.unlock();
 
@@ -35,26 +35,28 @@ bool is_sys_stop(){
 }
 
 Kilin::Kilin(){
-
+    std::vector<LegModule> legs_;
     /* initialize powerboard state (Digital/Signal/Power) */
     digital_switch_ = false;
     signal_switch_ = false;
     power_switch_ = false;
 
     /* initialize robot state */
-    HALL_CALIBRATED_ = false;
+    fsm_.hall_calibrated = false;
 
     powerboard_state_.push_back(digital_switch_); 
     powerboard_state_.push_back(signal_switch_); 
     powerboard_state_.push_back(power_switch_); 
+
+    ModeFsm fsm(&legs_, nullptr, &powerboard_state_, fpga_.powerboard_V_list_);
+    fsm_ = fsm;
     
     load_config_();
-    motors_list_.resize(6); 
-    servos_list_.resize(3);
-    console_.init(&fpga_, motors_list_.data(), servos_list_.data(), &powerboard_state_, &fsm_, &main_mtx_);
+    // legs_.resize(6); 
+    console_.init(&fpga_, legs_.data(), nullptr, &powerboard_state_, &fsm_, &main_mtx_);
 }
 
-void Kilin::load_config_(){
+void Kilin::load_config_(){ 
     yaml_node_ = YAML::LoadFile(CONFIG_PATH);
 
     fsm_.dt_ = yaml_node_["MainLoop_period_us"].as<int>() * 0.000001;  // sec
@@ -62,10 +64,17 @@ void Kilin::load_config_(){
     fsm_.cal_vel_ = yaml_node_["Hall_calibration_vel"].as<double>();
     fsm_.cal_tol_ = yaml_node_["Hall_calibration_tol"].as<double>();
 
-    if (yaml_node_["Scenario"].as<std::string>() == "SingleModule")
-        fsm_.scenario_ = Scenario::SINGLE_MODULE;
-    else
-        fsm_.scenario_ = Scenario::ROBOT;
+    if (yaml_node_["Scenario"].as<std::string>().compare("SingleModule") == 0)fsm_.scenario_ = Scenario::SINGLE_MODULE;
+    else fsm_.scenario_ = Scenario::ROBOT;
+
+    /* initialize leg modules */
+    modules_num_ = yaml_node_["Number_of_modules"].as<int>();
+
+    for (int i = 0; i < modules_num_; i++){
+        std::string label = yaml_node_["Modules_list"][i].as<std::string>();
+        LegModule module(label, yaml_node_, fpga_.status_, fpga_.session_);
+        motors_list_.push_back(module);
+    }
 
     YAML::Node Factors = yaml_node_["Powerboard_Scaling_Factor"];
     int idx = 0;
@@ -126,7 +135,7 @@ void Kilin::mainLoop_(core::Subscriber<power_msg::PowerCmdStamped>& cmd_pb_sub_,
     state_pb_pub_.publish(power_fb_msg);
 }
 
-void Kilin::powerboardPack(power_msg::PowerStateStamped&power_dashboard_reply){
+void Kilin::powerboardPack(power_msg::PowerStateStamped& power_dashboard_reply){
 
     mutex_.lock();
     
@@ -163,21 +172,6 @@ void Kilin::powerboardPack(power_msg::PowerStateStamped&power_dashboard_reply){
     power_dashboard_reply.set_v_6(fpga_.powerboard_V_list_[6]);
     power_dashboard_reply.set_i_6(fpga_.powerboard_I_list_[6]);
 
-    power_dashboard_reply.set_v_7(fpga_.powerboard_V_list_[7]);
-    power_dashboard_reply.set_i_7(fpga_.powerboard_I_list_[7]);
-
-    power_dashboard_reply.set_v_8(fpga_.powerboard_V_list_[8]);
-    power_dashboard_reply.set_i_8(fpga_.powerboard_I_list_[8]);
-
-    power_dashboard_reply.set_v_9(fpga_.powerboard_V_list_[9]);
-    power_dashboard_reply.set_i_9(fpga_.powerboard_I_list_[9]);
-
-    power_dashboard_reply.set_v_10(fpga_.powerboard_V_list_[10]);
-    power_dashboard_reply.set_i_10(fpga_.powerboard_I_list_[10]);
-
-    power_dashboard_reply.set_v_11(fpga_.powerboard_V_list_[11]);
-    power_dashboard_reply.set_i_11(fpga_.powerboard_I_list_[11]);
-
     mutex_.unlock();
 }
 
@@ -193,6 +187,8 @@ int main(int argc, char* argv[]){
 
     core::Publisher<motor_msg::MotorStateStamped>& motor_pub = nh.advertise<motor_msg::MotorStateStamped>("motor/state");
     core::Subscriber<motor_msg::MotorCmdStamped>& motor_sub = nh.subscribe<motor_msg::MotorCmdStamped>("motor/command", 1000, motor_data_cb);
+    kilin.mainLoop_(power_sub, power_pub, motor_sub, motor_pub);
+
     if (NiFpga_IsError(kilin.fpga_.status_))
     std::cout << red << "[FPGA Server] Error! Exiting program. LabVIEW error code: " << kilin.fpga_.status_ << reset << std::endl;
     else{

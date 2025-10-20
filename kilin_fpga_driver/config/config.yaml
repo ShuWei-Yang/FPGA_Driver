@@ -1,10 +1,12 @@
 # --- Data logging ---
 log_data: 1
-log_path: "/home/admin/kilin_sbRIO_ws/kilin_fpga_driver/log/sample_test.csv"
+log_path: "/home/shuweiyang/kilin_sbRIO_ws/kilin_fpga_driver/log/sample_test.csv"
 
 MainLoop_period_us: 1000
+RS485_CMD_us: 200
+RS485_IDLE_us: 50
+RS485_READ_us: 150
 
-# --- Calibration helper ---
 Measure_offset: 0
 Hall_calibration_vel: 0.2
 Hall_calibration_tol: 0.005
@@ -13,94 +15,92 @@ Hall_calibration_tol: 0.005
 Scenario: "Robot"   
 # "SingleModule"
 
-Enable: 1
+Motor:
 
-L1:
-  EN: 1
-  Calibration_Bias: 0.0
-  KP: 85
-  KI: 0.3
-  KD: 1.75
-  KT: 2.0
-  Torque_Feedforward: 0.0
-  input_voltage: 300
+  L1:
+    Enable: 1
+    KP: 85.0
+    KI: 0.3
+    KD: 1.75
+    KT: 2.0
+    Torque_Feedforward: 0.0
+    input_voltage: 300
 
-L2:
-  EN: 2
-  FW_Version: 3
-  Calibration_Bias: 0.0
-  KP: 85
-  KI: 0.3
-  KD: 1.75
-  KT: 2.0
-  Torque_Feedforward: 0.0
-  input_voltage: 300
+  L2:
+    Enable: 1
+    KP: 85.0
+    KI: 0.3
+    KD: 1.75
+    KT: 2.0
+    Torque_Feedforward: 0.0
+    input_voltage: 300
 
-L3:
-  EN: 3
-  FW_Version: 3
-  Calibration_Bias: 0.0
-  KP: 85
-  KI: 0
-  KD: 1.75
-  KT: 2.0
-  Torque_Feedforward: 0.0
-  input_voltage: 300
+  L3:
+    Enable: 1
+    KP: 85.0
+    KI: 0.3
+    KD: 1.75
+    KT: 2.0
+    Torque_Feedforward: 0.0
+    input_voltage: 300
 
-R1:
-  EN: 4
-  FW_Version: 3
-  Calibration_Bias: 0.0
-  KP: 85
-  KI: 0
-  KD: 1.75
-  KT: 2.0
-  Torque_Feedforward: 0.0
-  input_voltage: 300
+  R1:
+    Enable: 1
+    KP: 85.0
+    KI: 0.3
+    KD: 1.75
+    KT: 2.0
+    Torque_Feedforward: 0.0
+    input_voltage: 300
 
-R2:
-  EN: 5
-  FW_Version: 3
-  Calibration_Bias: 0.0
-  KP: 85
-  KI: 0
-  KD: 1.75
-  KT: 2.0
-  Torque_Feedforward: 0.0
-  input_voltage: 300
+  R2:
+    Enable: 1
+    KP: 85.0
+    KI: 0.3
+    KD: 1.75
+    KT: 2.0
+    Torque_Feedforward: 0.0
+    input_voltage: 300
 
-R3:
-  EN: 6
-  FW_Version: 3
-  Calibration_Bias: 0.0
-  KP: 85
-  KI: 0
-  KD: 1.75
-  KT: 2.0
-  Torque_Feedforward: 0.0
-  input_voltage: 300
+  R3:
+    Enable: 1
+    KP: 85.0
+    KI: 0.3
+    KD: 1.75
+    KT: 2.0
+    Torque_Feedforward: 0.0
+    input_voltage: 300
 
-Bus 1:
-  L:
-    id: 1
-    Position: 1030
-  R:  
-    id: 2
-    Position: 1000
-Bus 2:
-  L:
-    id: 1
-    Position: 1030
-  R:
-    id: 2
-    Position: 1000
-Bus 3:
-  L:
-    id: 1
-    Position: 1030
-  R:
-    id: 2
-    Position: 1000
+Number_of_modules: 6
+Modules_list:
+  - L1
+  - L2
+  - L3
+  - R1
+  - R2
+  - R3
+#Servo:
+#  Bus 1:
+#    L:
+#      id: 1
+#      Position: 1030
+#    R:  
+#      id: 2
+#      Position: 1000
+#  Bus 2:
+#    L:
+#      id: 1
+#      Position: 1030
+#    R:
+#      id: 2
+#      Position: 1000
+#  Bus 3:
+#    L:
+#      id: 1
+#      Position: 1030
+#    R:
+#      id: 2
+#      Position: 1000
   
 
 

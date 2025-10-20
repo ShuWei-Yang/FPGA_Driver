@@ -16,7 +16,7 @@
 #include <signal.h>
 
 #ifndef CONFIG_PATH
-#define CONFIG_PATH "/home/admin/kilin_sbRIO_ws/kilin_fpga_driver/config/config.yaml"
+#define CONFIG_PATH "/home/shuweiyang/kilin_sbRIO_ws/kilin_fpga_driver/config/config.yaml"
 #endif
 
 void inthand(int signum);
@@ -25,7 +25,6 @@ bool is_sys_stop();
 class Kilin{
     public:
         Kilin();
-
         FpgaHandler fpga_;
         YAML::Node yaml_node_;
 
@@ -46,6 +45,7 @@ class Kilin{
         bool HALL_CALIBRATED_;
 
         void load_config_();
+        int modules_num_;
 
         void mainLoop_(core::Subscriber<power_msg::PowerCmdStamped>& cmd_pb_sub_,
             core::Publisher<power_msg::PowerStateStamped>& state_pb_pub_,

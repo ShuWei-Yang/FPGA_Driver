@@ -6,23 +6,24 @@
 #include <fstream>
 #include <unistd.h>
 #include <Eigen/Dense>
+#include <iterator> 
 
 #include "leg_module.hpp"
-
+#include "mode.hpp"
 #include "Motor.pb.h"
 #include "Power.pb.h"
 
-enum class Scenario
-{
+#pragma once
+
+enum class Scenario{
     ROBOT,
     SINGLE_MODULE
 };
 
-class ModeFsm
-{
+class ModeFsm{
 public:
-    ModeFsm(LegModule *legs_, 
-        LegModule *servos_,
+    ModeFsm(std::vector<LegModule> *legs_, 
+        std::vector<LegModule> *servos_,
         std::vector<bool> *pb_state_, 
         double *pb_v);
     ModeFsm(){}
@@ -31,9 +32,9 @@ public:
 
     Scenario scenario_;
 
-    LegModule *legs_;
-    LegModule *servos_;
-    std::vector<bool> *pb_state_;
+    std::vector<LegModule>* legs_;
+    std::vector<LegModule>* servos_;
+    std::vector<bool>* pb_state_;
 
     bool hall_calibrated;
     int hall_calibrate_status;
@@ -45,10 +46,9 @@ public:
     double cal_tol_ = 0.05;
     double cal_dir_[2];
     double cal_command[2];
-    double *powerboard_voltage;
+    double* powerboard_voltage;
 
-    void runFsm(motor_msg::MotorStateStamped &motor_fb_msg, 
-    const motor_msg::MotorCmdStamped &motor_cmd_msg);
+    void runFsm(motor_msg::MotorStateStamped &motor_fb_msg, const motor_msg::MotorCmdStamped &motor_cmd_msg);
     bool switchMode(Mode next_mode);
     void publishMsg(motor_msg::MotorStateStamped &motor_fb_msg);
 };

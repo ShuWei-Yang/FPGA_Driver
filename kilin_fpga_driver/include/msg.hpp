@@ -3,25 +3,24 @@
 
 #include <vector>
 #include <string>
-#include <math.h>
+#include <cmath>
+#include <cstdint>
 #include "mode.hpp"
 
 typedef struct Motor{
     std::uint8_t enable_;
-    int fw_version;
-    double calibration_bias;
     double kp_;
     double ki_;
     double kd_;
     double kt_;
-    double torque_ff;
-    double input_voltage;
+    double torque_ff_;
+    double input_voltage_;
 }Motor;
 
-typedef struct RSBL{
+typedef struct Servo{
     int id_;
     int position_;
-}RSBL;
+}Servo;
 
 typedef struct TXData{
     float position_;

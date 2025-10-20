@@ -54,6 +54,10 @@ extern "C" {
 extern const ::google::protobuf::internal::DescriptorTable descriptor_table_Motor_2eproto;
 }  // extern "C"
 namespace motor_msg {
+class DcState;
+struct DcStateDefaultTypeInternal;
+extern DcStateDefaultTypeInternal _DcState_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull DcState_class_data_;
 class LegCmd;
 struct LegCmdDefaultTypeInternal;
 extern LegCmdDefaultTypeInternal _LegCmd_default_instance_;
@@ -70,14 +74,18 @@ class MotorCmdStamped;
 struct MotorCmdStampedDefaultTypeInternal;
 extern MotorCmdStampedDefaultTypeInternal _MotorCmdStamped_default_instance_;
 extern const ::google::protobuf::internal::ClassDataFull MotorCmdStamped_class_data_;
-class MotorState;
-struct MotorStateDefaultTypeInternal;
-extern MotorStateDefaultTypeInternal _MotorState_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull MotorState_class_data_;
 class MotorStateStamped;
 struct MotorStateStampedDefaultTypeInternal;
 extern MotorStateStampedDefaultTypeInternal _MotorStateStamped_default_instance_;
 extern const ::google::protobuf::internal::ClassDataFull MotorStateStamped_class_data_;
+class ServoCmd;
+struct ServoCmdDefaultTypeInternal;
+extern ServoCmdDefaultTypeInternal _ServoCmd_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull ServoCmd_class_data_;
+class ServoState;
+struct ServoStateDefaultTypeInternal;
+extern ServoStateDefaultTypeInternal _ServoState_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull ServoState_class_data_;
 }  // namespace motor_msg
 namespace google {
 namespace protobuf {
@@ -91,30 +99,30 @@ namespace motor_msg {
 
 // -------------------------------------------------------------------
 
-class MotorState final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:motor_msg.MotorState) */ {
+class ServoState final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:motor_msg.ServoState) */ {
  public:
-  inline MotorState() : MotorState(nullptr) {}
-  ~MotorState() PROTOBUF_FINAL;
+  inline ServoState() : ServoState(nullptr) {}
+  ~ServoState() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(MotorState* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+  void operator delete(ServoState* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(MotorState));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(ServoState));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR MotorState(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR ServoState(::google::protobuf::internal::ConstantInitialized);
 
-  inline MotorState(const MotorState& from) : MotorState(nullptr, from) {}
-  inline MotorState(MotorState&& from) noexcept
-      : MotorState(nullptr, ::std::move(from)) {}
-  inline MotorState& operator=(const MotorState& from) {
+  inline ServoState(const ServoState& from) : ServoState(nullptr, from) {}
+  inline ServoState(ServoState&& from) noexcept
+      : ServoState(nullptr, ::std::move(from)) {}
+  inline ServoState& operator=(const ServoState& from) {
     CopyFrom(from);
     return *this;
   }
-  inline MotorState& operator=(MotorState&& from) noexcept {
+  inline ServoState& operator=(ServoState&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -142,13 +150,13 @@ class MotorState final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const MotorState& default_instance() {
-    return *reinterpret_cast<const MotorState*>(
-        &_MotorState_default_instance_);
+  static const ServoState& default_instance() {
+    return *reinterpret_cast<const ServoState*>(
+        &_ServoState_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 1;
-  friend void swap(MotorState& a, MotorState& b) { a.Swap(&b); }
-  inline void Swap(MotorState* PROTOBUF_NONNULL other) {
+  static constexpr int kIndexInFileMessages = 3;
+  friend void swap(ServoState& a, ServoState& b) { a.Swap(&b); }
+  inline void Swap(ServoState* PROTOBUF_NONNULL other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -156,7 +164,7 @@ class MotorState final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(MotorState* PROTOBUF_NONNULL other) {
+  void UnsafeArenaSwap(ServoState* PROTOBUF_NONNULL other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -164,13 +172,13 @@ class MotorState final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  MotorState* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<MotorState>(arena);
+  ServoState* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<ServoState>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const MotorState& from);
+  void CopyFrom(const ServoState& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const MotorState& from) { MotorState::MergeImpl(*this, from); }
+  void MergeFrom(const ServoState& from) { ServoState::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(::google::protobuf::MessageLite& to_msg,
@@ -206,18 +214,18 @@ class MotorState final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(MotorState* PROTOBUF_NONNULL other);
+  void InternalSwap(ServoState* PROTOBUF_NONNULL other);
  private:
   template <typename T>
   friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "motor_msg.MotorState"; }
+  static ::absl::string_view FullMessageName() { return "motor_msg.ServoState"; }
 
  protected:
-  explicit MotorState(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  MotorState(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const MotorState& from);
-  MotorState(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, MotorState&& from) noexcept
-      : MotorState(arena) {
+  explicit ServoState(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  ServoState(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const ServoState& from);
+  ServoState(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, ServoState&& from) noexcept
+      : ServoState(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
@@ -234,45 +242,67 @@ class MotorState final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kPositionFieldNumber = 1,
-    kVelocityFieldNumber = 2,
-    kTorqueFieldNumber = 3,
+    kBusFieldNumber = 1,
+    kIdFieldNumber = 2,
+    kPositionFieldNumber = 3,
+    kVelocityFieldNumber = 4,
+    kCurrentFieldNumber = 5,
   };
-  // double position = 1;
+  // uint32 bus = 1;
+  void clear_bus() ;
+  ::uint32_t bus() const;
+  void set_bus(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_bus() const;
+  void _internal_set_bus(::uint32_t value);
+
+  public:
+  // uint32 id = 2;
+  void clear_id() ;
+  ::uint32_t id() const;
+  void set_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_id() const;
+  void _internal_set_id(::uint32_t value);
+
+  public:
+  // float position = 3;
   void clear_position() ;
-  double position() const;
-  void set_position(double value);
+  float position() const;
+  void set_position(float value);
 
   private:
-  double _internal_position() const;
-  void _internal_set_position(double value);
+  float _internal_position() const;
+  void _internal_set_position(float value);
 
   public:
-  // double velocity = 2;
+  // float velocity = 4;
   void clear_velocity() ;
-  double velocity() const;
-  void set_velocity(double value);
+  float velocity() const;
+  void set_velocity(float value);
 
   private:
-  double _internal_velocity() const;
-  void _internal_set_velocity(double value);
+  float _internal_velocity() const;
+  void _internal_set_velocity(float value);
 
   public:
-  // double torque = 3;
-  void clear_torque() ;
-  double torque() const;
-  void set_torque(double value);
+  // float current = 5;
+  void clear_current() ;
+  float current() const;
+  void set_current(float value);
 
   private:
-  double _internal_torque() const;
-  void _internal_set_torque(double value);
+  float _internal_current() const;
+  void _internal_set_current(float value);
 
   public:
-  // @@protoc_insertion_point(class_scope:motor_msg.MotorState)
+  // @@protoc_insertion_point(class_scope:motor_msg.ServoState)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 3,
+  static const ::google::protobuf::internal::TcParseTable<3, 5,
                                    0, 0,
                                    2>
       _table_;
@@ -291,19 +321,284 @@ class MotorState final : public ::google::protobuf::Message
     inline explicit Impl_(
         ::google::protobuf::internal::InternalVisibility visibility,
         ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const MotorState& from_msg);
+        const ServoState& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    double position_;
-    double velocity_;
-    double torque_;
+    ::uint32_t bus_;
+    ::uint32_t id_;
+    float position_;
+    float velocity_;
+    float current_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_Motor_2eproto;
 };
 
-extern const ::google::protobuf::internal::ClassDataFull MotorState_class_data_;
+extern const ::google::protobuf::internal::ClassDataFull ServoState_class_data_;
+// -------------------------------------------------------------------
+
+class ServoCmd final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:motor_msg.ServoCmd) */ {
+ public:
+  inline ServoCmd() : ServoCmd(nullptr) {}
+  ~ServoCmd() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(ServoCmd* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(ServoCmd));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR ServoCmd(::google::protobuf::internal::ConstantInitialized);
+
+  inline ServoCmd(const ServoCmd& from) : ServoCmd(nullptr, from) {}
+  inline ServoCmd(ServoCmd&& from) noexcept
+      : ServoCmd(nullptr, ::std::move(from)) {}
+  inline ServoCmd& operator=(const ServoCmd& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ServoCmd& operator=(ServoCmd&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ServoCmd& default_instance() {
+    return *reinterpret_cast<const ServoCmd*>(
+        &_ServoCmd_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 2;
+  friend void swap(ServoCmd& a, ServoCmd& b) { a.Swap(&b); }
+  inline void Swap(ServoCmd* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ServoCmd* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ServoCmd* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<ServoCmd>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ServoCmd& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const ServoCmd& from) { ServoCmd::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(ServoCmd* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "motor_msg.ServoCmd"; }
+
+ protected:
+  explicit ServoCmd(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  ServoCmd(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const ServoCmd& from);
+  ServoCmd(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, ServoCmd&& from) noexcept
+      : ServoCmd(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kBusFieldNumber = 1,
+    kIdFieldNumber = 2,
+    kPositionFieldNumber = 3,
+    kCurrentLimitFieldNumber = 4,
+    kKpFieldNumber = 5,
+    kKiFieldNumber = 6,
+    kKdFieldNumber = 7,
+  };
+  // uint32 bus = 1;
+  void clear_bus() ;
+  ::uint32_t bus() const;
+  void set_bus(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_bus() const;
+  void _internal_set_bus(::uint32_t value);
+
+  public:
+  // uint32 id = 2;
+  void clear_id() ;
+  ::uint32_t id() const;
+  void set_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_id() const;
+  void _internal_set_id(::uint32_t value);
+
+  public:
+  // float position = 3;
+  void clear_position() ;
+  float position() const;
+  void set_position(float value);
+
+  private:
+  float _internal_position() const;
+  void _internal_set_position(float value);
+
+  public:
+  // float current_limit = 4;
+  void clear_current_limit() ;
+  float current_limit() const;
+  void set_current_limit(float value);
+
+  private:
+  float _internal_current_limit() const;
+  void _internal_set_current_limit(float value);
+
+  public:
+  // float kp = 5;
+  void clear_kp() ;
+  float kp() const;
+  void set_kp(float value);
+
+  private:
+  float _internal_kp() const;
+  void _internal_set_kp(float value);
+
+  public:
+  // float ki = 6;
+  void clear_ki() ;
+  float ki() const;
+  void set_ki(float value);
+
+  private:
+  float _internal_ki() const;
+  void _internal_set_ki(float value);
+
+  public:
+  // float kd = 7;
+  void clear_kd() ;
+  float kd() const;
+  void set_kd(float value);
+
+  private:
+  float _internal_kd() const;
+  void _internal_set_kd(float value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:motor_msg.ServoCmd)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<3, 7,
+                                   0, 0,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const ServoCmd& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::uint32_t bus_;
+    ::uint32_t id_;
+    float position_;
+    float current_limit_;
+    float kp_;
+    float ki_;
+    float kd_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_Motor_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull ServoCmd_class_data_;
 // -------------------------------------------------------------------
 
 class MotorCmd final : public ::google::protobuf::Message
@@ -450,59 +745,59 @@ class MotorCmd final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kPositionFieldNumber = 1,
-    kKpFieldNumber = 2,
-    kKiFieldNumber = 3,
-    kKdFieldNumber = 4,
-    kTorqueFieldNumber = 5,
+    kTorqueFieldNumber = 2,
+    kKpFieldNumber = 3,
+    kKiFieldNumber = 4,
+    kKdFieldNumber = 5,
   };
-  // double position = 1;
+  // float position = 1;
   void clear_position() ;
-  double position() const;
-  void set_position(double value);
+  float position() const;
+  void set_position(float value);
 
   private:
-  double _internal_position() const;
-  void _internal_set_position(double value);
+  float _internal_position() const;
+  void _internal_set_position(float value);
 
   public:
-  // double kp = 2;
-  void clear_kp() ;
-  double kp() const;
-  void set_kp(double value);
-
-  private:
-  double _internal_kp() const;
-  void _internal_set_kp(double value);
-
-  public:
-  // double ki = 3;
-  void clear_ki() ;
-  double ki() const;
-  void set_ki(double value);
-
-  private:
-  double _internal_ki() const;
-  void _internal_set_ki(double value);
-
-  public:
-  // double kd = 4;
-  void clear_kd() ;
-  double kd() const;
-  void set_kd(double value);
-
-  private:
-  double _internal_kd() const;
-  void _internal_set_kd(double value);
-
-  public:
-  // double torque = 5;
+  // float torque = 2;
   void clear_torque() ;
-  double torque() const;
-  void set_torque(double value);
+  float torque() const;
+  void set_torque(float value);
 
   private:
-  double _internal_torque() const;
-  void _internal_set_torque(double value);
+  float _internal_torque() const;
+  void _internal_set_torque(float value);
+
+  public:
+  // float kp = 3;
+  void clear_kp() ;
+  float kp() const;
+  void set_kp(float value);
+
+  private:
+  float _internal_kp() const;
+  void _internal_set_kp(float value);
+
+  public:
+  // float ki = 4;
+  void clear_ki() ;
+  float ki() const;
+  void set_ki(float value);
+
+  private:
+  float _internal_ki() const;
+  void _internal_set_ki(float value);
+
+  public:
+  // float kd = 5;
+  void clear_kd() ;
+  float kd() const;
+  void set_kd(float value);
+
+  private:
+  float _internal_kd() const;
+  void _internal_set_kd(float value);
 
   public:
   // @@protoc_insertion_point(class_scope:motor_msg.MotorCmd)
@@ -531,11 +826,11 @@ class MotorCmd final : public ::google::protobuf::Message
         const MotorCmd& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    double position_;
-    double kp_;
-    double ki_;
-    double kd_;
-    double torque_;
+    float position_;
+    float torque_;
+    float kp_;
+    float ki_;
+    float kd_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -543,6 +838,233 @@ class MotorCmd final : public ::google::protobuf::Message
 };
 
 extern const ::google::protobuf::internal::ClassDataFull MotorCmd_class_data_;
+// -------------------------------------------------------------------
+
+class DcState final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:motor_msg.DcState) */ {
+ public:
+  inline DcState() : DcState(nullptr) {}
+  ~DcState() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(DcState* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(DcState));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR DcState(::google::protobuf::internal::ConstantInitialized);
+
+  inline DcState(const DcState& from) : DcState(nullptr, from) {}
+  inline DcState(DcState&& from) noexcept
+      : DcState(nullptr, ::std::move(from)) {}
+  inline DcState& operator=(const DcState& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DcState& operator=(DcState&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DcState& default_instance() {
+    return *reinterpret_cast<const DcState*>(
+        &_DcState_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 1;
+  friend void swap(DcState& a, DcState& b) { a.Swap(&b); }
+  inline void Swap(DcState* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DcState* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DcState* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<DcState>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const DcState& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const DcState& from) { DcState::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(DcState* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "motor_msg.DcState"; }
+
+ protected:
+  explicit DcState(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  DcState(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const DcState& from);
+  DcState(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, DcState&& from) noexcept
+      : DcState(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kPositionFieldNumber = 1,
+    kVelocityFieldNumber = 2,
+    kCurrentFieldNumber = 3,
+    kTorqueFieldNumber = 4,
+  };
+  // float position = 1;
+  void clear_position() ;
+  float position() const;
+  void set_position(float value);
+
+  private:
+  float _internal_position() const;
+  void _internal_set_position(float value);
+
+  public:
+  // float velocity = 2;
+  void clear_velocity() ;
+  float velocity() const;
+  void set_velocity(float value);
+
+  private:
+  float _internal_velocity() const;
+  void _internal_set_velocity(float value);
+
+  public:
+  // float current = 3;
+  void clear_current() ;
+  float current() const;
+  void set_current(float value);
+
+  private:
+  float _internal_current() const;
+  void _internal_set_current(float value);
+
+  public:
+  // float torque = 4;
+  void clear_torque() ;
+  float torque() const;
+  void set_torque(float value);
+
+  private:
+  float _internal_torque() const;
+  void _internal_set_torque(float value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:motor_msg.DcState)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<2, 4,
+                                   0, 0,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const DcState& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    float position_;
+    float velocity_;
+    float current_;
+    float torque_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_Motor_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull DcState_class_data_;
 // -------------------------------------------------------------------
 
 class LegState final : public ::google::protobuf::Message
@@ -600,7 +1122,7 @@ class LegState final : public ::google::protobuf::Message
     return *reinterpret_cast<const LegState*>(
         &_LegState_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 3;
+  static constexpr int kIndexInFileMessages = 5;
   friend void swap(LegState& a, LegState& b) { a.Swap(&b); }
   inline void Swap(LegState* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -688,61 +1210,45 @@ class LegState final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kHipFieldNumber = 1,
-    kSteeringFieldNumber = 2,
-    kHubFieldNumber = 3,
+    kDcFieldNumber = 1,
+    kServoFieldNumber = 2,
   };
-  // .motor_msg.MotorState hip = 1;
-  bool has_hip() const;
-  void clear_hip() ;
-  const ::motor_msg::MotorState& hip() const;
-  [[nodiscard]] ::motor_msg::MotorState* PROTOBUF_NULLABLE release_hip();
-  ::motor_msg::MotorState* PROTOBUF_NONNULL mutable_hip();
-  void set_allocated_hip(::motor_msg::MotorState* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_hip(::motor_msg::MotorState* PROTOBUF_NULLABLE value);
-  ::motor_msg::MotorState* PROTOBUF_NULLABLE unsafe_arena_release_hip();
+  // .motor_msg.DcState dc = 1;
+  bool has_dc() const;
+  void clear_dc() ;
+  const ::motor_msg::DcState& dc() const;
+  [[nodiscard]] ::motor_msg::DcState* PROTOBUF_NULLABLE release_dc();
+  ::motor_msg::DcState* PROTOBUF_NONNULL mutable_dc();
+  void set_allocated_dc(::motor_msg::DcState* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_dc(::motor_msg::DcState* PROTOBUF_NULLABLE value);
+  ::motor_msg::DcState* PROTOBUF_NULLABLE unsafe_arena_release_dc();
 
   private:
-  const ::motor_msg::MotorState& _internal_hip() const;
-  ::motor_msg::MotorState* PROTOBUF_NONNULL _internal_mutable_hip();
+  const ::motor_msg::DcState& _internal_dc() const;
+  ::motor_msg::DcState* PROTOBUF_NONNULL _internal_mutable_dc();
 
   public:
-  // .motor_msg.MotorState steering = 2;
-  bool has_steering() const;
-  void clear_steering() ;
-  const ::motor_msg::MotorState& steering() const;
-  [[nodiscard]] ::motor_msg::MotorState* PROTOBUF_NULLABLE release_steering();
-  ::motor_msg::MotorState* PROTOBUF_NONNULL mutable_steering();
-  void set_allocated_steering(::motor_msg::MotorState* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_steering(::motor_msg::MotorState* PROTOBUF_NULLABLE value);
-  ::motor_msg::MotorState* PROTOBUF_NULLABLE unsafe_arena_release_steering();
+  // .motor_msg.ServoState servo = 2;
+  bool has_servo() const;
+  void clear_servo() ;
+  const ::motor_msg::ServoState& servo() const;
+  [[nodiscard]] ::motor_msg::ServoState* PROTOBUF_NULLABLE release_servo();
+  ::motor_msg::ServoState* PROTOBUF_NONNULL mutable_servo();
+  void set_allocated_servo(::motor_msg::ServoState* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_servo(::motor_msg::ServoState* PROTOBUF_NULLABLE value);
+  ::motor_msg::ServoState* PROTOBUF_NULLABLE unsafe_arena_release_servo();
 
   private:
-  const ::motor_msg::MotorState& _internal_steering() const;
-  ::motor_msg::MotorState* PROTOBUF_NONNULL _internal_mutable_steering();
-
-  public:
-  // .motor_msg.MotorState hub = 3;
-  bool has_hub() const;
-  void clear_hub() ;
-  const ::motor_msg::MotorState& hub() const;
-  [[nodiscard]] ::motor_msg::MotorState* PROTOBUF_NULLABLE release_hub();
-  ::motor_msg::MotorState* PROTOBUF_NONNULL mutable_hub();
-  void set_allocated_hub(::motor_msg::MotorState* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_hub(::motor_msg::MotorState* PROTOBUF_NULLABLE value);
-  ::motor_msg::MotorState* PROTOBUF_NULLABLE unsafe_arena_release_hub();
-
-  private:
-  const ::motor_msg::MotorState& _internal_hub() const;
-  ::motor_msg::MotorState* PROTOBUF_NONNULL _internal_mutable_hub();
+  const ::motor_msg::ServoState& _internal_servo() const;
+  ::motor_msg::ServoState* PROTOBUF_NONNULL _internal_mutable_servo();
 
   public:
   // @@protoc_insertion_point(class_scope:motor_msg.LegState)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 3,
-                                   3, 0,
+  static const ::google::protobuf::internal::TcParseTable<1, 2,
+                                   2, 0,
                                    2>
       _table_;
 
@@ -763,9 +1269,8 @@ class LegState final : public ::google::protobuf::Message
         const LegState& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::motor_msg::MotorState* PROTOBUF_NULLABLE hip_;
-    ::motor_msg::MotorState* PROTOBUF_NULLABLE steering_;
-    ::motor_msg::MotorState* PROTOBUF_NULLABLE hub_;
+    ::motor_msg::DcState* PROTOBUF_NULLABLE dc_;
+    ::motor_msg::ServoState* PROTOBUF_NULLABLE servo_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -830,7 +1335,7 @@ class LegCmd final : public ::google::protobuf::Message
     return *reinterpret_cast<const LegCmd*>(
         &_LegCmd_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 2;
+  static constexpr int kIndexInFileMessages = 4;
   friend void swap(LegCmd& a, LegCmd& b) { a.Swap(&b); }
   inline void Swap(LegCmd* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -918,61 +1423,45 @@ class LegCmd final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kHipFieldNumber = 1,
-    kSteeringFieldNumber = 2,
-    kHubFieldNumber = 3,
+    kDcFieldNumber = 1,
+    kServoFieldNumber = 2,
   };
-  // .motor_msg.MotorCmd hip = 1;
-  bool has_hip() const;
-  void clear_hip() ;
-  const ::motor_msg::MotorCmd& hip() const;
-  [[nodiscard]] ::motor_msg::MotorCmd* PROTOBUF_NULLABLE release_hip();
-  ::motor_msg::MotorCmd* PROTOBUF_NONNULL mutable_hip();
-  void set_allocated_hip(::motor_msg::MotorCmd* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_hip(::motor_msg::MotorCmd* PROTOBUF_NULLABLE value);
-  ::motor_msg::MotorCmd* PROTOBUF_NULLABLE unsafe_arena_release_hip();
+  // .motor_msg.MotorCmd dc = 1;
+  bool has_dc() const;
+  void clear_dc() ;
+  const ::motor_msg::MotorCmd& dc() const;
+  [[nodiscard]] ::motor_msg::MotorCmd* PROTOBUF_NULLABLE release_dc();
+  ::motor_msg::MotorCmd* PROTOBUF_NONNULL mutable_dc();
+  void set_allocated_dc(::motor_msg::MotorCmd* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_dc(::motor_msg::MotorCmd* PROTOBUF_NULLABLE value);
+  ::motor_msg::MotorCmd* PROTOBUF_NULLABLE unsafe_arena_release_dc();
 
   private:
-  const ::motor_msg::MotorCmd& _internal_hip() const;
-  ::motor_msg::MotorCmd* PROTOBUF_NONNULL _internal_mutable_hip();
+  const ::motor_msg::MotorCmd& _internal_dc() const;
+  ::motor_msg::MotorCmd* PROTOBUF_NONNULL _internal_mutable_dc();
 
   public:
-  // .motor_msg.MotorCmd steering = 2;
-  bool has_steering() const;
-  void clear_steering() ;
-  const ::motor_msg::MotorCmd& steering() const;
-  [[nodiscard]] ::motor_msg::MotorCmd* PROTOBUF_NULLABLE release_steering();
-  ::motor_msg::MotorCmd* PROTOBUF_NONNULL mutable_steering();
-  void set_allocated_steering(::motor_msg::MotorCmd* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_steering(::motor_msg::MotorCmd* PROTOBUF_NULLABLE value);
-  ::motor_msg::MotorCmd* PROTOBUF_NULLABLE unsafe_arena_release_steering();
+  // .motor_msg.ServoCmd servo = 2;
+  bool has_servo() const;
+  void clear_servo() ;
+  const ::motor_msg::ServoCmd& servo() const;
+  [[nodiscard]] ::motor_msg::ServoCmd* PROTOBUF_NULLABLE release_servo();
+  ::motor_msg::ServoCmd* PROTOBUF_NONNULL mutable_servo();
+  void set_allocated_servo(::motor_msg::ServoCmd* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_servo(::motor_msg::ServoCmd* PROTOBUF_NULLABLE value);
+  ::motor_msg::ServoCmd* PROTOBUF_NULLABLE unsafe_arena_release_servo();
 
   private:
-  const ::motor_msg::MotorCmd& _internal_steering() const;
-  ::motor_msg::MotorCmd* PROTOBUF_NONNULL _internal_mutable_steering();
-
-  public:
-  // .motor_msg.MotorCmd hub = 3;
-  bool has_hub() const;
-  void clear_hub() ;
-  const ::motor_msg::MotorCmd& hub() const;
-  [[nodiscard]] ::motor_msg::MotorCmd* PROTOBUF_NULLABLE release_hub();
-  ::motor_msg::MotorCmd* PROTOBUF_NONNULL mutable_hub();
-  void set_allocated_hub(::motor_msg::MotorCmd* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_hub(::motor_msg::MotorCmd* PROTOBUF_NULLABLE value);
-  ::motor_msg::MotorCmd* PROTOBUF_NULLABLE unsafe_arena_release_hub();
-
-  private:
-  const ::motor_msg::MotorCmd& _internal_hub() const;
-  ::motor_msg::MotorCmd* PROTOBUF_NONNULL _internal_mutable_hub();
+  const ::motor_msg::ServoCmd& _internal_servo() const;
+  ::motor_msg::ServoCmd* PROTOBUF_NONNULL _internal_mutable_servo();
 
   public:
   // @@protoc_insertion_point(class_scope:motor_msg.LegCmd)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 3,
-                                   3, 0,
+  static const ::google::protobuf::internal::TcParseTable<1, 2,
+                                   2, 0,
                                    2>
       _table_;
 
@@ -993,9 +1482,8 @@ class LegCmd final : public ::google::protobuf::Message
         const LegCmd& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::motor_msg::MotorCmd* PROTOBUF_NULLABLE hip_;
-    ::motor_msg::MotorCmd* PROTOBUF_NULLABLE steering_;
-    ::motor_msg::MotorCmd* PROTOBUF_NULLABLE hub_;
+    ::motor_msg::MotorCmd* PROTOBUF_NULLABLE dc_;
+    ::motor_msg::ServoCmd* PROTOBUF_NULLABLE servo_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -1060,7 +1548,7 @@ class MotorStateStamped final : public ::google::protobuf::Message
     return *reinterpret_cast<const MotorStateStamped*>(
         &_MotorStateStamped_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 5;
+  static constexpr int kIndexInFileMessages = 7;
   friend void swap(MotorStateStamped& a, MotorStateStamped& b) { a.Swap(&b); }
   inline void Swap(MotorStateStamped* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1149,10 +1637,12 @@ class MotorStateStamped final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kHeaderFieldNumber = 1,
-    kModuleAFieldNumber = 2,
-    kModuleBFieldNumber = 3,
-    kModuleCFieldNumber = 4,
-    kModuleDFieldNumber = 5,
+    kL1FieldNumber = 2,
+    kL2FieldNumber = 3,
+    kL3FieldNumber = 4,
+    kR1FieldNumber = 5,
+    kR2FieldNumber = 6,
+    kR3FieldNumber = 7,
   };
   // .std_msg.Header header = 1;
   bool has_header() const;
@@ -1169,72 +1659,102 @@ class MotorStateStamped final : public ::google::protobuf::Message
   ::std_msg::Header* PROTOBUF_NONNULL _internal_mutable_header();
 
   public:
-  // .motor_msg.LegState module_a = 2;
-  bool has_module_a() const;
-  void clear_module_a() ;
-  const ::motor_msg::LegState& module_a() const;
-  [[nodiscard]] ::motor_msg::LegState* PROTOBUF_NULLABLE release_module_a();
-  ::motor_msg::LegState* PROTOBUF_NONNULL mutable_module_a();
-  void set_allocated_module_a(::motor_msg::LegState* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_module_a(::motor_msg::LegState* PROTOBUF_NULLABLE value);
-  ::motor_msg::LegState* PROTOBUF_NULLABLE unsafe_arena_release_module_a();
+  // .motor_msg.LegState L1 = 2;
+  bool has_l1() const;
+  void clear_l1() ;
+  const ::motor_msg::LegState& l1() const;
+  [[nodiscard]] ::motor_msg::LegState* PROTOBUF_NULLABLE release_l1();
+  ::motor_msg::LegState* PROTOBUF_NONNULL mutable_l1();
+  void set_allocated_l1(::motor_msg::LegState* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_l1(::motor_msg::LegState* PROTOBUF_NULLABLE value);
+  ::motor_msg::LegState* PROTOBUF_NULLABLE unsafe_arena_release_l1();
 
   private:
-  const ::motor_msg::LegState& _internal_module_a() const;
-  ::motor_msg::LegState* PROTOBUF_NONNULL _internal_mutable_module_a();
+  const ::motor_msg::LegState& _internal_l1() const;
+  ::motor_msg::LegState* PROTOBUF_NONNULL _internal_mutable_l1();
 
   public:
-  // .motor_msg.LegState module_b = 3;
-  bool has_module_b() const;
-  void clear_module_b() ;
-  const ::motor_msg::LegState& module_b() const;
-  [[nodiscard]] ::motor_msg::LegState* PROTOBUF_NULLABLE release_module_b();
-  ::motor_msg::LegState* PROTOBUF_NONNULL mutable_module_b();
-  void set_allocated_module_b(::motor_msg::LegState* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_module_b(::motor_msg::LegState* PROTOBUF_NULLABLE value);
-  ::motor_msg::LegState* PROTOBUF_NULLABLE unsafe_arena_release_module_b();
+  // .motor_msg.LegState L2 = 3;
+  bool has_l2() const;
+  void clear_l2() ;
+  const ::motor_msg::LegState& l2() const;
+  [[nodiscard]] ::motor_msg::LegState* PROTOBUF_NULLABLE release_l2();
+  ::motor_msg::LegState* PROTOBUF_NONNULL mutable_l2();
+  void set_allocated_l2(::motor_msg::LegState* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_l2(::motor_msg::LegState* PROTOBUF_NULLABLE value);
+  ::motor_msg::LegState* PROTOBUF_NULLABLE unsafe_arena_release_l2();
 
   private:
-  const ::motor_msg::LegState& _internal_module_b() const;
-  ::motor_msg::LegState* PROTOBUF_NONNULL _internal_mutable_module_b();
+  const ::motor_msg::LegState& _internal_l2() const;
+  ::motor_msg::LegState* PROTOBUF_NONNULL _internal_mutable_l2();
 
   public:
-  // .motor_msg.LegState module_c = 4;
-  bool has_module_c() const;
-  void clear_module_c() ;
-  const ::motor_msg::LegState& module_c() const;
-  [[nodiscard]] ::motor_msg::LegState* PROTOBUF_NULLABLE release_module_c();
-  ::motor_msg::LegState* PROTOBUF_NONNULL mutable_module_c();
-  void set_allocated_module_c(::motor_msg::LegState* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_module_c(::motor_msg::LegState* PROTOBUF_NULLABLE value);
-  ::motor_msg::LegState* PROTOBUF_NULLABLE unsafe_arena_release_module_c();
+  // .motor_msg.LegState L3 = 4;
+  bool has_l3() const;
+  void clear_l3() ;
+  const ::motor_msg::LegState& l3() const;
+  [[nodiscard]] ::motor_msg::LegState* PROTOBUF_NULLABLE release_l3();
+  ::motor_msg::LegState* PROTOBUF_NONNULL mutable_l3();
+  void set_allocated_l3(::motor_msg::LegState* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_l3(::motor_msg::LegState* PROTOBUF_NULLABLE value);
+  ::motor_msg::LegState* PROTOBUF_NULLABLE unsafe_arena_release_l3();
 
   private:
-  const ::motor_msg::LegState& _internal_module_c() const;
-  ::motor_msg::LegState* PROTOBUF_NONNULL _internal_mutable_module_c();
+  const ::motor_msg::LegState& _internal_l3() const;
+  ::motor_msg::LegState* PROTOBUF_NONNULL _internal_mutable_l3();
 
   public:
-  // .motor_msg.LegState module_d = 5;
-  bool has_module_d() const;
-  void clear_module_d() ;
-  const ::motor_msg::LegState& module_d() const;
-  [[nodiscard]] ::motor_msg::LegState* PROTOBUF_NULLABLE release_module_d();
-  ::motor_msg::LegState* PROTOBUF_NONNULL mutable_module_d();
-  void set_allocated_module_d(::motor_msg::LegState* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_module_d(::motor_msg::LegState* PROTOBUF_NULLABLE value);
-  ::motor_msg::LegState* PROTOBUF_NULLABLE unsafe_arena_release_module_d();
+  // .motor_msg.LegState R1 = 5;
+  bool has_r1() const;
+  void clear_r1() ;
+  const ::motor_msg::LegState& r1() const;
+  [[nodiscard]] ::motor_msg::LegState* PROTOBUF_NULLABLE release_r1();
+  ::motor_msg::LegState* PROTOBUF_NONNULL mutable_r1();
+  void set_allocated_r1(::motor_msg::LegState* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_r1(::motor_msg::LegState* PROTOBUF_NULLABLE value);
+  ::motor_msg::LegState* PROTOBUF_NULLABLE unsafe_arena_release_r1();
 
   private:
-  const ::motor_msg::LegState& _internal_module_d() const;
-  ::motor_msg::LegState* PROTOBUF_NONNULL _internal_mutable_module_d();
+  const ::motor_msg::LegState& _internal_r1() const;
+  ::motor_msg::LegState* PROTOBUF_NONNULL _internal_mutable_r1();
+
+  public:
+  // .motor_msg.LegState R2 = 6;
+  bool has_r2() const;
+  void clear_r2() ;
+  const ::motor_msg::LegState& r2() const;
+  [[nodiscard]] ::motor_msg::LegState* PROTOBUF_NULLABLE release_r2();
+  ::motor_msg::LegState* PROTOBUF_NONNULL mutable_r2();
+  void set_allocated_r2(::motor_msg::LegState* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_r2(::motor_msg::LegState* PROTOBUF_NULLABLE value);
+  ::motor_msg::LegState* PROTOBUF_NULLABLE unsafe_arena_release_r2();
+
+  private:
+  const ::motor_msg::LegState& _internal_r2() const;
+  ::motor_msg::LegState* PROTOBUF_NONNULL _internal_mutable_r2();
+
+  public:
+  // .motor_msg.LegState R3 = 7;
+  bool has_r3() const;
+  void clear_r3() ;
+  const ::motor_msg::LegState& r3() const;
+  [[nodiscard]] ::motor_msg::LegState* PROTOBUF_NULLABLE release_r3();
+  ::motor_msg::LegState* PROTOBUF_NONNULL mutable_r3();
+  void set_allocated_r3(::motor_msg::LegState* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_r3(::motor_msg::LegState* PROTOBUF_NULLABLE value);
+  ::motor_msg::LegState* PROTOBUF_NULLABLE unsafe_arena_release_r3();
+
+  private:
+  const ::motor_msg::LegState& _internal_r3() const;
+  ::motor_msg::LegState* PROTOBUF_NONNULL _internal_mutable_r3();
 
   public:
   // @@protoc_insertion_point(class_scope:motor_msg.MotorStateStamped)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 5,
-                                   5, 0,
+  static const ::google::protobuf::internal::TcParseTable<3, 7,
+                                   7, 0,
                                    2>
       _table_;
 
@@ -1256,10 +1776,12 @@ class MotorStateStamped final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::std_msg::Header* PROTOBUF_NULLABLE header_;
-    ::motor_msg::LegState* PROTOBUF_NULLABLE module_a_;
-    ::motor_msg::LegState* PROTOBUF_NULLABLE module_b_;
-    ::motor_msg::LegState* PROTOBUF_NULLABLE module_c_;
-    ::motor_msg::LegState* PROTOBUF_NULLABLE module_d_;
+    ::motor_msg::LegState* PROTOBUF_NULLABLE l1_;
+    ::motor_msg::LegState* PROTOBUF_NULLABLE l2_;
+    ::motor_msg::LegState* PROTOBUF_NULLABLE l3_;
+    ::motor_msg::LegState* PROTOBUF_NULLABLE r1_;
+    ::motor_msg::LegState* PROTOBUF_NULLABLE r2_;
+    ::motor_msg::LegState* PROTOBUF_NULLABLE r3_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -1324,7 +1846,7 @@ class MotorCmdStamped final : public ::google::protobuf::Message
     return *reinterpret_cast<const MotorCmdStamped*>(
         &_MotorCmdStamped_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 4;
+  static constexpr int kIndexInFileMessages = 6;
   friend void swap(MotorCmdStamped& a, MotorCmdStamped& b) { a.Swap(&b); }
   inline void Swap(MotorCmdStamped* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1413,10 +1935,7 @@ class MotorCmdStamped final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kHeaderFieldNumber = 1,
-    kModuleAFieldNumber = 2,
-    kModuleBFieldNumber = 3,
-    kModuleCFieldNumber = 4,
-    kModuleDFieldNumber = 5,
+    kCmdFieldNumber = 2,
   };
   // .std_msg.Header header = 1;
   bool has_header() const;
@@ -1433,72 +1952,27 @@ class MotorCmdStamped final : public ::google::protobuf::Message
   ::std_msg::Header* PROTOBUF_NONNULL _internal_mutable_header();
 
   public:
-  // .motor_msg.LegCmd module_a = 2;
-  bool has_module_a() const;
-  void clear_module_a() ;
-  const ::motor_msg::LegCmd& module_a() const;
-  [[nodiscard]] ::motor_msg::LegCmd* PROTOBUF_NULLABLE release_module_a();
-  ::motor_msg::LegCmd* PROTOBUF_NONNULL mutable_module_a();
-  void set_allocated_module_a(::motor_msg::LegCmd* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_module_a(::motor_msg::LegCmd* PROTOBUF_NULLABLE value);
-  ::motor_msg::LegCmd* PROTOBUF_NULLABLE unsafe_arena_release_module_a();
+  // .motor_msg.MotorCmd cmd = 2;
+  bool has_cmd() const;
+  void clear_cmd() ;
+  const ::motor_msg::MotorCmd& cmd() const;
+  [[nodiscard]] ::motor_msg::MotorCmd* PROTOBUF_NULLABLE release_cmd();
+  ::motor_msg::MotorCmd* PROTOBUF_NONNULL mutable_cmd();
+  void set_allocated_cmd(::motor_msg::MotorCmd* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_cmd(::motor_msg::MotorCmd* PROTOBUF_NULLABLE value);
+  ::motor_msg::MotorCmd* PROTOBUF_NULLABLE unsafe_arena_release_cmd();
 
   private:
-  const ::motor_msg::LegCmd& _internal_module_a() const;
-  ::motor_msg::LegCmd* PROTOBUF_NONNULL _internal_mutable_module_a();
-
-  public:
-  // .motor_msg.LegCmd module_b = 3;
-  bool has_module_b() const;
-  void clear_module_b() ;
-  const ::motor_msg::LegCmd& module_b() const;
-  [[nodiscard]] ::motor_msg::LegCmd* PROTOBUF_NULLABLE release_module_b();
-  ::motor_msg::LegCmd* PROTOBUF_NONNULL mutable_module_b();
-  void set_allocated_module_b(::motor_msg::LegCmd* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_module_b(::motor_msg::LegCmd* PROTOBUF_NULLABLE value);
-  ::motor_msg::LegCmd* PROTOBUF_NULLABLE unsafe_arena_release_module_b();
-
-  private:
-  const ::motor_msg::LegCmd& _internal_module_b() const;
-  ::motor_msg::LegCmd* PROTOBUF_NONNULL _internal_mutable_module_b();
-
-  public:
-  // .motor_msg.LegCmd module_c = 4;
-  bool has_module_c() const;
-  void clear_module_c() ;
-  const ::motor_msg::LegCmd& module_c() const;
-  [[nodiscard]] ::motor_msg::LegCmd* PROTOBUF_NULLABLE release_module_c();
-  ::motor_msg::LegCmd* PROTOBUF_NONNULL mutable_module_c();
-  void set_allocated_module_c(::motor_msg::LegCmd* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_module_c(::motor_msg::LegCmd* PROTOBUF_NULLABLE value);
-  ::motor_msg::LegCmd* PROTOBUF_NULLABLE unsafe_arena_release_module_c();
-
-  private:
-  const ::motor_msg::LegCmd& _internal_module_c() const;
-  ::motor_msg::LegCmd* PROTOBUF_NONNULL _internal_mutable_module_c();
-
-  public:
-  // .motor_msg.LegCmd module_d = 5;
-  bool has_module_d() const;
-  void clear_module_d() ;
-  const ::motor_msg::LegCmd& module_d() const;
-  [[nodiscard]] ::motor_msg::LegCmd* PROTOBUF_NULLABLE release_module_d();
-  ::motor_msg::LegCmd* PROTOBUF_NONNULL mutable_module_d();
-  void set_allocated_module_d(::motor_msg::LegCmd* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_module_d(::motor_msg::LegCmd* PROTOBUF_NULLABLE value);
-  ::motor_msg::LegCmd* PROTOBUF_NULLABLE unsafe_arena_release_module_d();
-
-  private:
-  const ::motor_msg::LegCmd& _internal_module_d() const;
-  ::motor_msg::LegCmd* PROTOBUF_NONNULL _internal_mutable_module_d();
+  const ::motor_msg::MotorCmd& _internal_cmd() const;
+  ::motor_msg::MotorCmd* PROTOBUF_NONNULL _internal_mutable_cmd();
 
   public:
   // @@protoc_insertion_point(class_scope:motor_msg.MotorCmdStamped)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 5,
-                                   5, 0,
+  static const ::google::protobuf::internal::TcParseTable<1, 2,
+                                   2, 0,
                                    2>
       _table_;
 
@@ -1520,10 +1994,7 @@ class MotorCmdStamped final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::std_msg::Header* PROTOBUF_NULLABLE header_;
-    ::motor_msg::LegCmd* PROTOBUF_NULLABLE module_a_;
-    ::motor_msg::LegCmd* PROTOBUF_NULLABLE module_b_;
-    ::motor_msg::LegCmd* PROTOBUF_NULLABLE module_c_;
-    ::motor_msg::LegCmd* PROTOBUF_NULLABLE module_d_;
+    ::motor_msg::MotorCmd* PROTOBUF_NULLABLE cmd_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -1548,246 +2019,566 @@ extern const ::google::protobuf::internal::ClassDataFull MotorCmdStamped_class_d
 
 // MotorCmd
 
-// double position = 1;
+// float position = 1;
 inline void MotorCmd::clear_position() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.position_ = 0;
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline double MotorCmd::position() const {
+inline float MotorCmd::position() const {
   // @@protoc_insertion_point(field_get:motor_msg.MotorCmd.position)
   return _internal_position();
 }
-inline void MotorCmd::set_position(double value) {
+inline void MotorCmd::set_position(float value) {
   _internal_set_position(value);
   _impl_._has_bits_[0] |= 0x00000001u;
   // @@protoc_insertion_point(field_set:motor_msg.MotorCmd.position)
 }
-inline double MotorCmd::_internal_position() const {
+inline float MotorCmd::_internal_position() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.position_;
 }
-inline void MotorCmd::_internal_set_position(double value) {
+inline void MotorCmd::_internal_set_position(float value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.position_ = value;
 }
 
-// double kp = 2;
+// float torque = 2;
+inline void MotorCmd::clear_torque() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.torque_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline float MotorCmd::torque() const {
+  // @@protoc_insertion_point(field_get:motor_msg.MotorCmd.torque)
+  return _internal_torque();
+}
+inline void MotorCmd::set_torque(float value) {
+  _internal_set_torque(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:motor_msg.MotorCmd.torque)
+}
+inline float MotorCmd::_internal_torque() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.torque_;
+}
+inline void MotorCmd::_internal_set_torque(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.torque_ = value;
+}
+
+// float kp = 3;
 inline void MotorCmd::clear_kp() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.kp_ = 0;
-  _impl_._has_bits_[0] &= ~0x00000002u;
+  _impl_._has_bits_[0] &= ~0x00000004u;
 }
-inline double MotorCmd::kp() const {
+inline float MotorCmd::kp() const {
   // @@protoc_insertion_point(field_get:motor_msg.MotorCmd.kp)
   return _internal_kp();
 }
-inline void MotorCmd::set_kp(double value) {
+inline void MotorCmd::set_kp(float value) {
   _internal_set_kp(value);
-  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_._has_bits_[0] |= 0x00000004u;
   // @@protoc_insertion_point(field_set:motor_msg.MotorCmd.kp)
 }
-inline double MotorCmd::_internal_kp() const {
+inline float MotorCmd::_internal_kp() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.kp_;
 }
-inline void MotorCmd::_internal_set_kp(double value) {
+inline void MotorCmd::_internal_set_kp(float value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.kp_ = value;
 }
 
-// double ki = 3;
+// float ki = 4;
 inline void MotorCmd::clear_ki() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.ki_ = 0;
-  _impl_._has_bits_[0] &= ~0x00000004u;
+  _impl_._has_bits_[0] &= ~0x00000008u;
 }
-inline double MotorCmd::ki() const {
+inline float MotorCmd::ki() const {
   // @@protoc_insertion_point(field_get:motor_msg.MotorCmd.ki)
   return _internal_ki();
 }
-inline void MotorCmd::set_ki(double value) {
+inline void MotorCmd::set_ki(float value) {
   _internal_set_ki(value);
-  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_._has_bits_[0] |= 0x00000008u;
   // @@protoc_insertion_point(field_set:motor_msg.MotorCmd.ki)
 }
-inline double MotorCmd::_internal_ki() const {
+inline float MotorCmd::_internal_ki() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.ki_;
 }
-inline void MotorCmd::_internal_set_ki(double value) {
+inline void MotorCmd::_internal_set_ki(float value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.ki_ = value;
 }
 
-// double kd = 4;
+// float kd = 5;
 inline void MotorCmd::clear_kd() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.kd_ = 0;
-  _impl_._has_bits_[0] &= ~0x00000008u;
+  _impl_._has_bits_[0] &= ~0x00000010u;
 }
-inline double MotorCmd::kd() const {
+inline float MotorCmd::kd() const {
   // @@protoc_insertion_point(field_get:motor_msg.MotorCmd.kd)
   return _internal_kd();
 }
-inline void MotorCmd::set_kd(double value) {
+inline void MotorCmd::set_kd(float value) {
   _internal_set_kd(value);
-  _impl_._has_bits_[0] |= 0x00000008u;
+  _impl_._has_bits_[0] |= 0x00000010u;
   // @@protoc_insertion_point(field_set:motor_msg.MotorCmd.kd)
 }
-inline double MotorCmd::_internal_kd() const {
+inline float MotorCmd::_internal_kd() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.kd_;
 }
-inline void MotorCmd::_internal_set_kd(double value) {
+inline void MotorCmd::_internal_set_kd(float value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.kd_ = value;
 }
 
-// double torque = 5;
-inline void MotorCmd::clear_torque() {
+// -------------------------------------------------------------------
+
+// DcState
+
+// float position = 1;
+inline void DcState::clear_position() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.position_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline float DcState::position() const {
+  // @@protoc_insertion_point(field_get:motor_msg.DcState.position)
+  return _internal_position();
+}
+inline void DcState::set_position(float value) {
+  _internal_set_position(value);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  // @@protoc_insertion_point(field_set:motor_msg.DcState.position)
+}
+inline float DcState::_internal_position() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.position_;
+}
+inline void DcState::_internal_set_position(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.position_ = value;
+}
+
+// float velocity = 2;
+inline void DcState::clear_velocity() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.velocity_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline float DcState::velocity() const {
+  // @@protoc_insertion_point(field_get:motor_msg.DcState.velocity)
+  return _internal_velocity();
+}
+inline void DcState::set_velocity(float value) {
+  _internal_set_velocity(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:motor_msg.DcState.velocity)
+}
+inline float DcState::_internal_velocity() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.velocity_;
+}
+inline void DcState::_internal_set_velocity(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.velocity_ = value;
+}
+
+// float current = 3;
+inline void DcState::clear_current() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.current_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline float DcState::current() const {
+  // @@protoc_insertion_point(field_get:motor_msg.DcState.current)
+  return _internal_current();
+}
+inline void DcState::set_current(float value) {
+  _internal_set_current(value);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  // @@protoc_insertion_point(field_set:motor_msg.DcState.current)
+}
+inline float DcState::_internal_current() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.current_;
+}
+inline void DcState::_internal_set_current(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.current_ = value;
+}
+
+// float torque = 4;
+inline void DcState::clear_torque() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.torque_ = 0;
-  _impl_._has_bits_[0] &= ~0x00000010u;
+  _impl_._has_bits_[0] &= ~0x00000008u;
 }
-inline double MotorCmd::torque() const {
-  // @@protoc_insertion_point(field_get:motor_msg.MotorCmd.torque)
+inline float DcState::torque() const {
+  // @@protoc_insertion_point(field_get:motor_msg.DcState.torque)
   return _internal_torque();
 }
-inline void MotorCmd::set_torque(double value) {
+inline void DcState::set_torque(float value) {
   _internal_set_torque(value);
-  _impl_._has_bits_[0] |= 0x00000010u;
-  // @@protoc_insertion_point(field_set:motor_msg.MotorCmd.torque)
+  _impl_._has_bits_[0] |= 0x00000008u;
+  // @@protoc_insertion_point(field_set:motor_msg.DcState.torque)
 }
-inline double MotorCmd::_internal_torque() const {
+inline float DcState::_internal_torque() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.torque_;
 }
-inline void MotorCmd::_internal_set_torque(double value) {
+inline void DcState::_internal_set_torque(float value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.torque_ = value;
 }
 
 // -------------------------------------------------------------------
 
-// MotorState
+// ServoCmd
 
-// double position = 1;
-inline void MotorState::clear_position() {
+// uint32 bus = 1;
+inline void ServoCmd::clear_bus() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.position_ = 0;
+  _impl_.bus_ = 0u;
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline double MotorState::position() const {
-  // @@protoc_insertion_point(field_get:motor_msg.MotorState.position)
+inline ::uint32_t ServoCmd::bus() const {
+  // @@protoc_insertion_point(field_get:motor_msg.ServoCmd.bus)
+  return _internal_bus();
+}
+inline void ServoCmd::set_bus(::uint32_t value) {
+  _internal_set_bus(value);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  // @@protoc_insertion_point(field_set:motor_msg.ServoCmd.bus)
+}
+inline ::uint32_t ServoCmd::_internal_bus() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.bus_;
+}
+inline void ServoCmd::_internal_set_bus(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.bus_ = value;
+}
+
+// uint32 id = 2;
+inline void ServoCmd::clear_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = 0u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline ::uint32_t ServoCmd::id() const {
+  // @@protoc_insertion_point(field_get:motor_msg.ServoCmd.id)
+  return _internal_id();
+}
+inline void ServoCmd::set_id(::uint32_t value) {
+  _internal_set_id(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:motor_msg.ServoCmd.id)
+}
+inline ::uint32_t ServoCmd::_internal_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.id_;
+}
+inline void ServoCmd::_internal_set_id(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = value;
+}
+
+// float position = 3;
+inline void ServoCmd::clear_position() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.position_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline float ServoCmd::position() const {
+  // @@protoc_insertion_point(field_get:motor_msg.ServoCmd.position)
   return _internal_position();
 }
-inline void MotorState::set_position(double value) {
+inline void ServoCmd::set_position(float value) {
   _internal_set_position(value);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  // @@protoc_insertion_point(field_set:motor_msg.MotorState.position)
+  _impl_._has_bits_[0] |= 0x00000004u;
+  // @@protoc_insertion_point(field_set:motor_msg.ServoCmd.position)
 }
-inline double MotorState::_internal_position() const {
+inline float ServoCmd::_internal_position() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.position_;
 }
-inline void MotorState::_internal_set_position(double value) {
+inline void ServoCmd::_internal_set_position(float value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.position_ = value;
 }
 
-// double velocity = 2;
-inline void MotorState::clear_velocity() {
+// float current_limit = 4;
+inline void ServoCmd::clear_current_limit() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.velocity_ = 0;
+  _impl_.current_limit_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+inline float ServoCmd::current_limit() const {
+  // @@protoc_insertion_point(field_get:motor_msg.ServoCmd.current_limit)
+  return _internal_current_limit();
+}
+inline void ServoCmd::set_current_limit(float value) {
+  _internal_set_current_limit(value);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  // @@protoc_insertion_point(field_set:motor_msg.ServoCmd.current_limit)
+}
+inline float ServoCmd::_internal_current_limit() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.current_limit_;
+}
+inline void ServoCmd::_internal_set_current_limit(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.current_limit_ = value;
+}
+
+// float kp = 5;
+inline void ServoCmd::clear_kp() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.kp_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000010u;
+}
+inline float ServoCmd::kp() const {
+  // @@protoc_insertion_point(field_get:motor_msg.ServoCmd.kp)
+  return _internal_kp();
+}
+inline void ServoCmd::set_kp(float value) {
+  _internal_set_kp(value);
+  _impl_._has_bits_[0] |= 0x00000010u;
+  // @@protoc_insertion_point(field_set:motor_msg.ServoCmd.kp)
+}
+inline float ServoCmd::_internal_kp() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.kp_;
+}
+inline void ServoCmd::_internal_set_kp(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.kp_ = value;
+}
+
+// float ki = 6;
+inline void ServoCmd::clear_ki() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.ki_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000020u;
+}
+inline float ServoCmd::ki() const {
+  // @@protoc_insertion_point(field_get:motor_msg.ServoCmd.ki)
+  return _internal_ki();
+}
+inline void ServoCmd::set_ki(float value) {
+  _internal_set_ki(value);
+  _impl_._has_bits_[0] |= 0x00000020u;
+  // @@protoc_insertion_point(field_set:motor_msg.ServoCmd.ki)
+}
+inline float ServoCmd::_internal_ki() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.ki_;
+}
+inline void ServoCmd::_internal_set_ki(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.ki_ = value;
+}
+
+// float kd = 7;
+inline void ServoCmd::clear_kd() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.kd_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000040u;
+}
+inline float ServoCmd::kd() const {
+  // @@protoc_insertion_point(field_get:motor_msg.ServoCmd.kd)
+  return _internal_kd();
+}
+inline void ServoCmd::set_kd(float value) {
+  _internal_set_kd(value);
+  _impl_._has_bits_[0] |= 0x00000040u;
+  // @@protoc_insertion_point(field_set:motor_msg.ServoCmd.kd)
+}
+inline float ServoCmd::_internal_kd() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.kd_;
+}
+inline void ServoCmd::_internal_set_kd(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.kd_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// ServoState
+
+// uint32 bus = 1;
+inline void ServoState::clear_bus() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.bus_ = 0u;
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline ::uint32_t ServoState::bus() const {
+  // @@protoc_insertion_point(field_get:motor_msg.ServoState.bus)
+  return _internal_bus();
+}
+inline void ServoState::set_bus(::uint32_t value) {
+  _internal_set_bus(value);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  // @@protoc_insertion_point(field_set:motor_msg.ServoState.bus)
+}
+inline ::uint32_t ServoState::_internal_bus() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.bus_;
+}
+inline void ServoState::_internal_set_bus(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.bus_ = value;
+}
+
+// uint32 id = 2;
+inline void ServoState::clear_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = 0u;
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline double MotorState::velocity() const {
-  // @@protoc_insertion_point(field_get:motor_msg.MotorState.velocity)
+inline ::uint32_t ServoState::id() const {
+  // @@protoc_insertion_point(field_get:motor_msg.ServoState.id)
+  return _internal_id();
+}
+inline void ServoState::set_id(::uint32_t value) {
+  _internal_set_id(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:motor_msg.ServoState.id)
+}
+inline ::uint32_t ServoState::_internal_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.id_;
+}
+inline void ServoState::_internal_set_id(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = value;
+}
+
+// float position = 3;
+inline void ServoState::clear_position() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.position_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline float ServoState::position() const {
+  // @@protoc_insertion_point(field_get:motor_msg.ServoState.position)
+  return _internal_position();
+}
+inline void ServoState::set_position(float value) {
+  _internal_set_position(value);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  // @@protoc_insertion_point(field_set:motor_msg.ServoState.position)
+}
+inline float ServoState::_internal_position() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.position_;
+}
+inline void ServoState::_internal_set_position(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.position_ = value;
+}
+
+// float velocity = 4;
+inline void ServoState::clear_velocity() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.velocity_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+inline float ServoState::velocity() const {
+  // @@protoc_insertion_point(field_get:motor_msg.ServoState.velocity)
   return _internal_velocity();
 }
-inline void MotorState::set_velocity(double value) {
+inline void ServoState::set_velocity(float value) {
   _internal_set_velocity(value);
-  _impl_._has_bits_[0] |= 0x00000002u;
-  // @@protoc_insertion_point(field_set:motor_msg.MotorState.velocity)
+  _impl_._has_bits_[0] |= 0x00000008u;
+  // @@protoc_insertion_point(field_set:motor_msg.ServoState.velocity)
 }
-inline double MotorState::_internal_velocity() const {
+inline float ServoState::_internal_velocity() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.velocity_;
 }
-inline void MotorState::_internal_set_velocity(double value) {
+inline void ServoState::_internal_set_velocity(float value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.velocity_ = value;
 }
 
-// double torque = 3;
-inline void MotorState::clear_torque() {
+// float current = 5;
+inline void ServoState::clear_current() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.torque_ = 0;
-  _impl_._has_bits_[0] &= ~0x00000004u;
+  _impl_.current_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000010u;
 }
-inline double MotorState::torque() const {
-  // @@protoc_insertion_point(field_get:motor_msg.MotorState.torque)
-  return _internal_torque();
+inline float ServoState::current() const {
+  // @@protoc_insertion_point(field_get:motor_msg.ServoState.current)
+  return _internal_current();
 }
-inline void MotorState::set_torque(double value) {
-  _internal_set_torque(value);
-  _impl_._has_bits_[0] |= 0x00000004u;
-  // @@protoc_insertion_point(field_set:motor_msg.MotorState.torque)
+inline void ServoState::set_current(float value) {
+  _internal_set_current(value);
+  _impl_._has_bits_[0] |= 0x00000010u;
+  // @@protoc_insertion_point(field_set:motor_msg.ServoState.current)
 }
-inline double MotorState::_internal_torque() const {
+inline float ServoState::_internal_current() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.torque_;
+  return _impl_.current_;
 }
-inline void MotorState::_internal_set_torque(double value) {
+inline void ServoState::_internal_set_current(float value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.torque_ = value;
+  _impl_.current_ = value;
 }
 
 // -------------------------------------------------------------------
 
 // LegCmd
 
-// .motor_msg.MotorCmd hip = 1;
-inline bool LegCmd::has_hip() const {
+// .motor_msg.MotorCmd dc = 1;
+inline bool LegCmd::has_dc() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.hip_ != nullptr);
+  PROTOBUF_ASSUME(!value || _impl_.dc_ != nullptr);
   return value;
 }
-inline void LegCmd::clear_hip() {
+inline void LegCmd::clear_dc() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.hip_ != nullptr) _impl_.hip_->Clear();
+  if (_impl_.dc_ != nullptr) _impl_.dc_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::motor_msg::MotorCmd& LegCmd::_internal_hip() const {
+inline const ::motor_msg::MotorCmd& LegCmd::_internal_dc() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::motor_msg::MotorCmd* p = _impl_.hip_;
+  const ::motor_msg::MotorCmd* p = _impl_.dc_;
   return p != nullptr ? *p : reinterpret_cast<const ::motor_msg::MotorCmd&>(::motor_msg::_MotorCmd_default_instance_);
 }
-inline const ::motor_msg::MotorCmd& LegCmd::hip() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:motor_msg.LegCmd.hip)
-  return _internal_hip();
+inline const ::motor_msg::MotorCmd& LegCmd::dc() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:motor_msg.LegCmd.dc)
+  return _internal_dc();
 }
-inline void LegCmd::unsafe_arena_set_allocated_hip(
+inline void LegCmd::unsafe_arena_set_allocated_dc(
     ::motor_msg::MotorCmd* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.hip_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.dc_);
   }
-  _impl_.hip_ = reinterpret_cast<::motor_msg::MotorCmd*>(value);
+  _impl_.dc_ = reinterpret_cast<::motor_msg::MotorCmd*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.LegCmd.hip)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.LegCmd.dc)
 }
-inline ::motor_msg::MotorCmd* PROTOBUF_NULLABLE LegCmd::release_hip() {
+inline ::motor_msg::MotorCmd* PROTOBUF_NULLABLE LegCmd::release_dc() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::motor_msg::MotorCmd* released = _impl_.hip_;
-  _impl_.hip_ = nullptr;
+  ::motor_msg::MotorCmd* released = _impl_.dc_;
+  _impl_.dc_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
     released = ::google::protobuf::internal::DuplicateIfNonNull(released);
@@ -1801,35 +2592,35 @@ inline ::motor_msg::MotorCmd* PROTOBUF_NULLABLE LegCmd::release_hip() {
   }
   return released;
 }
-inline ::motor_msg::MotorCmd* PROTOBUF_NULLABLE LegCmd::unsafe_arena_release_hip() {
+inline ::motor_msg::MotorCmd* PROTOBUF_NULLABLE LegCmd::unsafe_arena_release_dc() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:motor_msg.LegCmd.hip)
+  // @@protoc_insertion_point(field_release:motor_msg.LegCmd.dc)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::motor_msg::MotorCmd* temp = _impl_.hip_;
-  _impl_.hip_ = nullptr;
+  ::motor_msg::MotorCmd* temp = _impl_.dc_;
+  _impl_.dc_ = nullptr;
   return temp;
 }
-inline ::motor_msg::MotorCmd* PROTOBUF_NONNULL LegCmd::_internal_mutable_hip() {
+inline ::motor_msg::MotorCmd* PROTOBUF_NONNULL LegCmd::_internal_mutable_dc() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.hip_ == nullptr) {
+  if (_impl_.dc_ == nullptr) {
     auto* p = ::google::protobuf::Message::DefaultConstruct<::motor_msg::MotorCmd>(GetArena());
-    _impl_.hip_ = reinterpret_cast<::motor_msg::MotorCmd*>(p);
+    _impl_.dc_ = reinterpret_cast<::motor_msg::MotorCmd*>(p);
   }
-  return _impl_.hip_;
+  return _impl_.dc_;
 }
-inline ::motor_msg::MotorCmd* PROTOBUF_NONNULL LegCmd::mutable_hip()
+inline ::motor_msg::MotorCmd* PROTOBUF_NONNULL LegCmd::mutable_dc()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000001u;
-  ::motor_msg::MotorCmd* _msg = _internal_mutable_hip();
-  // @@protoc_insertion_point(field_mutable:motor_msg.LegCmd.hip)
+  ::motor_msg::MotorCmd* _msg = _internal_mutable_dc();
+  // @@protoc_insertion_point(field_mutable:motor_msg.LegCmd.dc)
   return _msg;
 }
-inline void LegCmd::set_allocated_hip(::motor_msg::MotorCmd* PROTOBUF_NULLABLE value) {
+inline void LegCmd::set_allocated_dc(::motor_msg::MotorCmd* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.hip_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.dc_);
   }
 
   if (value != nullptr) {
@@ -1842,50 +2633,50 @@ inline void LegCmd::set_allocated_hip(::motor_msg::MotorCmd* PROTOBUF_NULLABLE v
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.hip_ = reinterpret_cast<::motor_msg::MotorCmd*>(value);
-  // @@protoc_insertion_point(field_set_allocated:motor_msg.LegCmd.hip)
+  _impl_.dc_ = reinterpret_cast<::motor_msg::MotorCmd*>(value);
+  // @@protoc_insertion_point(field_set_allocated:motor_msg.LegCmd.dc)
 }
 
-// .motor_msg.MotorCmd steering = 2;
-inline bool LegCmd::has_steering() const {
+// .motor_msg.ServoCmd servo = 2;
+inline bool LegCmd::has_servo() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.steering_ != nullptr);
+  PROTOBUF_ASSUME(!value || _impl_.servo_ != nullptr);
   return value;
 }
-inline void LegCmd::clear_steering() {
+inline void LegCmd::clear_servo() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.steering_ != nullptr) _impl_.steering_->Clear();
+  if (_impl_.servo_ != nullptr) _impl_.servo_->Clear();
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline const ::motor_msg::MotorCmd& LegCmd::_internal_steering() const {
+inline const ::motor_msg::ServoCmd& LegCmd::_internal_servo() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::motor_msg::MotorCmd* p = _impl_.steering_;
-  return p != nullptr ? *p : reinterpret_cast<const ::motor_msg::MotorCmd&>(::motor_msg::_MotorCmd_default_instance_);
+  const ::motor_msg::ServoCmd* p = _impl_.servo_;
+  return p != nullptr ? *p : reinterpret_cast<const ::motor_msg::ServoCmd&>(::motor_msg::_ServoCmd_default_instance_);
 }
-inline const ::motor_msg::MotorCmd& LegCmd::steering() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:motor_msg.LegCmd.steering)
-  return _internal_steering();
+inline const ::motor_msg::ServoCmd& LegCmd::servo() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:motor_msg.LegCmd.servo)
+  return _internal_servo();
 }
-inline void LegCmd::unsafe_arena_set_allocated_steering(
-    ::motor_msg::MotorCmd* PROTOBUF_NULLABLE value) {
+inline void LegCmd::unsafe_arena_set_allocated_servo(
+    ::motor_msg::ServoCmd* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.steering_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.servo_);
   }
-  _impl_.steering_ = reinterpret_cast<::motor_msg::MotorCmd*>(value);
+  _impl_.servo_ = reinterpret_cast<::motor_msg::ServoCmd*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000002u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.LegCmd.steering)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.LegCmd.servo)
 }
-inline ::motor_msg::MotorCmd* PROTOBUF_NULLABLE LegCmd::release_steering() {
+inline ::motor_msg::ServoCmd* PROTOBUF_NULLABLE LegCmd::release_servo() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000002u;
-  ::motor_msg::MotorCmd* released = _impl_.steering_;
-  _impl_.steering_ = nullptr;
+  ::motor_msg::ServoCmd* released = _impl_.servo_;
+  _impl_.servo_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
     released = ::google::protobuf::internal::DuplicateIfNonNull(released);
@@ -1899,35 +2690,35 @@ inline ::motor_msg::MotorCmd* PROTOBUF_NULLABLE LegCmd::release_steering() {
   }
   return released;
 }
-inline ::motor_msg::MotorCmd* PROTOBUF_NULLABLE LegCmd::unsafe_arena_release_steering() {
+inline ::motor_msg::ServoCmd* PROTOBUF_NULLABLE LegCmd::unsafe_arena_release_servo() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:motor_msg.LegCmd.steering)
+  // @@protoc_insertion_point(field_release:motor_msg.LegCmd.servo)
 
   _impl_._has_bits_[0] &= ~0x00000002u;
-  ::motor_msg::MotorCmd* temp = _impl_.steering_;
-  _impl_.steering_ = nullptr;
+  ::motor_msg::ServoCmd* temp = _impl_.servo_;
+  _impl_.servo_ = nullptr;
   return temp;
 }
-inline ::motor_msg::MotorCmd* PROTOBUF_NONNULL LegCmd::_internal_mutable_steering() {
+inline ::motor_msg::ServoCmd* PROTOBUF_NONNULL LegCmd::_internal_mutable_servo() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.steering_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::motor_msg::MotorCmd>(GetArena());
-    _impl_.steering_ = reinterpret_cast<::motor_msg::MotorCmd*>(p);
+  if (_impl_.servo_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::motor_msg::ServoCmd>(GetArena());
+    _impl_.servo_ = reinterpret_cast<::motor_msg::ServoCmd*>(p);
   }
-  return _impl_.steering_;
+  return _impl_.servo_;
 }
-inline ::motor_msg::MotorCmd* PROTOBUF_NONNULL LegCmd::mutable_steering()
+inline ::motor_msg::ServoCmd* PROTOBUF_NONNULL LegCmd::mutable_servo()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000002u;
-  ::motor_msg::MotorCmd* _msg = _internal_mutable_steering();
-  // @@protoc_insertion_point(field_mutable:motor_msg.LegCmd.steering)
+  ::motor_msg::ServoCmd* _msg = _internal_mutable_servo();
+  // @@protoc_insertion_point(field_mutable:motor_msg.LegCmd.servo)
   return _msg;
 }
-inline void LegCmd::set_allocated_steering(::motor_msg::MotorCmd* PROTOBUF_NULLABLE value) {
+inline void LegCmd::set_allocated_servo(::motor_msg::ServoCmd* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.steering_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.servo_);
   }
 
   if (value != nullptr) {
@@ -1940,152 +2731,54 @@ inline void LegCmd::set_allocated_steering(::motor_msg::MotorCmd* PROTOBUF_NULLA
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
 
-  _impl_.steering_ = reinterpret_cast<::motor_msg::MotorCmd*>(value);
-  // @@protoc_insertion_point(field_set_allocated:motor_msg.LegCmd.steering)
-}
-
-// .motor_msg.MotorCmd hub = 3;
-inline bool LegCmd::has_hub() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.hub_ != nullptr);
-  return value;
-}
-inline void LegCmd::clear_hub() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.hub_ != nullptr) _impl_.hub_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000004u;
-}
-inline const ::motor_msg::MotorCmd& LegCmd::_internal_hub() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::motor_msg::MotorCmd* p = _impl_.hub_;
-  return p != nullptr ? *p : reinterpret_cast<const ::motor_msg::MotorCmd&>(::motor_msg::_MotorCmd_default_instance_);
-}
-inline const ::motor_msg::MotorCmd& LegCmd::hub() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:motor_msg.LegCmd.hub)
-  return _internal_hub();
-}
-inline void LegCmd::unsafe_arena_set_allocated_hub(
-    ::motor_msg::MotorCmd* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.hub_);
-  }
-  _impl_.hub_ = reinterpret_cast<::motor_msg::MotorCmd*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000004u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000004u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.LegCmd.hub)
-}
-inline ::motor_msg::MotorCmd* PROTOBUF_NULLABLE LegCmd::release_hub() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000004u;
-  ::motor_msg::MotorCmd* released = _impl_.hub_;
-  _impl_.hub_ = nullptr;
-  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
-    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    if (GetArena() == nullptr) {
-      delete old;
-    }
-  } else {
-    if (GetArena() != nullptr) {
-      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    }
-  }
-  return released;
-}
-inline ::motor_msg::MotorCmd* PROTOBUF_NULLABLE LegCmd::unsafe_arena_release_hub() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:motor_msg.LegCmd.hub)
-
-  _impl_._has_bits_[0] &= ~0x00000004u;
-  ::motor_msg::MotorCmd* temp = _impl_.hub_;
-  _impl_.hub_ = nullptr;
-  return temp;
-}
-inline ::motor_msg::MotorCmd* PROTOBUF_NONNULL LegCmd::_internal_mutable_hub() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.hub_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::motor_msg::MotorCmd>(GetArena());
-    _impl_.hub_ = reinterpret_cast<::motor_msg::MotorCmd*>(p);
-  }
-  return _impl_.hub_;
-}
-inline ::motor_msg::MotorCmd* PROTOBUF_NONNULL LegCmd::mutable_hub()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000004u;
-  ::motor_msg::MotorCmd* _msg = _internal_mutable_hub();
-  // @@protoc_insertion_point(field_mutable:motor_msg.LegCmd.hub)
-  return _msg;
-}
-inline void LegCmd::set_allocated_hub(::motor_msg::MotorCmd* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.hub_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = value->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000004u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000004u;
-  }
-
-  _impl_.hub_ = reinterpret_cast<::motor_msg::MotorCmd*>(value);
-  // @@protoc_insertion_point(field_set_allocated:motor_msg.LegCmd.hub)
+  _impl_.servo_ = reinterpret_cast<::motor_msg::ServoCmd*>(value);
+  // @@protoc_insertion_point(field_set_allocated:motor_msg.LegCmd.servo)
 }
 
 // -------------------------------------------------------------------
 
 // LegState
 
-// .motor_msg.MotorState hip = 1;
-inline bool LegState::has_hip() const {
+// .motor_msg.DcState dc = 1;
+inline bool LegState::has_dc() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.hip_ != nullptr);
+  PROTOBUF_ASSUME(!value || _impl_.dc_ != nullptr);
   return value;
 }
-inline void LegState::clear_hip() {
+inline void LegState::clear_dc() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.hip_ != nullptr) _impl_.hip_->Clear();
+  if (_impl_.dc_ != nullptr) _impl_.dc_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::motor_msg::MotorState& LegState::_internal_hip() const {
+inline const ::motor_msg::DcState& LegState::_internal_dc() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::motor_msg::MotorState* p = _impl_.hip_;
-  return p != nullptr ? *p : reinterpret_cast<const ::motor_msg::MotorState&>(::motor_msg::_MotorState_default_instance_);
+  const ::motor_msg::DcState* p = _impl_.dc_;
+  return p != nullptr ? *p : reinterpret_cast<const ::motor_msg::DcState&>(::motor_msg::_DcState_default_instance_);
 }
-inline const ::motor_msg::MotorState& LegState::hip() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:motor_msg.LegState.hip)
-  return _internal_hip();
+inline const ::motor_msg::DcState& LegState::dc() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:motor_msg.LegState.dc)
+  return _internal_dc();
 }
-inline void LegState::unsafe_arena_set_allocated_hip(
-    ::motor_msg::MotorState* PROTOBUF_NULLABLE value) {
+inline void LegState::unsafe_arena_set_allocated_dc(
+    ::motor_msg::DcState* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.hip_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.dc_);
   }
-  _impl_.hip_ = reinterpret_cast<::motor_msg::MotorState*>(value);
+  _impl_.dc_ = reinterpret_cast<::motor_msg::DcState*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.LegState.hip)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.LegState.dc)
 }
-inline ::motor_msg::MotorState* PROTOBUF_NULLABLE LegState::release_hip() {
+inline ::motor_msg::DcState* PROTOBUF_NULLABLE LegState::release_dc() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::motor_msg::MotorState* released = _impl_.hip_;
-  _impl_.hip_ = nullptr;
+  ::motor_msg::DcState* released = _impl_.dc_;
+  _impl_.dc_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
     released = ::google::protobuf::internal::DuplicateIfNonNull(released);
@@ -2099,35 +2792,35 @@ inline ::motor_msg::MotorState* PROTOBUF_NULLABLE LegState::release_hip() {
   }
   return released;
 }
-inline ::motor_msg::MotorState* PROTOBUF_NULLABLE LegState::unsafe_arena_release_hip() {
+inline ::motor_msg::DcState* PROTOBUF_NULLABLE LegState::unsafe_arena_release_dc() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:motor_msg.LegState.hip)
+  // @@protoc_insertion_point(field_release:motor_msg.LegState.dc)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::motor_msg::MotorState* temp = _impl_.hip_;
-  _impl_.hip_ = nullptr;
+  ::motor_msg::DcState* temp = _impl_.dc_;
+  _impl_.dc_ = nullptr;
   return temp;
 }
-inline ::motor_msg::MotorState* PROTOBUF_NONNULL LegState::_internal_mutable_hip() {
+inline ::motor_msg::DcState* PROTOBUF_NONNULL LegState::_internal_mutable_dc() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.hip_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::motor_msg::MotorState>(GetArena());
-    _impl_.hip_ = reinterpret_cast<::motor_msg::MotorState*>(p);
+  if (_impl_.dc_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::motor_msg::DcState>(GetArena());
+    _impl_.dc_ = reinterpret_cast<::motor_msg::DcState*>(p);
   }
-  return _impl_.hip_;
+  return _impl_.dc_;
 }
-inline ::motor_msg::MotorState* PROTOBUF_NONNULL LegState::mutable_hip()
+inline ::motor_msg::DcState* PROTOBUF_NONNULL LegState::mutable_dc()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000001u;
-  ::motor_msg::MotorState* _msg = _internal_mutable_hip();
-  // @@protoc_insertion_point(field_mutable:motor_msg.LegState.hip)
+  ::motor_msg::DcState* _msg = _internal_mutable_dc();
+  // @@protoc_insertion_point(field_mutable:motor_msg.LegState.dc)
   return _msg;
 }
-inline void LegState::set_allocated_hip(::motor_msg::MotorState* PROTOBUF_NULLABLE value) {
+inline void LegState::set_allocated_dc(::motor_msg::DcState* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.hip_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.dc_);
   }
 
   if (value != nullptr) {
@@ -2140,50 +2833,50 @@ inline void LegState::set_allocated_hip(::motor_msg::MotorState* PROTOBUF_NULLAB
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.hip_ = reinterpret_cast<::motor_msg::MotorState*>(value);
-  // @@protoc_insertion_point(field_set_allocated:motor_msg.LegState.hip)
+  _impl_.dc_ = reinterpret_cast<::motor_msg::DcState*>(value);
+  // @@protoc_insertion_point(field_set_allocated:motor_msg.LegState.dc)
 }
 
-// .motor_msg.MotorState steering = 2;
-inline bool LegState::has_steering() const {
+// .motor_msg.ServoState servo = 2;
+inline bool LegState::has_servo() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.steering_ != nullptr);
+  PROTOBUF_ASSUME(!value || _impl_.servo_ != nullptr);
   return value;
 }
-inline void LegState::clear_steering() {
+inline void LegState::clear_servo() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.steering_ != nullptr) _impl_.steering_->Clear();
+  if (_impl_.servo_ != nullptr) _impl_.servo_->Clear();
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline const ::motor_msg::MotorState& LegState::_internal_steering() const {
+inline const ::motor_msg::ServoState& LegState::_internal_servo() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::motor_msg::MotorState* p = _impl_.steering_;
-  return p != nullptr ? *p : reinterpret_cast<const ::motor_msg::MotorState&>(::motor_msg::_MotorState_default_instance_);
+  const ::motor_msg::ServoState* p = _impl_.servo_;
+  return p != nullptr ? *p : reinterpret_cast<const ::motor_msg::ServoState&>(::motor_msg::_ServoState_default_instance_);
 }
-inline const ::motor_msg::MotorState& LegState::steering() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:motor_msg.LegState.steering)
-  return _internal_steering();
+inline const ::motor_msg::ServoState& LegState::servo() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:motor_msg.LegState.servo)
+  return _internal_servo();
 }
-inline void LegState::unsafe_arena_set_allocated_steering(
-    ::motor_msg::MotorState* PROTOBUF_NULLABLE value) {
+inline void LegState::unsafe_arena_set_allocated_servo(
+    ::motor_msg::ServoState* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.steering_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.servo_);
   }
-  _impl_.steering_ = reinterpret_cast<::motor_msg::MotorState*>(value);
+  _impl_.servo_ = reinterpret_cast<::motor_msg::ServoState*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000002u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.LegState.steering)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.LegState.servo)
 }
-inline ::motor_msg::MotorState* PROTOBUF_NULLABLE LegState::release_steering() {
+inline ::motor_msg::ServoState* PROTOBUF_NULLABLE LegState::release_servo() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000002u;
-  ::motor_msg::MotorState* released = _impl_.steering_;
-  _impl_.steering_ = nullptr;
+  ::motor_msg::ServoState* released = _impl_.servo_;
+  _impl_.servo_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
     released = ::google::protobuf::internal::DuplicateIfNonNull(released);
@@ -2197,35 +2890,35 @@ inline ::motor_msg::MotorState* PROTOBUF_NULLABLE LegState::release_steering() {
   }
   return released;
 }
-inline ::motor_msg::MotorState* PROTOBUF_NULLABLE LegState::unsafe_arena_release_steering() {
+inline ::motor_msg::ServoState* PROTOBUF_NULLABLE LegState::unsafe_arena_release_servo() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:motor_msg.LegState.steering)
+  // @@protoc_insertion_point(field_release:motor_msg.LegState.servo)
 
   _impl_._has_bits_[0] &= ~0x00000002u;
-  ::motor_msg::MotorState* temp = _impl_.steering_;
-  _impl_.steering_ = nullptr;
+  ::motor_msg::ServoState* temp = _impl_.servo_;
+  _impl_.servo_ = nullptr;
   return temp;
 }
-inline ::motor_msg::MotorState* PROTOBUF_NONNULL LegState::_internal_mutable_steering() {
+inline ::motor_msg::ServoState* PROTOBUF_NONNULL LegState::_internal_mutable_servo() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.steering_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::motor_msg::MotorState>(GetArena());
-    _impl_.steering_ = reinterpret_cast<::motor_msg::MotorState*>(p);
+  if (_impl_.servo_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::motor_msg::ServoState>(GetArena());
+    _impl_.servo_ = reinterpret_cast<::motor_msg::ServoState*>(p);
   }
-  return _impl_.steering_;
+  return _impl_.servo_;
 }
-inline ::motor_msg::MotorState* PROTOBUF_NONNULL LegState::mutable_steering()
+inline ::motor_msg::ServoState* PROTOBUF_NONNULL LegState::mutable_servo()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000002u;
-  ::motor_msg::MotorState* _msg = _internal_mutable_steering();
-  // @@protoc_insertion_point(field_mutable:motor_msg.LegState.steering)
+  ::motor_msg::ServoState* _msg = _internal_mutable_servo();
+  // @@protoc_insertion_point(field_mutable:motor_msg.LegState.servo)
   return _msg;
 }
-inline void LegState::set_allocated_steering(::motor_msg::MotorState* PROTOBUF_NULLABLE value) {
+inline void LegState::set_allocated_servo(::motor_msg::ServoState* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.steering_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.servo_);
   }
 
   if (value != nullptr) {
@@ -2238,106 +2931,8 @@ inline void LegState::set_allocated_steering(::motor_msg::MotorState* PROTOBUF_N
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
 
-  _impl_.steering_ = reinterpret_cast<::motor_msg::MotorState*>(value);
-  // @@protoc_insertion_point(field_set_allocated:motor_msg.LegState.steering)
-}
-
-// .motor_msg.MotorState hub = 3;
-inline bool LegState::has_hub() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.hub_ != nullptr);
-  return value;
-}
-inline void LegState::clear_hub() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.hub_ != nullptr) _impl_.hub_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000004u;
-}
-inline const ::motor_msg::MotorState& LegState::_internal_hub() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::motor_msg::MotorState* p = _impl_.hub_;
-  return p != nullptr ? *p : reinterpret_cast<const ::motor_msg::MotorState&>(::motor_msg::_MotorState_default_instance_);
-}
-inline const ::motor_msg::MotorState& LegState::hub() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:motor_msg.LegState.hub)
-  return _internal_hub();
-}
-inline void LegState::unsafe_arena_set_allocated_hub(
-    ::motor_msg::MotorState* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.hub_);
-  }
-  _impl_.hub_ = reinterpret_cast<::motor_msg::MotorState*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000004u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000004u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.LegState.hub)
-}
-inline ::motor_msg::MotorState* PROTOBUF_NULLABLE LegState::release_hub() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000004u;
-  ::motor_msg::MotorState* released = _impl_.hub_;
-  _impl_.hub_ = nullptr;
-  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
-    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    if (GetArena() == nullptr) {
-      delete old;
-    }
-  } else {
-    if (GetArena() != nullptr) {
-      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    }
-  }
-  return released;
-}
-inline ::motor_msg::MotorState* PROTOBUF_NULLABLE LegState::unsafe_arena_release_hub() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:motor_msg.LegState.hub)
-
-  _impl_._has_bits_[0] &= ~0x00000004u;
-  ::motor_msg::MotorState* temp = _impl_.hub_;
-  _impl_.hub_ = nullptr;
-  return temp;
-}
-inline ::motor_msg::MotorState* PROTOBUF_NONNULL LegState::_internal_mutable_hub() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.hub_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::motor_msg::MotorState>(GetArena());
-    _impl_.hub_ = reinterpret_cast<::motor_msg::MotorState*>(p);
-  }
-  return _impl_.hub_;
-}
-inline ::motor_msg::MotorState* PROTOBUF_NONNULL LegState::mutable_hub()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000004u;
-  ::motor_msg::MotorState* _msg = _internal_mutable_hub();
-  // @@protoc_insertion_point(field_mutable:motor_msg.LegState.hub)
-  return _msg;
-}
-inline void LegState::set_allocated_hub(::motor_msg::MotorState* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.hub_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = value->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000004u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000004u;
-  }
-
-  _impl_.hub_ = reinterpret_cast<::motor_msg::MotorState*>(value);
-  // @@protoc_insertion_point(field_set_allocated:motor_msg.LegState.hub)
+  _impl_.servo_ = reinterpret_cast<::motor_msg::ServoState*>(value);
+  // @@protoc_insertion_point(field_set_allocated:motor_msg.LegState.servo)
 }
 
 // -------------------------------------------------------------------
@@ -2437,46 +3032,46 @@ inline void MotorCmdStamped::set_allocated_header(::std_msg::Header* PROTOBUF_NU
   // @@protoc_insertion_point(field_set_allocated:motor_msg.MotorCmdStamped.header)
 }
 
-// .motor_msg.LegCmd module_a = 2;
-inline bool MotorCmdStamped::has_module_a() const {
+// .motor_msg.MotorCmd cmd = 2;
+inline bool MotorCmdStamped::has_cmd() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.module_a_ != nullptr);
+  PROTOBUF_ASSUME(!value || _impl_.cmd_ != nullptr);
   return value;
 }
-inline void MotorCmdStamped::clear_module_a() {
+inline void MotorCmdStamped::clear_cmd() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.module_a_ != nullptr) _impl_.module_a_->Clear();
+  if (_impl_.cmd_ != nullptr) _impl_.cmd_->Clear();
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline const ::motor_msg::LegCmd& MotorCmdStamped::_internal_module_a() const {
+inline const ::motor_msg::MotorCmd& MotorCmdStamped::_internal_cmd() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::motor_msg::LegCmd* p = _impl_.module_a_;
-  return p != nullptr ? *p : reinterpret_cast<const ::motor_msg::LegCmd&>(::motor_msg::_LegCmd_default_instance_);
+  const ::motor_msg::MotorCmd* p = _impl_.cmd_;
+  return p != nullptr ? *p : reinterpret_cast<const ::motor_msg::MotorCmd&>(::motor_msg::_MotorCmd_default_instance_);
 }
-inline const ::motor_msg::LegCmd& MotorCmdStamped::module_a() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:motor_msg.MotorCmdStamped.module_a)
-  return _internal_module_a();
+inline const ::motor_msg::MotorCmd& MotorCmdStamped::cmd() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:motor_msg.MotorCmdStamped.cmd)
+  return _internal_cmd();
 }
-inline void MotorCmdStamped::unsafe_arena_set_allocated_module_a(
-    ::motor_msg::LegCmd* PROTOBUF_NULLABLE value) {
+inline void MotorCmdStamped::unsafe_arena_set_allocated_cmd(
+    ::motor_msg::MotorCmd* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.module_a_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.cmd_);
   }
-  _impl_.module_a_ = reinterpret_cast<::motor_msg::LegCmd*>(value);
+  _impl_.cmd_ = reinterpret_cast<::motor_msg::MotorCmd*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000002u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.MotorCmdStamped.module_a)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.MotorCmdStamped.cmd)
 }
-inline ::motor_msg::LegCmd* PROTOBUF_NULLABLE MotorCmdStamped::release_module_a() {
+inline ::motor_msg::MotorCmd* PROTOBUF_NULLABLE MotorCmdStamped::release_cmd() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000002u;
-  ::motor_msg::LegCmd* released = _impl_.module_a_;
-  _impl_.module_a_ = nullptr;
+  ::motor_msg::MotorCmd* released = _impl_.cmd_;
+  _impl_.cmd_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
     released = ::google::protobuf::internal::DuplicateIfNonNull(released);
@@ -2490,35 +3085,35 @@ inline ::motor_msg::LegCmd* PROTOBUF_NULLABLE MotorCmdStamped::release_module_a(
   }
   return released;
 }
-inline ::motor_msg::LegCmd* PROTOBUF_NULLABLE MotorCmdStamped::unsafe_arena_release_module_a() {
+inline ::motor_msg::MotorCmd* PROTOBUF_NULLABLE MotorCmdStamped::unsafe_arena_release_cmd() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:motor_msg.MotorCmdStamped.module_a)
+  // @@protoc_insertion_point(field_release:motor_msg.MotorCmdStamped.cmd)
 
   _impl_._has_bits_[0] &= ~0x00000002u;
-  ::motor_msg::LegCmd* temp = _impl_.module_a_;
-  _impl_.module_a_ = nullptr;
+  ::motor_msg::MotorCmd* temp = _impl_.cmd_;
+  _impl_.cmd_ = nullptr;
   return temp;
 }
-inline ::motor_msg::LegCmd* PROTOBUF_NONNULL MotorCmdStamped::_internal_mutable_module_a() {
+inline ::motor_msg::MotorCmd* PROTOBUF_NONNULL MotorCmdStamped::_internal_mutable_cmd() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.module_a_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::motor_msg::LegCmd>(GetArena());
-    _impl_.module_a_ = reinterpret_cast<::motor_msg::LegCmd*>(p);
+  if (_impl_.cmd_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::motor_msg::MotorCmd>(GetArena());
+    _impl_.cmd_ = reinterpret_cast<::motor_msg::MotorCmd*>(p);
   }
-  return _impl_.module_a_;
+  return _impl_.cmd_;
 }
-inline ::motor_msg::LegCmd* PROTOBUF_NONNULL MotorCmdStamped::mutable_module_a()
+inline ::motor_msg::MotorCmd* PROTOBUF_NONNULL MotorCmdStamped::mutable_cmd()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000002u;
-  ::motor_msg::LegCmd* _msg = _internal_mutable_module_a();
-  // @@protoc_insertion_point(field_mutable:motor_msg.MotorCmdStamped.module_a)
+  ::motor_msg::MotorCmd* _msg = _internal_mutable_cmd();
+  // @@protoc_insertion_point(field_mutable:motor_msg.MotorCmdStamped.cmd)
   return _msg;
 }
-inline void MotorCmdStamped::set_allocated_module_a(::motor_msg::LegCmd* PROTOBUF_NULLABLE value) {
+inline void MotorCmdStamped::set_allocated_cmd(::motor_msg::MotorCmd* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.module_a_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.cmd_);
   }
 
   if (value != nullptr) {
@@ -2531,302 +3126,8 @@ inline void MotorCmdStamped::set_allocated_module_a(::motor_msg::LegCmd* PROTOBU
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
 
-  _impl_.module_a_ = reinterpret_cast<::motor_msg::LegCmd*>(value);
-  // @@protoc_insertion_point(field_set_allocated:motor_msg.MotorCmdStamped.module_a)
-}
-
-// .motor_msg.LegCmd module_b = 3;
-inline bool MotorCmdStamped::has_module_b() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.module_b_ != nullptr);
-  return value;
-}
-inline void MotorCmdStamped::clear_module_b() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.module_b_ != nullptr) _impl_.module_b_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000004u;
-}
-inline const ::motor_msg::LegCmd& MotorCmdStamped::_internal_module_b() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::motor_msg::LegCmd* p = _impl_.module_b_;
-  return p != nullptr ? *p : reinterpret_cast<const ::motor_msg::LegCmd&>(::motor_msg::_LegCmd_default_instance_);
-}
-inline const ::motor_msg::LegCmd& MotorCmdStamped::module_b() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:motor_msg.MotorCmdStamped.module_b)
-  return _internal_module_b();
-}
-inline void MotorCmdStamped::unsafe_arena_set_allocated_module_b(
-    ::motor_msg::LegCmd* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.module_b_);
-  }
-  _impl_.module_b_ = reinterpret_cast<::motor_msg::LegCmd*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000004u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000004u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.MotorCmdStamped.module_b)
-}
-inline ::motor_msg::LegCmd* PROTOBUF_NULLABLE MotorCmdStamped::release_module_b() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000004u;
-  ::motor_msg::LegCmd* released = _impl_.module_b_;
-  _impl_.module_b_ = nullptr;
-  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
-    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    if (GetArena() == nullptr) {
-      delete old;
-    }
-  } else {
-    if (GetArena() != nullptr) {
-      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    }
-  }
-  return released;
-}
-inline ::motor_msg::LegCmd* PROTOBUF_NULLABLE MotorCmdStamped::unsafe_arena_release_module_b() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:motor_msg.MotorCmdStamped.module_b)
-
-  _impl_._has_bits_[0] &= ~0x00000004u;
-  ::motor_msg::LegCmd* temp = _impl_.module_b_;
-  _impl_.module_b_ = nullptr;
-  return temp;
-}
-inline ::motor_msg::LegCmd* PROTOBUF_NONNULL MotorCmdStamped::_internal_mutable_module_b() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.module_b_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::motor_msg::LegCmd>(GetArena());
-    _impl_.module_b_ = reinterpret_cast<::motor_msg::LegCmd*>(p);
-  }
-  return _impl_.module_b_;
-}
-inline ::motor_msg::LegCmd* PROTOBUF_NONNULL MotorCmdStamped::mutable_module_b()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000004u;
-  ::motor_msg::LegCmd* _msg = _internal_mutable_module_b();
-  // @@protoc_insertion_point(field_mutable:motor_msg.MotorCmdStamped.module_b)
-  return _msg;
-}
-inline void MotorCmdStamped::set_allocated_module_b(::motor_msg::LegCmd* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.module_b_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = value->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000004u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000004u;
-  }
-
-  _impl_.module_b_ = reinterpret_cast<::motor_msg::LegCmd*>(value);
-  // @@protoc_insertion_point(field_set_allocated:motor_msg.MotorCmdStamped.module_b)
-}
-
-// .motor_msg.LegCmd module_c = 4;
-inline bool MotorCmdStamped::has_module_c() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.module_c_ != nullptr);
-  return value;
-}
-inline void MotorCmdStamped::clear_module_c() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.module_c_ != nullptr) _impl_.module_c_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000008u;
-}
-inline const ::motor_msg::LegCmd& MotorCmdStamped::_internal_module_c() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::motor_msg::LegCmd* p = _impl_.module_c_;
-  return p != nullptr ? *p : reinterpret_cast<const ::motor_msg::LegCmd&>(::motor_msg::_LegCmd_default_instance_);
-}
-inline const ::motor_msg::LegCmd& MotorCmdStamped::module_c() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:motor_msg.MotorCmdStamped.module_c)
-  return _internal_module_c();
-}
-inline void MotorCmdStamped::unsafe_arena_set_allocated_module_c(
-    ::motor_msg::LegCmd* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.module_c_);
-  }
-  _impl_.module_c_ = reinterpret_cast<::motor_msg::LegCmd*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000008u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000008u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.MotorCmdStamped.module_c)
-}
-inline ::motor_msg::LegCmd* PROTOBUF_NULLABLE MotorCmdStamped::release_module_c() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000008u;
-  ::motor_msg::LegCmd* released = _impl_.module_c_;
-  _impl_.module_c_ = nullptr;
-  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
-    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    if (GetArena() == nullptr) {
-      delete old;
-    }
-  } else {
-    if (GetArena() != nullptr) {
-      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    }
-  }
-  return released;
-}
-inline ::motor_msg::LegCmd* PROTOBUF_NULLABLE MotorCmdStamped::unsafe_arena_release_module_c() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:motor_msg.MotorCmdStamped.module_c)
-
-  _impl_._has_bits_[0] &= ~0x00000008u;
-  ::motor_msg::LegCmd* temp = _impl_.module_c_;
-  _impl_.module_c_ = nullptr;
-  return temp;
-}
-inline ::motor_msg::LegCmd* PROTOBUF_NONNULL MotorCmdStamped::_internal_mutable_module_c() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.module_c_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::motor_msg::LegCmd>(GetArena());
-    _impl_.module_c_ = reinterpret_cast<::motor_msg::LegCmd*>(p);
-  }
-  return _impl_.module_c_;
-}
-inline ::motor_msg::LegCmd* PROTOBUF_NONNULL MotorCmdStamped::mutable_module_c()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000008u;
-  ::motor_msg::LegCmd* _msg = _internal_mutable_module_c();
-  // @@protoc_insertion_point(field_mutable:motor_msg.MotorCmdStamped.module_c)
-  return _msg;
-}
-inline void MotorCmdStamped::set_allocated_module_c(::motor_msg::LegCmd* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.module_c_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = value->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000008u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000008u;
-  }
-
-  _impl_.module_c_ = reinterpret_cast<::motor_msg::LegCmd*>(value);
-  // @@protoc_insertion_point(field_set_allocated:motor_msg.MotorCmdStamped.module_c)
-}
-
-// .motor_msg.LegCmd module_d = 5;
-inline bool MotorCmdStamped::has_module_d() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.module_d_ != nullptr);
-  return value;
-}
-inline void MotorCmdStamped::clear_module_d() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.module_d_ != nullptr) _impl_.module_d_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000010u;
-}
-inline const ::motor_msg::LegCmd& MotorCmdStamped::_internal_module_d() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::motor_msg::LegCmd* p = _impl_.module_d_;
-  return p != nullptr ? *p : reinterpret_cast<const ::motor_msg::LegCmd&>(::motor_msg::_LegCmd_default_instance_);
-}
-inline const ::motor_msg::LegCmd& MotorCmdStamped::module_d() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:motor_msg.MotorCmdStamped.module_d)
-  return _internal_module_d();
-}
-inline void MotorCmdStamped::unsafe_arena_set_allocated_module_d(
-    ::motor_msg::LegCmd* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.module_d_);
-  }
-  _impl_.module_d_ = reinterpret_cast<::motor_msg::LegCmd*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000010u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000010u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.MotorCmdStamped.module_d)
-}
-inline ::motor_msg::LegCmd* PROTOBUF_NULLABLE MotorCmdStamped::release_module_d() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000010u;
-  ::motor_msg::LegCmd* released = _impl_.module_d_;
-  _impl_.module_d_ = nullptr;
-  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
-    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    if (GetArena() == nullptr) {
-      delete old;
-    }
-  } else {
-    if (GetArena() != nullptr) {
-      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    }
-  }
-  return released;
-}
-inline ::motor_msg::LegCmd* PROTOBUF_NULLABLE MotorCmdStamped::unsafe_arena_release_module_d() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:motor_msg.MotorCmdStamped.module_d)
-
-  _impl_._has_bits_[0] &= ~0x00000010u;
-  ::motor_msg::LegCmd* temp = _impl_.module_d_;
-  _impl_.module_d_ = nullptr;
-  return temp;
-}
-inline ::motor_msg::LegCmd* PROTOBUF_NONNULL MotorCmdStamped::_internal_mutable_module_d() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.module_d_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::motor_msg::LegCmd>(GetArena());
-    _impl_.module_d_ = reinterpret_cast<::motor_msg::LegCmd*>(p);
-  }
-  return _impl_.module_d_;
-}
-inline ::motor_msg::LegCmd* PROTOBUF_NONNULL MotorCmdStamped::mutable_module_d()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000010u;
-  ::motor_msg::LegCmd* _msg = _internal_mutable_module_d();
-  // @@protoc_insertion_point(field_mutable:motor_msg.MotorCmdStamped.module_d)
-  return _msg;
-}
-inline void MotorCmdStamped::set_allocated_module_d(::motor_msg::LegCmd* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.module_d_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = value->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000010u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000010u;
-  }
-
-  _impl_.module_d_ = reinterpret_cast<::motor_msg::LegCmd*>(value);
-  // @@protoc_insertion_point(field_set_allocated:motor_msg.MotorCmdStamped.module_d)
+  _impl_.cmd_ = reinterpret_cast<::motor_msg::MotorCmd*>(value);
+  // @@protoc_insertion_point(field_set_allocated:motor_msg.MotorCmdStamped.cmd)
 }
 
 // -------------------------------------------------------------------
@@ -2926,46 +3227,46 @@ inline void MotorStateStamped::set_allocated_header(::std_msg::Header* PROTOBUF_
   // @@protoc_insertion_point(field_set_allocated:motor_msg.MotorStateStamped.header)
 }
 
-// .motor_msg.LegState module_a = 2;
-inline bool MotorStateStamped::has_module_a() const {
+// .motor_msg.LegState L1 = 2;
+inline bool MotorStateStamped::has_l1() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.module_a_ != nullptr);
+  PROTOBUF_ASSUME(!value || _impl_.l1_ != nullptr);
   return value;
 }
-inline void MotorStateStamped::clear_module_a() {
+inline void MotorStateStamped::clear_l1() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.module_a_ != nullptr) _impl_.module_a_->Clear();
+  if (_impl_.l1_ != nullptr) _impl_.l1_->Clear();
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline const ::motor_msg::LegState& MotorStateStamped::_internal_module_a() const {
+inline const ::motor_msg::LegState& MotorStateStamped::_internal_l1() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::motor_msg::LegState* p = _impl_.module_a_;
+  const ::motor_msg::LegState* p = _impl_.l1_;
   return p != nullptr ? *p : reinterpret_cast<const ::motor_msg::LegState&>(::motor_msg::_LegState_default_instance_);
 }
-inline const ::motor_msg::LegState& MotorStateStamped::module_a() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:motor_msg.MotorStateStamped.module_a)
-  return _internal_module_a();
+inline const ::motor_msg::LegState& MotorStateStamped::l1() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:motor_msg.MotorStateStamped.L1)
+  return _internal_l1();
 }
-inline void MotorStateStamped::unsafe_arena_set_allocated_module_a(
+inline void MotorStateStamped::unsafe_arena_set_allocated_l1(
     ::motor_msg::LegState* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.module_a_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.l1_);
   }
-  _impl_.module_a_ = reinterpret_cast<::motor_msg::LegState*>(value);
+  _impl_.l1_ = reinterpret_cast<::motor_msg::LegState*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000002u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.MotorStateStamped.module_a)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.MotorStateStamped.L1)
 }
-inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::release_module_a() {
+inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::release_l1() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000002u;
-  ::motor_msg::LegState* released = _impl_.module_a_;
-  _impl_.module_a_ = nullptr;
+  ::motor_msg::LegState* released = _impl_.l1_;
+  _impl_.l1_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
     released = ::google::protobuf::internal::DuplicateIfNonNull(released);
@@ -2979,35 +3280,35 @@ inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::release_modul
   }
   return released;
 }
-inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::unsafe_arena_release_module_a() {
+inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::unsafe_arena_release_l1() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:motor_msg.MotorStateStamped.module_a)
+  // @@protoc_insertion_point(field_release:motor_msg.MotorStateStamped.L1)
 
   _impl_._has_bits_[0] &= ~0x00000002u;
-  ::motor_msg::LegState* temp = _impl_.module_a_;
-  _impl_.module_a_ = nullptr;
+  ::motor_msg::LegState* temp = _impl_.l1_;
+  _impl_.l1_ = nullptr;
   return temp;
 }
-inline ::motor_msg::LegState* PROTOBUF_NONNULL MotorStateStamped::_internal_mutable_module_a() {
+inline ::motor_msg::LegState* PROTOBUF_NONNULL MotorStateStamped::_internal_mutable_l1() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.module_a_ == nullptr) {
+  if (_impl_.l1_ == nullptr) {
     auto* p = ::google::protobuf::Message::DefaultConstruct<::motor_msg::LegState>(GetArena());
-    _impl_.module_a_ = reinterpret_cast<::motor_msg::LegState*>(p);
+    _impl_.l1_ = reinterpret_cast<::motor_msg::LegState*>(p);
   }
-  return _impl_.module_a_;
+  return _impl_.l1_;
 }
-inline ::motor_msg::LegState* PROTOBUF_NONNULL MotorStateStamped::mutable_module_a()
+inline ::motor_msg::LegState* PROTOBUF_NONNULL MotorStateStamped::mutable_l1()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000002u;
-  ::motor_msg::LegState* _msg = _internal_mutable_module_a();
-  // @@protoc_insertion_point(field_mutable:motor_msg.MotorStateStamped.module_a)
+  ::motor_msg::LegState* _msg = _internal_mutable_l1();
+  // @@protoc_insertion_point(field_mutable:motor_msg.MotorStateStamped.L1)
   return _msg;
 }
-inline void MotorStateStamped::set_allocated_module_a(::motor_msg::LegState* PROTOBUF_NULLABLE value) {
+inline void MotorStateStamped::set_allocated_l1(::motor_msg::LegState* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.module_a_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.l1_);
   }
 
   if (value != nullptr) {
@@ -3020,50 +3321,50 @@ inline void MotorStateStamped::set_allocated_module_a(::motor_msg::LegState* PRO
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
 
-  _impl_.module_a_ = reinterpret_cast<::motor_msg::LegState*>(value);
-  // @@protoc_insertion_point(field_set_allocated:motor_msg.MotorStateStamped.module_a)
+  _impl_.l1_ = reinterpret_cast<::motor_msg::LegState*>(value);
+  // @@protoc_insertion_point(field_set_allocated:motor_msg.MotorStateStamped.L1)
 }
 
-// .motor_msg.LegState module_b = 3;
-inline bool MotorStateStamped::has_module_b() const {
+// .motor_msg.LegState L2 = 3;
+inline bool MotorStateStamped::has_l2() const {
   bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.module_b_ != nullptr);
+  PROTOBUF_ASSUME(!value || _impl_.l2_ != nullptr);
   return value;
 }
-inline void MotorStateStamped::clear_module_b() {
+inline void MotorStateStamped::clear_l2() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.module_b_ != nullptr) _impl_.module_b_->Clear();
+  if (_impl_.l2_ != nullptr) _impl_.l2_->Clear();
   _impl_._has_bits_[0] &= ~0x00000004u;
 }
-inline const ::motor_msg::LegState& MotorStateStamped::_internal_module_b() const {
+inline const ::motor_msg::LegState& MotorStateStamped::_internal_l2() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::motor_msg::LegState* p = _impl_.module_b_;
+  const ::motor_msg::LegState* p = _impl_.l2_;
   return p != nullptr ? *p : reinterpret_cast<const ::motor_msg::LegState&>(::motor_msg::_LegState_default_instance_);
 }
-inline const ::motor_msg::LegState& MotorStateStamped::module_b() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:motor_msg.MotorStateStamped.module_b)
-  return _internal_module_b();
+inline const ::motor_msg::LegState& MotorStateStamped::l2() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:motor_msg.MotorStateStamped.L2)
+  return _internal_l2();
 }
-inline void MotorStateStamped::unsafe_arena_set_allocated_module_b(
+inline void MotorStateStamped::unsafe_arena_set_allocated_l2(
     ::motor_msg::LegState* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.module_b_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.l2_);
   }
-  _impl_.module_b_ = reinterpret_cast<::motor_msg::LegState*>(value);
+  _impl_.l2_ = reinterpret_cast<::motor_msg::LegState*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000004u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000004u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.MotorStateStamped.module_b)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.MotorStateStamped.L2)
 }
-inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::release_module_b() {
+inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::release_l2() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000004u;
-  ::motor_msg::LegState* released = _impl_.module_b_;
-  _impl_.module_b_ = nullptr;
+  ::motor_msg::LegState* released = _impl_.l2_;
+  _impl_.l2_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
     released = ::google::protobuf::internal::DuplicateIfNonNull(released);
@@ -3077,35 +3378,35 @@ inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::release_modul
   }
   return released;
 }
-inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::unsafe_arena_release_module_b() {
+inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::unsafe_arena_release_l2() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:motor_msg.MotorStateStamped.module_b)
+  // @@protoc_insertion_point(field_release:motor_msg.MotorStateStamped.L2)
 
   _impl_._has_bits_[0] &= ~0x00000004u;
-  ::motor_msg::LegState* temp = _impl_.module_b_;
-  _impl_.module_b_ = nullptr;
+  ::motor_msg::LegState* temp = _impl_.l2_;
+  _impl_.l2_ = nullptr;
   return temp;
 }
-inline ::motor_msg::LegState* PROTOBUF_NONNULL MotorStateStamped::_internal_mutable_module_b() {
+inline ::motor_msg::LegState* PROTOBUF_NONNULL MotorStateStamped::_internal_mutable_l2() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.module_b_ == nullptr) {
+  if (_impl_.l2_ == nullptr) {
     auto* p = ::google::protobuf::Message::DefaultConstruct<::motor_msg::LegState>(GetArena());
-    _impl_.module_b_ = reinterpret_cast<::motor_msg::LegState*>(p);
+    _impl_.l2_ = reinterpret_cast<::motor_msg::LegState*>(p);
   }
-  return _impl_.module_b_;
+  return _impl_.l2_;
 }
-inline ::motor_msg::LegState* PROTOBUF_NONNULL MotorStateStamped::mutable_module_b()
+inline ::motor_msg::LegState* PROTOBUF_NONNULL MotorStateStamped::mutable_l2()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000004u;
-  ::motor_msg::LegState* _msg = _internal_mutable_module_b();
-  // @@protoc_insertion_point(field_mutable:motor_msg.MotorStateStamped.module_b)
+  ::motor_msg::LegState* _msg = _internal_mutable_l2();
+  // @@protoc_insertion_point(field_mutable:motor_msg.MotorStateStamped.L2)
   return _msg;
 }
-inline void MotorStateStamped::set_allocated_module_b(::motor_msg::LegState* PROTOBUF_NULLABLE value) {
+inline void MotorStateStamped::set_allocated_l2(::motor_msg::LegState* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.module_b_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.l2_);
   }
 
   if (value != nullptr) {
@@ -3118,50 +3419,50 @@ inline void MotorStateStamped::set_allocated_module_b(::motor_msg::LegState* PRO
     _impl_._has_bits_[0] &= ~0x00000004u;
   }
 
-  _impl_.module_b_ = reinterpret_cast<::motor_msg::LegState*>(value);
-  // @@protoc_insertion_point(field_set_allocated:motor_msg.MotorStateStamped.module_b)
+  _impl_.l2_ = reinterpret_cast<::motor_msg::LegState*>(value);
+  // @@protoc_insertion_point(field_set_allocated:motor_msg.MotorStateStamped.L2)
 }
 
-// .motor_msg.LegState module_c = 4;
-inline bool MotorStateStamped::has_module_c() const {
+// .motor_msg.LegState L3 = 4;
+inline bool MotorStateStamped::has_l3() const {
   bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.module_c_ != nullptr);
+  PROTOBUF_ASSUME(!value || _impl_.l3_ != nullptr);
   return value;
 }
-inline void MotorStateStamped::clear_module_c() {
+inline void MotorStateStamped::clear_l3() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.module_c_ != nullptr) _impl_.module_c_->Clear();
+  if (_impl_.l3_ != nullptr) _impl_.l3_->Clear();
   _impl_._has_bits_[0] &= ~0x00000008u;
 }
-inline const ::motor_msg::LegState& MotorStateStamped::_internal_module_c() const {
+inline const ::motor_msg::LegState& MotorStateStamped::_internal_l3() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::motor_msg::LegState* p = _impl_.module_c_;
+  const ::motor_msg::LegState* p = _impl_.l3_;
   return p != nullptr ? *p : reinterpret_cast<const ::motor_msg::LegState&>(::motor_msg::_LegState_default_instance_);
 }
-inline const ::motor_msg::LegState& MotorStateStamped::module_c() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:motor_msg.MotorStateStamped.module_c)
-  return _internal_module_c();
+inline const ::motor_msg::LegState& MotorStateStamped::l3() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:motor_msg.MotorStateStamped.L3)
+  return _internal_l3();
 }
-inline void MotorStateStamped::unsafe_arena_set_allocated_module_c(
+inline void MotorStateStamped::unsafe_arena_set_allocated_l3(
     ::motor_msg::LegState* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.module_c_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.l3_);
   }
-  _impl_.module_c_ = reinterpret_cast<::motor_msg::LegState*>(value);
+  _impl_.l3_ = reinterpret_cast<::motor_msg::LegState*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000008u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000008u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.MotorStateStamped.module_c)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.MotorStateStamped.L3)
 }
-inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::release_module_c() {
+inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::release_l3() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000008u;
-  ::motor_msg::LegState* released = _impl_.module_c_;
-  _impl_.module_c_ = nullptr;
+  ::motor_msg::LegState* released = _impl_.l3_;
+  _impl_.l3_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
     released = ::google::protobuf::internal::DuplicateIfNonNull(released);
@@ -3175,35 +3476,35 @@ inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::release_modul
   }
   return released;
 }
-inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::unsafe_arena_release_module_c() {
+inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::unsafe_arena_release_l3() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:motor_msg.MotorStateStamped.module_c)
+  // @@protoc_insertion_point(field_release:motor_msg.MotorStateStamped.L3)
 
   _impl_._has_bits_[0] &= ~0x00000008u;
-  ::motor_msg::LegState* temp = _impl_.module_c_;
-  _impl_.module_c_ = nullptr;
+  ::motor_msg::LegState* temp = _impl_.l3_;
+  _impl_.l3_ = nullptr;
   return temp;
 }
-inline ::motor_msg::LegState* PROTOBUF_NONNULL MotorStateStamped::_internal_mutable_module_c() {
+inline ::motor_msg::LegState* PROTOBUF_NONNULL MotorStateStamped::_internal_mutable_l3() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.module_c_ == nullptr) {
+  if (_impl_.l3_ == nullptr) {
     auto* p = ::google::protobuf::Message::DefaultConstruct<::motor_msg::LegState>(GetArena());
-    _impl_.module_c_ = reinterpret_cast<::motor_msg::LegState*>(p);
+    _impl_.l3_ = reinterpret_cast<::motor_msg::LegState*>(p);
   }
-  return _impl_.module_c_;
+  return _impl_.l3_;
 }
-inline ::motor_msg::LegState* PROTOBUF_NONNULL MotorStateStamped::mutable_module_c()
+inline ::motor_msg::LegState* PROTOBUF_NONNULL MotorStateStamped::mutable_l3()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000008u;
-  ::motor_msg::LegState* _msg = _internal_mutable_module_c();
-  // @@protoc_insertion_point(field_mutable:motor_msg.MotorStateStamped.module_c)
+  ::motor_msg::LegState* _msg = _internal_mutable_l3();
+  // @@protoc_insertion_point(field_mutable:motor_msg.MotorStateStamped.L3)
   return _msg;
 }
-inline void MotorStateStamped::set_allocated_module_c(::motor_msg::LegState* PROTOBUF_NULLABLE value) {
+inline void MotorStateStamped::set_allocated_l3(::motor_msg::LegState* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.module_c_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.l3_);
   }
 
   if (value != nullptr) {
@@ -3216,50 +3517,50 @@ inline void MotorStateStamped::set_allocated_module_c(::motor_msg::LegState* PRO
     _impl_._has_bits_[0] &= ~0x00000008u;
   }
 
-  _impl_.module_c_ = reinterpret_cast<::motor_msg::LegState*>(value);
-  // @@protoc_insertion_point(field_set_allocated:motor_msg.MotorStateStamped.module_c)
+  _impl_.l3_ = reinterpret_cast<::motor_msg::LegState*>(value);
+  // @@protoc_insertion_point(field_set_allocated:motor_msg.MotorStateStamped.L3)
 }
 
-// .motor_msg.LegState module_d = 5;
-inline bool MotorStateStamped::has_module_d() const {
+// .motor_msg.LegState R1 = 5;
+inline bool MotorStateStamped::has_r1() const {
   bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.module_d_ != nullptr);
+  PROTOBUF_ASSUME(!value || _impl_.r1_ != nullptr);
   return value;
 }
-inline void MotorStateStamped::clear_module_d() {
+inline void MotorStateStamped::clear_r1() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.module_d_ != nullptr) _impl_.module_d_->Clear();
+  if (_impl_.r1_ != nullptr) _impl_.r1_->Clear();
   _impl_._has_bits_[0] &= ~0x00000010u;
 }
-inline const ::motor_msg::LegState& MotorStateStamped::_internal_module_d() const {
+inline const ::motor_msg::LegState& MotorStateStamped::_internal_r1() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::motor_msg::LegState* p = _impl_.module_d_;
+  const ::motor_msg::LegState* p = _impl_.r1_;
   return p != nullptr ? *p : reinterpret_cast<const ::motor_msg::LegState&>(::motor_msg::_LegState_default_instance_);
 }
-inline const ::motor_msg::LegState& MotorStateStamped::module_d() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:motor_msg.MotorStateStamped.module_d)
-  return _internal_module_d();
+inline const ::motor_msg::LegState& MotorStateStamped::r1() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:motor_msg.MotorStateStamped.R1)
+  return _internal_r1();
 }
-inline void MotorStateStamped::unsafe_arena_set_allocated_module_d(
+inline void MotorStateStamped::unsafe_arena_set_allocated_r1(
     ::motor_msg::LegState* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.module_d_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.r1_);
   }
-  _impl_.module_d_ = reinterpret_cast<::motor_msg::LegState*>(value);
+  _impl_.r1_ = reinterpret_cast<::motor_msg::LegState*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000010u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000010u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.MotorStateStamped.module_d)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.MotorStateStamped.R1)
 }
-inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::release_module_d() {
+inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::release_r1() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000010u;
-  ::motor_msg::LegState* released = _impl_.module_d_;
-  _impl_.module_d_ = nullptr;
+  ::motor_msg::LegState* released = _impl_.r1_;
+  _impl_.r1_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
     released = ::google::protobuf::internal::DuplicateIfNonNull(released);
@@ -3273,35 +3574,35 @@ inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::release_modul
   }
   return released;
 }
-inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::unsafe_arena_release_module_d() {
+inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::unsafe_arena_release_r1() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:motor_msg.MotorStateStamped.module_d)
+  // @@protoc_insertion_point(field_release:motor_msg.MotorStateStamped.R1)
 
   _impl_._has_bits_[0] &= ~0x00000010u;
-  ::motor_msg::LegState* temp = _impl_.module_d_;
-  _impl_.module_d_ = nullptr;
+  ::motor_msg::LegState* temp = _impl_.r1_;
+  _impl_.r1_ = nullptr;
   return temp;
 }
-inline ::motor_msg::LegState* PROTOBUF_NONNULL MotorStateStamped::_internal_mutable_module_d() {
+inline ::motor_msg::LegState* PROTOBUF_NONNULL MotorStateStamped::_internal_mutable_r1() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.module_d_ == nullptr) {
+  if (_impl_.r1_ == nullptr) {
     auto* p = ::google::protobuf::Message::DefaultConstruct<::motor_msg::LegState>(GetArena());
-    _impl_.module_d_ = reinterpret_cast<::motor_msg::LegState*>(p);
+    _impl_.r1_ = reinterpret_cast<::motor_msg::LegState*>(p);
   }
-  return _impl_.module_d_;
+  return _impl_.r1_;
 }
-inline ::motor_msg::LegState* PROTOBUF_NONNULL MotorStateStamped::mutable_module_d()
+inline ::motor_msg::LegState* PROTOBUF_NONNULL MotorStateStamped::mutable_r1()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000010u;
-  ::motor_msg::LegState* _msg = _internal_mutable_module_d();
-  // @@protoc_insertion_point(field_mutable:motor_msg.MotorStateStamped.module_d)
+  ::motor_msg::LegState* _msg = _internal_mutable_r1();
+  // @@protoc_insertion_point(field_mutable:motor_msg.MotorStateStamped.R1)
   return _msg;
 }
-inline void MotorStateStamped::set_allocated_module_d(::motor_msg::LegState* PROTOBUF_NULLABLE value) {
+inline void MotorStateStamped::set_allocated_r1(::motor_msg::LegState* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.module_d_);
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.r1_);
   }
 
   if (value != nullptr) {
@@ -3314,8 +3615,204 @@ inline void MotorStateStamped::set_allocated_module_d(::motor_msg::LegState* PRO
     _impl_._has_bits_[0] &= ~0x00000010u;
   }
 
-  _impl_.module_d_ = reinterpret_cast<::motor_msg::LegState*>(value);
-  // @@protoc_insertion_point(field_set_allocated:motor_msg.MotorStateStamped.module_d)
+  _impl_.r1_ = reinterpret_cast<::motor_msg::LegState*>(value);
+  // @@protoc_insertion_point(field_set_allocated:motor_msg.MotorStateStamped.R1)
+}
+
+// .motor_msg.LegState R2 = 6;
+inline bool MotorStateStamped::has_r2() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000020u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.r2_ != nullptr);
+  return value;
+}
+inline void MotorStateStamped::clear_r2() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.r2_ != nullptr) _impl_.r2_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000020u;
+}
+inline const ::motor_msg::LegState& MotorStateStamped::_internal_r2() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::motor_msg::LegState* p = _impl_.r2_;
+  return p != nullptr ? *p : reinterpret_cast<const ::motor_msg::LegState&>(::motor_msg::_LegState_default_instance_);
+}
+inline const ::motor_msg::LegState& MotorStateStamped::r2() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:motor_msg.MotorStateStamped.R2)
+  return _internal_r2();
+}
+inline void MotorStateStamped::unsafe_arena_set_allocated_r2(
+    ::motor_msg::LegState* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.r2_);
+  }
+  _impl_.r2_ = reinterpret_cast<::motor_msg::LegState*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000020u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000020u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.MotorStateStamped.R2)
+}
+inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::release_r2() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000020u;
+  ::motor_msg::LegState* released = _impl_.r2_;
+  _impl_.r2_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::unsafe_arena_release_r2() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:motor_msg.MotorStateStamped.R2)
+
+  _impl_._has_bits_[0] &= ~0x00000020u;
+  ::motor_msg::LegState* temp = _impl_.r2_;
+  _impl_.r2_ = nullptr;
+  return temp;
+}
+inline ::motor_msg::LegState* PROTOBUF_NONNULL MotorStateStamped::_internal_mutable_r2() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.r2_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::motor_msg::LegState>(GetArena());
+    _impl_.r2_ = reinterpret_cast<::motor_msg::LegState*>(p);
+  }
+  return _impl_.r2_;
+}
+inline ::motor_msg::LegState* PROTOBUF_NONNULL MotorStateStamped::mutable_r2()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000020u;
+  ::motor_msg::LegState* _msg = _internal_mutable_r2();
+  // @@protoc_insertion_point(field_mutable:motor_msg.MotorStateStamped.R2)
+  return _msg;
+}
+inline void MotorStateStamped::set_allocated_r2(::motor_msg::LegState* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.r2_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = value->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000020u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000020u;
+  }
+
+  _impl_.r2_ = reinterpret_cast<::motor_msg::LegState*>(value);
+  // @@protoc_insertion_point(field_set_allocated:motor_msg.MotorStateStamped.R2)
+}
+
+// .motor_msg.LegState R3 = 7;
+inline bool MotorStateStamped::has_r3() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000040u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.r3_ != nullptr);
+  return value;
+}
+inline void MotorStateStamped::clear_r3() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.r3_ != nullptr) _impl_.r3_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000040u;
+}
+inline const ::motor_msg::LegState& MotorStateStamped::_internal_r3() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::motor_msg::LegState* p = _impl_.r3_;
+  return p != nullptr ? *p : reinterpret_cast<const ::motor_msg::LegState&>(::motor_msg::_LegState_default_instance_);
+}
+inline const ::motor_msg::LegState& MotorStateStamped::r3() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:motor_msg.MotorStateStamped.R3)
+  return _internal_r3();
+}
+inline void MotorStateStamped::unsafe_arena_set_allocated_r3(
+    ::motor_msg::LegState* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.r3_);
+  }
+  _impl_.r3_ = reinterpret_cast<::motor_msg::LegState*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000040u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000040u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:motor_msg.MotorStateStamped.R3)
+}
+inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::release_r3() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000040u;
+  ::motor_msg::LegState* released = _impl_.r3_;
+  _impl_.r3_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::motor_msg::LegState* PROTOBUF_NULLABLE MotorStateStamped::unsafe_arena_release_r3() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:motor_msg.MotorStateStamped.R3)
+
+  _impl_._has_bits_[0] &= ~0x00000040u;
+  ::motor_msg::LegState* temp = _impl_.r3_;
+  _impl_.r3_ = nullptr;
+  return temp;
+}
+inline ::motor_msg::LegState* PROTOBUF_NONNULL MotorStateStamped::_internal_mutable_r3() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.r3_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::motor_msg::LegState>(GetArena());
+    _impl_.r3_ = reinterpret_cast<::motor_msg::LegState*>(p);
+  }
+  return _impl_.r3_;
+}
+inline ::motor_msg::LegState* PROTOBUF_NONNULL MotorStateStamped::mutable_r3()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000040u;
+  ::motor_msg::LegState* _msg = _internal_mutable_r3();
+  // @@protoc_insertion_point(field_mutable:motor_msg.MotorStateStamped.R3)
+  return _msg;
+}
+inline void MotorStateStamped::set_allocated_r3(::motor_msg::LegState* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.r3_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = value->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000040u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000040u;
+  }
+
+  _impl_.r3_ = reinterpret_cast<::motor_msg::LegState*>(value);
+  // @@protoc_insertion_point(field_set_allocated:motor_msg.MotorStateStamped.R3)
 }
 
 #ifdef __GNUC__

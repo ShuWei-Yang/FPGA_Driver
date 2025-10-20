@@ -77,10 +77,10 @@ internal::EnumTraitsT<::power_msg::ROBOTMODE_internal_data_>
 namespace power_msg {
 enum ROBOTMODE : int {
   REST_MODE = 0,
-  CONFIG_MODE = 1,
-  SET_ZERO = 2,
-  HALL_CALIBRATE = 3,
-  MOTOR_MODE = 4,
+  SET_ZERO = 1,
+  HALL_CALIBRATE = 2,
+  MOTOR_MODE = 3,
+  CONFIG_MODE = 4,
   ROBOTMODE_INT_MIN_SENTINEL_DO_NOT_USE_ =
       ::std::numeric_limits<::int32_t>::min(),
   ROBOTMODE_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -283,16 +283,6 @@ class PowerStateStamped final : public ::google::protobuf::Message
     kI5FieldNumber = 18,
     kV6FieldNumber = 19,
     kI6FieldNumber = 20,
-    kV7FieldNumber = 21,
-    kI7FieldNumber = 22,
-    kV8FieldNumber = 23,
-    kI8FieldNumber = 24,
-    kV9FieldNumber = 25,
-    kI9FieldNumber = 26,
-    kV10FieldNumber = 27,
-    kI10FieldNumber = 28,
-    kV11FieldNumber = 29,
-    kI11FieldNumber = 30,
   };
   // .std_msg.Header header = 1;
   bool has_header() const;
@@ -499,111 +489,11 @@ class PowerStateStamped final : public ::google::protobuf::Message
   void _internal_set_i_6(double value);
 
   public:
-  // double v_7 = 21;
-  void clear_v_7() ;
-  double v_7() const;
-  void set_v_7(double value);
-
-  private:
-  double _internal_v_7() const;
-  void _internal_set_v_7(double value);
-
-  public:
-  // double i_7 = 22;
-  void clear_i_7() ;
-  double i_7() const;
-  void set_i_7(double value);
-
-  private:
-  double _internal_i_7() const;
-  void _internal_set_i_7(double value);
-
-  public:
-  // double v_8 = 23;
-  void clear_v_8() ;
-  double v_8() const;
-  void set_v_8(double value);
-
-  private:
-  double _internal_v_8() const;
-  void _internal_set_v_8(double value);
-
-  public:
-  // double i_8 = 24;
-  void clear_i_8() ;
-  double i_8() const;
-  void set_i_8(double value);
-
-  private:
-  double _internal_i_8() const;
-  void _internal_set_i_8(double value);
-
-  public:
-  // double v_9 = 25;
-  void clear_v_9() ;
-  double v_9() const;
-  void set_v_9(double value);
-
-  private:
-  double _internal_v_9() const;
-  void _internal_set_v_9(double value);
-
-  public:
-  // double i_9 = 26;
-  void clear_i_9() ;
-  double i_9() const;
-  void set_i_9(double value);
-
-  private:
-  double _internal_i_9() const;
-  void _internal_set_i_9(double value);
-
-  public:
-  // double v_10 = 27;
-  void clear_v_10() ;
-  double v_10() const;
-  void set_v_10(double value);
-
-  private:
-  double _internal_v_10() const;
-  void _internal_set_v_10(double value);
-
-  public:
-  // double i_10 = 28;
-  void clear_i_10() ;
-  double i_10() const;
-  void set_i_10(double value);
-
-  private:
-  double _internal_i_10() const;
-  void _internal_set_i_10(double value);
-
-  public:
-  // double v_11 = 29;
-  void clear_v_11() ;
-  double v_11() const;
-  void set_v_11(double value);
-
-  private:
-  double _internal_v_11() const;
-  void _internal_set_v_11(double value);
-
-  public:
-  // double i_11 = 30;
-  void clear_i_11() ;
-  double i_11() const;
-  void set_i_11(double value);
-
-  private:
-  double _internal_i_11() const;
-  void _internal_set_i_11(double value);
-
-  public:
   // @@protoc_insertion_point(class_scope:power_msg.PowerStateStamped)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<5, 30,
+  static const ::google::protobuf::internal::TcParseTable<5, 20,
                                    1, 0,
                                    2>
       _table_;
@@ -645,16 +535,6 @@ class PowerStateStamped final : public ::google::protobuf::Message
     double i_5_;
     double v_6_;
     double i_6_;
-    double v_7_;
-    double i_7_;
-    double v_8_;
-    double i_8_;
-    double v_9_;
-    double i_9_;
-    double v_10_;
-    double i_10_;
-    double v_11_;
-    double i_11_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -812,9 +692,8 @@ class PowerCmdStamped final : public ::google::protobuf::Message
     kSignalFieldNumber = 3,
     kPowerFieldNumber = 4,
     kCleanFieldNumber = 5,
-    kRobotModeFieldNumber = 7,
     kTriggerFieldNumber = 6,
-    kSteeringCaliFieldNumber = 8,
+    kRobotModeFieldNumber = 7,
   };
   // .std_msg.Header header = 1;
   bool has_header() const;
@@ -871,16 +750,6 @@ class PowerCmdStamped final : public ::google::protobuf::Message
   void _internal_set_clean(bool value);
 
   public:
-  // .power_msg.ROBOTMODE robot_mode = 7;
-  void clear_robot_mode() ;
-  ::power_msg::ROBOTMODE robot_mode() const;
-  void set_robot_mode(::power_msg::ROBOTMODE value);
-
-  private:
-  ::power_msg::ROBOTMODE _internal_robot_mode() const;
-  void _internal_set_robot_mode(::power_msg::ROBOTMODE value);
-
-  public:
   // bool trigger = 6;
   void clear_trigger() ;
   bool trigger() const;
@@ -891,21 +760,21 @@ class PowerCmdStamped final : public ::google::protobuf::Message
   void _internal_set_trigger(bool value);
 
   public:
-  // bool steering_cali = 8;
-  void clear_steering_cali() ;
-  bool steering_cali() const;
-  void set_steering_cali(bool value);
+  // .power_msg.ROBOTMODE robot_mode = 7;
+  void clear_robot_mode() ;
+  ::power_msg::ROBOTMODE robot_mode() const;
+  void set_robot_mode(::power_msg::ROBOTMODE value);
 
   private:
-  bool _internal_steering_cali() const;
-  void _internal_set_steering_cali(bool value);
+  ::power_msg::ROBOTMODE _internal_robot_mode() const;
+  void _internal_set_robot_mode(::power_msg::ROBOTMODE value);
 
   public:
   // @@protoc_insertion_point(class_scope:power_msg.PowerCmdStamped)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 8,
+  static const ::google::protobuf::internal::TcParseTable<3, 7,
                                    1, 0,
                                    2>
       _table_;
@@ -932,9 +801,8 @@ class PowerCmdStamped final : public ::google::protobuf::Message
     bool signal_;
     bool power_;
     bool clean_;
-    int robot_mode_;
     bool trigger_;
-    bool steering_cali_;
+    int robot_mode_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -1152,7 +1020,7 @@ inline void PowerCmdStamped::_internal_set_clean(bool value) {
 inline void PowerCmdStamped::clear_trigger() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.trigger_ = false;
-  _impl_._has_bits_[0] &= ~0x00000040u;
+  _impl_._has_bits_[0] &= ~0x00000020u;
 }
 inline bool PowerCmdStamped::trigger() const {
   // @@protoc_insertion_point(field_get:power_msg.PowerCmdStamped.trigger)
@@ -1160,7 +1028,7 @@ inline bool PowerCmdStamped::trigger() const {
 }
 inline void PowerCmdStamped::set_trigger(bool value) {
   _internal_set_trigger(value);
-  _impl_._has_bits_[0] |= 0x00000040u;
+  _impl_._has_bits_[0] |= 0x00000020u;
   // @@protoc_insertion_point(field_set:power_msg.PowerCmdStamped.trigger)
 }
 inline bool PowerCmdStamped::_internal_trigger() const {
@@ -1176,7 +1044,7 @@ inline void PowerCmdStamped::_internal_set_trigger(bool value) {
 inline void PowerCmdStamped::clear_robot_mode() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.robot_mode_ = 0;
-  _impl_._has_bits_[0] &= ~0x00000020u;
+  _impl_._has_bits_[0] &= ~0x00000040u;
 }
 inline ::power_msg::ROBOTMODE PowerCmdStamped::robot_mode() const {
   // @@protoc_insertion_point(field_get:power_msg.PowerCmdStamped.robot_mode)
@@ -1184,7 +1052,7 @@ inline ::power_msg::ROBOTMODE PowerCmdStamped::robot_mode() const {
 }
 inline void PowerCmdStamped::set_robot_mode(::power_msg::ROBOTMODE value) {
   _internal_set_robot_mode(value);
-  _impl_._has_bits_[0] |= 0x00000020u;
+  _impl_._has_bits_[0] |= 0x00000040u;
   // @@protoc_insertion_point(field_set:power_msg.PowerCmdStamped.robot_mode)
 }
 inline ::power_msg::ROBOTMODE PowerCmdStamped::_internal_robot_mode() const {
@@ -1194,30 +1062,6 @@ inline ::power_msg::ROBOTMODE PowerCmdStamped::_internal_robot_mode() const {
 inline void PowerCmdStamped::_internal_set_robot_mode(::power_msg::ROBOTMODE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.robot_mode_ = value;
-}
-
-// bool steering_cali = 8;
-inline void PowerCmdStamped::clear_steering_cali() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.steering_cali_ = false;
-  _impl_._has_bits_[0] &= ~0x00000080u;
-}
-inline bool PowerCmdStamped::steering_cali() const {
-  // @@protoc_insertion_point(field_get:power_msg.PowerCmdStamped.steering_cali)
-  return _internal_steering_cali();
-}
-inline void PowerCmdStamped::set_steering_cali(bool value) {
-  _internal_set_steering_cali(value);
-  _impl_._has_bits_[0] |= 0x00000080u;
-  // @@protoc_insertion_point(field_set:power_msg.PowerCmdStamped.steering_cali)
-}
-inline bool PowerCmdStamped::_internal_steering_cali() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.steering_cali_;
-}
-inline void PowerCmdStamped::_internal_set_steering_cali(bool value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.steering_cali_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -1771,246 +1615,6 @@ inline double PowerStateStamped::_internal_i_6() const {
 inline void PowerStateStamped::_internal_set_i_6(double value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.i_6_ = value;
-}
-
-// double v_7 = 21;
-inline void PowerStateStamped::clear_v_7() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.v_7_ = 0;
-  _impl_._has_bits_[0] &= ~0x00100000u;
-}
-inline double PowerStateStamped::v_7() const {
-  // @@protoc_insertion_point(field_get:power_msg.PowerStateStamped.v_7)
-  return _internal_v_7();
-}
-inline void PowerStateStamped::set_v_7(double value) {
-  _internal_set_v_7(value);
-  _impl_._has_bits_[0] |= 0x00100000u;
-  // @@protoc_insertion_point(field_set:power_msg.PowerStateStamped.v_7)
-}
-inline double PowerStateStamped::_internal_v_7() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.v_7_;
-}
-inline void PowerStateStamped::_internal_set_v_7(double value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.v_7_ = value;
-}
-
-// double i_7 = 22;
-inline void PowerStateStamped::clear_i_7() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.i_7_ = 0;
-  _impl_._has_bits_[0] &= ~0x00200000u;
-}
-inline double PowerStateStamped::i_7() const {
-  // @@protoc_insertion_point(field_get:power_msg.PowerStateStamped.i_7)
-  return _internal_i_7();
-}
-inline void PowerStateStamped::set_i_7(double value) {
-  _internal_set_i_7(value);
-  _impl_._has_bits_[0] |= 0x00200000u;
-  // @@protoc_insertion_point(field_set:power_msg.PowerStateStamped.i_7)
-}
-inline double PowerStateStamped::_internal_i_7() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.i_7_;
-}
-inline void PowerStateStamped::_internal_set_i_7(double value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.i_7_ = value;
-}
-
-// double v_8 = 23;
-inline void PowerStateStamped::clear_v_8() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.v_8_ = 0;
-  _impl_._has_bits_[0] &= ~0x00400000u;
-}
-inline double PowerStateStamped::v_8() const {
-  // @@protoc_insertion_point(field_get:power_msg.PowerStateStamped.v_8)
-  return _internal_v_8();
-}
-inline void PowerStateStamped::set_v_8(double value) {
-  _internal_set_v_8(value);
-  _impl_._has_bits_[0] |= 0x00400000u;
-  // @@protoc_insertion_point(field_set:power_msg.PowerStateStamped.v_8)
-}
-inline double PowerStateStamped::_internal_v_8() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.v_8_;
-}
-inline void PowerStateStamped::_internal_set_v_8(double value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.v_8_ = value;
-}
-
-// double i_8 = 24;
-inline void PowerStateStamped::clear_i_8() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.i_8_ = 0;
-  _impl_._has_bits_[0] &= ~0x00800000u;
-}
-inline double PowerStateStamped::i_8() const {
-  // @@protoc_insertion_point(field_get:power_msg.PowerStateStamped.i_8)
-  return _internal_i_8();
-}
-inline void PowerStateStamped::set_i_8(double value) {
-  _internal_set_i_8(value);
-  _impl_._has_bits_[0] |= 0x00800000u;
-  // @@protoc_insertion_point(field_set:power_msg.PowerStateStamped.i_8)
-}
-inline double PowerStateStamped::_internal_i_8() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.i_8_;
-}
-inline void PowerStateStamped::_internal_set_i_8(double value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.i_8_ = value;
-}
-
-// double v_9 = 25;
-inline void PowerStateStamped::clear_v_9() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.v_9_ = 0;
-  _impl_._has_bits_[0] &= ~0x01000000u;
-}
-inline double PowerStateStamped::v_9() const {
-  // @@protoc_insertion_point(field_get:power_msg.PowerStateStamped.v_9)
-  return _internal_v_9();
-}
-inline void PowerStateStamped::set_v_9(double value) {
-  _internal_set_v_9(value);
-  _impl_._has_bits_[0] |= 0x01000000u;
-  // @@protoc_insertion_point(field_set:power_msg.PowerStateStamped.v_9)
-}
-inline double PowerStateStamped::_internal_v_9() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.v_9_;
-}
-inline void PowerStateStamped::_internal_set_v_9(double value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.v_9_ = value;
-}
-
-// double i_9 = 26;
-inline void PowerStateStamped::clear_i_9() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.i_9_ = 0;
-  _impl_._has_bits_[0] &= ~0x02000000u;
-}
-inline double PowerStateStamped::i_9() const {
-  // @@protoc_insertion_point(field_get:power_msg.PowerStateStamped.i_9)
-  return _internal_i_9();
-}
-inline void PowerStateStamped::set_i_9(double value) {
-  _internal_set_i_9(value);
-  _impl_._has_bits_[0] |= 0x02000000u;
-  // @@protoc_insertion_point(field_set:power_msg.PowerStateStamped.i_9)
-}
-inline double PowerStateStamped::_internal_i_9() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.i_9_;
-}
-inline void PowerStateStamped::_internal_set_i_9(double value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.i_9_ = value;
-}
-
-// double v_10 = 27;
-inline void PowerStateStamped::clear_v_10() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.v_10_ = 0;
-  _impl_._has_bits_[0] &= ~0x04000000u;
-}
-inline double PowerStateStamped::v_10() const {
-  // @@protoc_insertion_point(field_get:power_msg.PowerStateStamped.v_10)
-  return _internal_v_10();
-}
-inline void PowerStateStamped::set_v_10(double value) {
-  _internal_set_v_10(value);
-  _impl_._has_bits_[0] |= 0x04000000u;
-  // @@protoc_insertion_point(field_set:power_msg.PowerStateStamped.v_10)
-}
-inline double PowerStateStamped::_internal_v_10() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.v_10_;
-}
-inline void PowerStateStamped::_internal_set_v_10(double value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.v_10_ = value;
-}
-
-// double i_10 = 28;
-inline void PowerStateStamped::clear_i_10() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.i_10_ = 0;
-  _impl_._has_bits_[0] &= ~0x08000000u;
-}
-inline double PowerStateStamped::i_10() const {
-  // @@protoc_insertion_point(field_get:power_msg.PowerStateStamped.i_10)
-  return _internal_i_10();
-}
-inline void PowerStateStamped::set_i_10(double value) {
-  _internal_set_i_10(value);
-  _impl_._has_bits_[0] |= 0x08000000u;
-  // @@protoc_insertion_point(field_set:power_msg.PowerStateStamped.i_10)
-}
-inline double PowerStateStamped::_internal_i_10() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.i_10_;
-}
-inline void PowerStateStamped::_internal_set_i_10(double value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.i_10_ = value;
-}
-
-// double v_11 = 29;
-inline void PowerStateStamped::clear_v_11() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.v_11_ = 0;
-  _impl_._has_bits_[0] &= ~0x10000000u;
-}
-inline double PowerStateStamped::v_11() const {
-  // @@protoc_insertion_point(field_get:power_msg.PowerStateStamped.v_11)
-  return _internal_v_11();
-}
-inline void PowerStateStamped::set_v_11(double value) {
-  _internal_set_v_11(value);
-  _impl_._has_bits_[0] |= 0x10000000u;
-  // @@protoc_insertion_point(field_set:power_msg.PowerStateStamped.v_11)
-}
-inline double PowerStateStamped::_internal_v_11() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.v_11_;
-}
-inline void PowerStateStamped::_internal_set_v_11(double value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.v_11_ = value;
-}
-
-// double i_11 = 30;
-inline void PowerStateStamped::clear_i_11() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.i_11_ = 0;
-  _impl_._has_bits_[0] &= ~0x20000000u;
-}
-inline double PowerStateStamped::i_11() const {
-  // @@protoc_insertion_point(field_get:power_msg.PowerStateStamped.i_11)
-  return _internal_i_11();
-}
-inline void PowerStateStamped::set_i_11(double value) {
-  _internal_set_i_11(value);
-  _impl_._has_bits_[0] |= 0x20000000u;
-  // @@protoc_insertion_point(field_set:power_msg.PowerStateStamped.i_11)
-}
-inline double PowerStateStamped::_internal_i_11() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.i_11_;
-}
-inline void PowerStateStamped::_internal_set_i_11(double value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.i_11_ = value;
 }
 
 #ifdef __GNUC__

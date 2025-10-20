@@ -3,44 +3,65 @@ syntax = "proto3";
 package motor_msg;
 import "std.proto";
 
+// ====== DC Motor Command / State ======
 message MotorCmd {
-    double position = 1;
-    double kp = 2;
-    double ki = 3;
-    double kd = 4;
-    double torque = 5;
+  float position = 1;
+  float torque   = 2;
+  float kp       = 3;
+  float ki       = 4;
+  float kd       = 5;
 }
 
-message MotorState {
-    double position = 1;
-    double velocity = 2;
-    double torque = 3;
+message DcState {
+  float position = 1;
+  float velocity = 2;
+  float current  = 3;
+  float torque   = 4;
 }
 
+// ====== Servo Command / State ======
+message ServoCmd {
+  uint32 bus           = 1;  // 1,2,3
+  uint32 id            = 2;  // 1,2
+  float  position      = 3;
+  float  current_limit = 4;
+  float  kp            = 5;
+  float  ki            = 6;
+  float  kd            = 7;
+}
+
+message ServoState {
+  uint32 bus      = 1;
+  uint32 id       = 2;
+  float  position = 3;
+  float  velocity = 4;
+  float  current  = 5;
+}
+
+// ====== 每條腿的控制組合 ======
 message LegCmd {
-    MotorCmd hip = 1;
-    MotorCmd steering = 2;
-    MotorCmd hub = 3;
-}
-// motor need to reset >> motor mode 
-message LegState {
-    MotorState hip = 1;
-    MotorState steering = 2;
-    MotorState hub = 3;
+  MotorCmd  dc    = 1;  // ← 這裡原本錯寫 DcCmd
+  ServoCmd  servo = 2;
 }
 
+message LegState {
+  DcState    dc    = 1;
+  ServoState servo = 2;
+}
+
+// ====== 六條腿的封包 ======
 message MotorCmdStamped {
-    std_msg.Header header = 1;
-    LegCmd module_a = 2;
-    LegCmd module_b = 3;
-    LegCmd module_c = 4;
-    LegCmd module_d = 5;
+  std_msg.Header header = 1;
+  MotorCmd       cmd    = 2;
 }
 
 message MotorStateStamped {
-    std_msg.Header header = 1;
-    LegState module_a = 2;
-    LegState module_b = 3;
-    LegState module_c = 4;
-    LegState module_d = 5;
+  std_msg.Header header = 1;
+  LegState L1 = 2;
+  LegState L2 = 3;
+  LegState L3 = 4;
+  LegState R1 = 5;
+  LegState R2 = 6;
+  LegState R3 = 7;
 }
+
