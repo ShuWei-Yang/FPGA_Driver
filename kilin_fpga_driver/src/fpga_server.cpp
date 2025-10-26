@@ -35,7 +35,7 @@ bool is_sys_stop(){
 }
 
 Kilin::Kilin(){
-    std::vector<LegModule> legs_;
+    //std::vector<LegModule> legs_;
     /* initialize powerboard state (Digital/Signal/Power) */
     digital_switch_ = false;
     signal_switch_ = false;
@@ -48,12 +48,12 @@ Kilin::Kilin(){
     powerboard_state_.push_back(signal_switch_); 
     powerboard_state_.push_back(power_switch_); 
 
-    ModeFsm fsm(&legs_, nullptr, &powerboard_state_, fpga_.powerboard_V_list_);
+    ModeFsm fsm(&motors_list_, nullptr, &powerboard_state_, fpga_.powerboard_V_list_);
     fsm_ = fsm;
     
     load_config_();
     // legs_.resize(6); 
-    console_.init(&fpga_, legs_.data(), nullptr, &powerboard_state_, &fsm_, &main_mtx_);
+    console_.init(&fpga_, &motors_list_[0], nullptr, &powerboard_state_, &fsm_, &main_mtx_);
 }
 
 void Kilin::load_config_(){ 
