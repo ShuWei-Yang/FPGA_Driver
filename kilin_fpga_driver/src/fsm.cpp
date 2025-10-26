@@ -84,7 +84,7 @@ void ModeFsm::runFsm(motor_msg::MotorStateStamped& motor_fb_msg,
                     int cal_cnt = 0;
                     for (auto& mod : *legs_) {
                         if (mod.enable_){
-                            for (int i = 0; i < 6; i += 2){
+                            for (int i = 0; i < 6; i++){
                                 if (mod.rxdata_buffer_[i].calibrate_finish_ == 2) cal_cnt++;
                             }
                         }
@@ -112,11 +112,13 @@ void ModeFsm::runFsm(motor_msg::MotorStateStamped& motor_fb_msg,
                                 double errj = 0;
                                 errj = cal_command[2];
                                 if (fabs(errj) < cal_tol_){
-                                    mod.txdata_buffer_[0].position_ = 0;
-                                    mod.txdata_buffer_[0].torque_ = 0;
-                                    mod.txdata_buffer_[0].KP_ = 0;
-                                    mod.txdata_buffer_[0].KI_ = 0;
-                                    mod.txdata_buffer_[0].KD_ = 0;
+                                    for (i = 0; i < 6; i++){
+                                        mod.txdata_buffer_[i].position_ = 0;
+                                        mod.txdata_buffer_[i].torque_ = 0;
+                                        mod.txdata_buffer_[i].KP_ = 0;
+                                        mod.txdata_buffer_[i].KI_ = 0;
+                                        mod.txdata_buffer_[i].KD_ = 0;
+                                    }
                                 }
                             }
                         }
@@ -138,13 +140,15 @@ void ModeFsm::runFsm(motor_msg::MotorStateStamped& motor_fb_msg,
 
         case Mode::MOTOR:{
             publishMsg(motor_fb_msg);
+            const auto& dc = motor_cmd_msg.cmd();
             for (auto& mod : *legs_){
-                const auto& dc = motor_cmd_msg.cmd();
-                mod.txdata_buffer_[0].position_ = dc.position();
-                mod.txdata_buffer_[0].torque_ = dc.torque();
-                mod.txdata_buffer_[0].KP_ = dc.kp();
-                mod.txdata_buffer_[0].KI_ = dc.ki();
-                mod.txdata_buffer_[0].KD_ = dc.kd();
+                for (int i = 0; i < 6; i++){
+                    mod.txdata_buffer_[i].position_ = dc.position();
+                    mod.txdata_buffer_[i].torque_ = dc.torque();
+                    mod.txdata_buffer_[i].KP_ = dc.kp();
+                    mod.txdata_buffer_[i].KI_ = dc.ki();
+                    mod.txdata_buffer_[i].KD_ = dc.kd();
+                }
 
             }
             break;
