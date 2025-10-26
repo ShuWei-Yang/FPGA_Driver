@@ -34,8 +34,11 @@ LegModule::LegModule(std::string _label,
     //io_.RS485_setup(RS485_CMD_us_, RS485_IDLE_us_, RS485_READ_us_);
 }
 
-void LegModule::load_config()
-{
+void LegModule::load_config(){
+    motors_list_.resize(6);
+    //txdata_buffer_.resize(6);
+    //rxdata_buffer_.resize(6);
+
     Motor motorL1;
     Motor motorL2;
     Motor motorL3;
@@ -45,7 +48,7 @@ void LegModule::load_config()
 //    Servo servo_bus1_l;
     // load configuration from yaml file
     std::cout << "[ " << label_ << " Configuration ]" << std::endl;
-    enable_ = config_["Motor"][label_]["Enable"].as<int>();
+    motorL1.enable_ = config_["Motor"]["L1"]["Enable"].as<int>();
     //motor.fw_version_ = config_[label_]["Motor"]["FW_Version"].as<int>(0);
     //motor.calibration_bias = config_[label_]["Motor"]["Calibration_Bias"].as<double>(0.0);
     motorL1.kp_ = config_["Motor"]["L1"]["KP"].as<double>();
@@ -55,6 +58,7 @@ void LegModule::load_config()
     motorL1.torque_ff_ = config_["Motor"]["L1"]["Torque_Feedforward"].as<double>();
     motorL1.input_voltage_ = config_["Motor"]["L1"]["input_voltage"].as<int>();
 
+    motorL2.enable_ = config_["Motor"]["L2"]["Enable"].as<int>();
     motorL2.kp_ = config_["Motor"]["L2"]["KP"].as<double>();
     motorL2.ki_ = config_["Motor"]["L2"]["KI"].as<double>();
     motorL2.kd_ = config_["Motor"]["L2"]["KD"].as<double>();
@@ -62,6 +66,7 @@ void LegModule::load_config()
     motorL2.torque_ff_ = config_["Motor"]["L2"]["Torque_Feedforward"].as<double>();
     motorL2.input_voltage_ = config_["Motor"]["L2"]["input_voltage"].as<int>();
 
+    motorL3.enable_ = config_["Motor"]["L3"]["Enable"].as<int>();
     motorL3.kp_ = config_["Motor"]["L3"]["KP"].as<double>();
     motorL3.ki_ = config_["Motor"]["L3"]["KI"].as<double>();
     motorL3.kd_ = config_["Motor"]["L3"]["KD"].as<double>();
@@ -69,6 +74,7 @@ void LegModule::load_config()
     motorL3.torque_ff_ = config_["Motor"]["L3"]["Torque_Feedforward"].as<double>();
     motorL3.input_voltage_ = config_["Motor"]["L3"]["input_voltage"].as<int>();
 
+    motorR1.enable_ = config_["Motor"]["R1"]["Enable"].as<int>();
     motorR1.kp_ = config_["Motor"]["R1"]["KP"].as<double>();
     motorR1.ki_ = config_["Motor"]["R1"]["KI"].as<double>();
     motorR1.kd_ = config_["Motor"]["R1"]["KD"].as<double>();
@@ -76,6 +82,7 @@ void LegModule::load_config()
     motorR1.torque_ff_ = config_["Motor"]["R1"]["Torque_Feedforward"].as<double>();
     motorR1.input_voltage_ = config_["Motor"]["R1"]["input_voltage"].as<int>();
 
+    motorR2.enable_ = config_["Motor"]["R2"]["Enable"].as<int>();
     motorR2.kp_ = config_["Motor"]["R2"]["KP"].as<double>();
     motorR2.ki_ = config_["Motor"]["R2"]["KI"].as<double>();
     motorR2.kd_ = config_["Motor"]["R2"]["KD"].as<double>();
@@ -83,6 +90,7 @@ void LegModule::load_config()
     motorR2.torque_ff_ = config_["Motor"]["R2"]["Torque_Feedforward"].as<double>();
     motorR2.input_voltage_ = config_["Motor"]["R2"]["input_voltage"].as<int>();
 
+    motorR3.enable_ = config_["Motor"]["R3"]["Enable"].as<int>();
     motorR3.kp_ = config_["Motor"]["R3"]["KP"].as<double>();
     motorR3.ki_ = config_["Motor"]["R3"]["KI"].as<double>();
     motorR3.kd_ = config_["Motor"]["R3"]["KD"].as<double>();
@@ -90,12 +98,29 @@ void LegModule::load_config()
     motorR3.torque_ff_ = config_["Motor"]["R3"]["Torque_Feedforward"].as<double>();
     motorR3.input_voltage_ = config_["Motor"]["R3"]["input_voltage"].as<int>();
 
-    motors_list_.push_back(motorL1);
-    motors_list_.push_back(motorL2);
-    motors_list_.push_back(motorL3);
-    motors_list_.push_back(motorR1);
-    motors_list_.push_back(motorR2);
-    motors_list_.push_back(motorR3);
+    motors_list_[0] = motorL1;
+    motors_list_[1] = motorL2;
+    motors_list_[2] = motorL3;
+    motors_list_[3] = motorR1;
+    motors_list_[4] = motorR2;
+    motors_list_[5] = motorR3;
+
+    for (int i = 0; i < 6; i++){
+        txdata_buffer_[i].KP_ = motors_list_[i].kp_;
+        txdata_buffer_[i].KI_ = motors_list_[i].ki_;
+        txdata_buffer_[i].KD_ = motors_list_[i].kd_;
+        txdata_buffer_[i].KT_ = motors_list_[i].kt_;
+        txdata_buffer_[i].position_ = 0.0; 
+        txdata_buffer_[i].torque_ = 0.0;
+    }
+
+    for (int i = 0; i < 6; ++i){
+        rxdata_buffer_[i].position_ = 0.0;
+        rxdata_buffer_[i].velocity_ = 0.0;
+        rxdata_buffer_[i].torque_ = 0.0;
+        rxdata_buffer_[i].calibrate_finish_ = 0;
+    }
+
 
 //    servo_bus1_l.id_ = config_[label_]["Servo"]["Bus 1"].as<int>(1);
 //    servo_bus1_l.position_ = config_[label_]["Servo"]["InitPos_L"].as<int>(0);
@@ -172,6 +197,8 @@ void LegModule::load_config()
 //    std::cout << std::setw(14) << "  Servo_ID: " << std::setw(13) << servo_r.id_ << std::endl;
 //    std::cout << std::setw(14) << "  Servo_Position: " << std::setw(13) << servo_r.position_ << std::endl;
 //    std::cout << std::setw(14) << "---------------------------" << std::endl;
+
+
 }
 
 
