@@ -70,14 +70,9 @@ void Console::refreshWindow()
     const int right_h = std::max(5, avail_h);
 
 
-    Panel p_cmain_ ("[F] FPGA Server ", "c_main", leg_null, nullptr,
-                    left_x, top_margin, top_h, left_w, true);
-
-    Panel p_power_ ("[P] Power Board ", "power",   leg_null, nullptr,
-                    left_x, power_y, power_h, left_w, true);
-
-    Panel p_legs_  ("[L] Legs ",        "legs",    this->legs_, nullptr,
-                    right_x, right_y, right_h, right_w, true);
+    Panel p_cmain_ ("[F] FPGA Server ", "c_main", leg_null, nullptr, left_x, top_margin, top_h, left_w, true);
+    Panel p_power_ ("[P] Power Board ", "power",   leg_null, nullptr, left_x, power_y, power_h, left_w, true);
+    Panel p_legs_  ("[L] Legs ", "legs", this->legs_, nullptr, right_x, right_y, right_h, right_w, true);
 
 
     p_power_.powerboard_state_ = powerboard_state_;
@@ -90,7 +85,7 @@ void Console::refreshWindow()
         p_cmain_.infoDisplay(Behavior::TCP_SLAVE, fsm_->workingMode_);
         p_legs_.infoDisplay();
         cons_mtx_.unlock();
-
+        main_mtx_->unlock();
         usleep(0.1 * 1000 * 1000);
     }
 }
@@ -258,48 +253,48 @@ void InputPanel::commandDecode(const std::string& buf)
             syntax_err = true;
         }
     }
-    else if (bufs.size() == 3 && legs_selected){
-        mvwprintw(win_, 2, 3, bufs[1].c_str());
-        mvwprintw(win_, 2, 5, bufs[2].c_str());
+    else if (bufs.size() >= 4 && legs_selected){
+        mvwprintw(win_, 2, 3, "%s", bufs[1].c_str());
+        mvwprintw(win_, 2, 5, "%s", bufs[2].c_str());
         wrefresh(win_);
 
         int idx = 0;
         
-        if (bufs[1] == "A"){
+        if (bufs[2] == "A"){
             try{
-                legs_->txdata_buffer_[idx].position_ = std::stof(bufs[2]);
+                legs_->txdata_buffer_[idx].position_ = std::stof(bufs[3]);
             }
             catch (exception &e){
                 syntax_err = true;
             }
         }
-        else if (bufs[1] == "T"){
+        else if (bufs[2] == "T"){
             try{
-                legs_->txdata_buffer_[idx].torque_ = std::stof(bufs[2]);
+                legs_->txdata_buffer_[idx].torque_ = std::stof(bufs[3]);
             }
             catch (exception &e){
                 syntax_err = true;
             }
         }
-        else if (bufs[1] == "P"){
+        else if (bufs[2] == "P"){
             try{
-                legs_->txdata_buffer_[idx].KP_ = std::stof(bufs[2]);
+                legs_->txdata_buffer_[idx].KP_ = std::stof(bufs[3]);
             }
             catch (exception &e){
                 syntax_err = true;
             }
         }
-        else if (bufs[1] == "I"){
+        else if (bufs[2] == "I"){
             try{
-                legs_->txdata_buffer_[idx].KI_ = std::stof(bufs[2]);
+                legs_->txdata_buffer_[idx].KI_ = std::stof(bufs[3]);
             }
             catch (exception &e){
                 syntax_err = true;
             }
         }
-        else if (bufs[1] == "D"){
+        else if (bufs[2] == "D"){
             try{
-                legs_->txdata_buffer_[idx].KD_ = std::stof(bufs[2]);
+                legs_->txdata_buffer_[idx].KD_ = std::stof(bufs[3]);
             }
             catch (const std::exception&){
                 syntax_err = true;
@@ -382,10 +377,11 @@ Panel::Panel(const std::string& title,
 }
 
 void Panel::infoDisplay(){
+
     int y_org = 2;
 
     mvwprintw(win_, 1, 1, "[L] L1 -----------------------------------------");
-    mvwprintw(win_, 2, 1, "[E] [EN] enable: %9d", legs_->enable_);
+    mvwprintw(win_, 2, 1, "[E] [EN] enable: %9d", legs_->motors_list_[0].enable_);
     mvwprintw(win_, y_org + 1, 1,  "[A] [tx] Pos:  %5.5f", legs_->txdata_buffer_[0].position_);
     mvwprintw(win_, y_org + 2, 1,  "[T] [tx] Trq:  %5.5f", legs_->txdata_buffer_[0].torque_);
     mvwprintw(win_, y_org + 3, 1,  "[P] [tx] KP:   %4.5f", legs_->txdata_buffer_[0].KP_);
@@ -400,7 +396,7 @@ void Panel::infoDisplay(){
     wrefresh(win_);
 
     mvwprintw(win_, 10, 1, "[L] L2 -----------------------------------------");
-    mvwprintw(win_, 11, 1, "[E] [EN] enable: %9d", legs_->enable_);
+    mvwprintw(win_, 11, 1, "[E] [EN] enable: %9d", legs_->motors_list_[1].enable_);
     mvwprintw(win_, y_org + 10, 1,  "[A] [tx] Pos:  %5.5f", legs_->txdata_buffer_[1].position_);
     mvwprintw(win_, y_org + 11, 1,  "[T] [tx] Trq:  %5.5f", legs_->txdata_buffer_[1].torque_);
     mvwprintw(win_, y_org + 12, 1,  "[P] [tx] KP:   %4.5f", legs_->txdata_buffer_[1].KP_);
@@ -415,7 +411,7 @@ void Panel::infoDisplay(){
     wrefresh(win_);
 
     mvwprintw(win_, 20, 1, "[L] L3 -----------------------------------------");
-    mvwprintw(win_, 21, 1, "[E] [EN] enable: %9d", legs_->enable_);
+    mvwprintw(win_, 21, 1, "[E] [EN] enable: %9d", legs_->motors_list_[2].enable_);
     mvwprintw(win_, y_org + 20, 1,  "[A] [tx] Pos:  %5.5f", legs_->txdata_buffer_[2].position_);
     mvwprintw(win_, y_org + 21, 1,  "[T] [tx] Trq:  %5.5f", legs_->txdata_buffer_[2].torque_);
     mvwprintw(win_, y_org + 22, 1,  "[P] [tx] KP:   %4.5f", legs_->txdata_buffer_[2].KP_);
@@ -430,7 +426,7 @@ void Panel::infoDisplay(){
     wrefresh(win_);
 
     mvwprintw(win_, 1, 60, "[L] R1 -----------------------------------------");
-    mvwprintw(win_, 2, 60, "[E] [EN] enable: %9d", legs_->enable_);
+    mvwprintw(win_, 2, 60, "[E] [EN] enable: %9d", legs_->motors_list_[3].enable_);
     mvwprintw(win_, y_org + 1, 60,  "[A] [tx] Pos:  %5.5f", legs_->txdata_buffer_[3].position_);
     mvwprintw(win_, y_org + 2, 60,  "[T] [tx] Trq:  %5.5f", legs_->txdata_buffer_[3].torque_);
     mvwprintw(win_, y_org + 3, 60,  "[P] [tx] KP:   %4.5f", legs_->txdata_buffer_[3].KP_);
@@ -445,7 +441,7 @@ void Panel::infoDisplay(){
     wrefresh(win_);
 
     mvwprintw(win_, 10, 60, "[L] R2 -----------------------------------------");
-    mvwprintw(win_, 11, 60, "[E] [EN] enable: %9d", legs_->enable_);
+    mvwprintw(win_, 11, 60, "[E] [EN] enable: %9d", legs_->motors_list_[4].enable_);
     mvwprintw(win_, y_org + 10, 60,  "[A] [tx] Pos:  %5.5f", legs_->txdata_buffer_[4].position_);
     mvwprintw(win_, y_org + 11, 60,  "[T] [tx] Trq:  %5.5f", legs_->txdata_buffer_[4].torque_);
     mvwprintw(win_, y_org + 12, 60,  "[P] [tx] KP:   %4.5f", legs_->txdata_buffer_[4].KP_);
@@ -460,7 +456,7 @@ void Panel::infoDisplay(){
     wrefresh(win_);
 
     mvwprintw(win_, 20, 60, "[L] R3 -----------------------------------------");
-    mvwprintw(win_, 21, 60, "[E] [EN] enable: %9d", legs_->enable_);
+    mvwprintw(win_, 21, 60, "[E] [EN] enable: %9d", legs_->motors_list_[5].enable_);
     mvwprintw(win_, y_org + 20, 60,  "[A] [tx] Pos:  %5.5f", legs_->txdata_buffer_[5].position_);
     mvwprintw(win_, y_org + 21, 60,  "[T] [tx] Trq:  %5.5f", legs_->txdata_buffer_[5].torque_);
     mvwprintw(win_, y_org + 22, 60,  "[P] [tx] KP:   %4.5f", legs_->txdata_buffer_[5].KP_);
