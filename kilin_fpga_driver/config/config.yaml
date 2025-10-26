@@ -22,7 +22,7 @@ Motor:
     KP: 85.0
     KI: 0.3
     KD: 1.75
-    KT: 2.0
+    KT: 3.0
     Torque_Feedforward: 0.0
     input_voltage: 300
 
@@ -48,26 +48,26 @@ Motor:
     Enable: 1
     KP: 85.0
     KI: 0.3
-    KD: 1.75
-    KT: 2.0
+    KD: 1.7
+    KT: 1.0
     Torque_Feedforward: 0.0
     input_voltage: 300
 
   R2:
     Enable: 1
     KP: 85.0
-    KI: 0.3
-    KD: 1.75
-    KT: 2.0
+    KI: 0.65
+    KD: 2.75
+    KT: 4.0
     Torque_Feedforward: 0.0
     input_voltage: 300
 
   R3:
     Enable: 1
-    KP: 85.0
-    KI: 0.3
-    KD: 1.75
-    KT: 2.0
+    KP: 80.0
+    KI: 0.5
+    KD: 1.5
+    KT: 1.0
     Torque_Feedforward: 0.0
     input_voltage: 300
 
