@@ -138,21 +138,52 @@ void ModeFsm::runFsm(motor_msg::MotorStateStamped& motor_fb_msg,
         }
         break;
 
-        case Mode::MOTOR:{
+        case Mode::MOTOR: {
+            // 先把目前 feedback publish 出去
             publishMsg(motor_fb_msg);
-            const auto& dc = motor_cmd_msg.cmd();
-            for (auto& mod : *legs_){
-                for (int i = 0; i < 6; i++){
-                    mod.txdata_buffer_[i].position_ = dc.position();
-                    mod.txdata_buffer_[i].torque_ = dc.torque();
-                    mod.txdata_buffer_[i].KP_ = dc.kp();
-                    mod.txdata_buffer_[i].KI_ = dc.ki();
-                    mod.txdata_buffer_[i].KD_ = dc.kd();
+
+            // 逐條腿處理命令
+            // legs_->at(0) 對 L1, 1→L2, 2→L3, 3→R1, 4→R2, 5→R3
+            const int max_legs = 6;
+            const int n = (legs_->size() < static_cast<size_t>(max_legs))
+                        ? static_cast<int>(legs_->size())
+                        : max_legs;
+
+            for (int leg_idx = 0; leg_idx < n; ++leg_idx)
+            {
+                // 找到這隻腿對應的 LegCmd (來自 MotorCmdStamped)
+                const motor_msg::LegCmd* leg_cmd = nullptr;
+                switch (leg_idx) {
+                    case 0: leg_cmd = &motor_cmd_msg.l1(); break;
+                    case 1: leg_cmd = &motor_cmd_msg.l2(); break;
+                    case 2: leg_cmd = &motor_cmd_msg.l3(); break;
+                    case 3: leg_cmd = &motor_cmd_msg.r1(); break;
+                    case 4: leg_cmd = &motor_cmd_msg.r2(); break;
+                    case 5: leg_cmd = &motor_cmd_msg.r3(); break;
+                    default: break;
+                }
+                if (!leg_cmd) {
+                    continue; // index 超出 L1~R3，就跳過
                 }
 
+                // 從該腿的 LegCmd 拿 DC 指令
+                const auto& dc = leg_cmd->dc();
+
+                // 寫到對應的 LegModule txdata_buffer_
+                auto& mod = legs_->at(leg_idx);
+
+                for (int i = 0; i < 6; i++) {
+                    mod.txdata_buffer_[i].position_ = dc.position();
+                    mod.txdata_buffer_[i].torque_   = dc.torque();
+                    mod.txdata_buffer_[i].KP_       = dc.kp();
+                    mod.txdata_buffer_[i].KI_       = dc.ki();
+                    mod.txdata_buffer_[i].KD_       = dc.kd();
+                }
             }
+
             break;
-        }
+}
+
 
         case Mode::CONFIG:{
             // for debug
